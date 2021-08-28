@@ -2,7 +2,6 @@ AddDefaultCharset utf-8
 ErrorDocument 404 /error-documents/404.html
 
 Redirect permanent /this_page_is_all_about_me.html http://hethrael.com/lithis.html
-Redirect permanent /fencing/ https://www.duluthymca.org/programs/sports-and-rec/downtown/fencing
 
 RewriteEngine on
 RewriteCond %{HTTP_HOST} ^(lithis\.webfactional\.com)|((www\.)?hethrael.com)$
