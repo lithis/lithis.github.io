@@ -1,0 +1,64 @@
+From: rc5.7
+To: rbml
+Subject: rb olympics tiny 1on1 - round 1 resultsl; round 2 pairings
+Full-Name: Jadin M Hanson
+X-Status: New
+X-Juno-Att: 0
+MIME-Version: 1.0
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+
+event stats
+-----------
+robots entered: 14
+rounds played: 1
+rounds remaining: 9
+rounds total: 10
+
+matches played: 0
+matches remaining: 70
+matches total:70
+
+games played: 0
+games remaining: 35,000
+games total: 35,000
+
+contest stats
+-------------
+events completed: 2
+events remaining: 3
+
+robots entered: 77
+
+matches played: 126
+matches remaining: 14 (+3 events)
+
+games played: 71,000
+games remaining: 35,000 (+3 events)
+
+Table  White                     - Black                     Results
+-------------------------------------------------------------round  1
+  1    6-up                ( 0 ) - L750                ( 0 ) 
+  2    Moses               ( 0 ) - Blake               ( 0 ) 
+  3    Buba                ( 0 ) - Nerd                ( 0 ) 
+  4    Rambler             ( 0 ) - Dante               ( 0 ) 
+  5    Glamour             ( 0 ) - Wall                ( 0 ) 
+  6    We4a                ( 0 ) - Pork                ( 0 ) 
+  7    L740                ( 0 ) - Wee4                ( 0 ) 
+
+Tiny entrants:
+
+Wee4			T1	Larry Cardo		171b
+We4a			T1	Larry Cardo		184b
+Blake			T1	Ophir Spector	952b
+Dante			T1	Ophir Spector	736b
+Moses			T1	Ophir Spector	782b
+6-UP			T1 	SuperBots		191b
+rambler		T1	Bill Risher		256b
+glamour		T1	Bill Risher		827b
+wall			T1    David Finch		183b
+nerd			T1    David Finch		173b
+buba			T1    David Finch		405b
+L740			t1	Jadin Hanson	152b
+L750			t1	Jadin Hanson	410b
+L720			t1	Jadin Hanson	244b

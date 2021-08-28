@@ -1,0 +1,11 @@
+body {
+	background: #304530;
+}
+
+ul.imagegallery li a {
+	border-color: #456045;
+}
+
+ul.imagegallery li a:hover {
+	background-color: #456045;
+}

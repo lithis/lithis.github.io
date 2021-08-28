@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.XSelection</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.XSelection</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Andrea Rossato &lt;andrea.rossato@unibz.it&gt;,
+               Matthew Sackman &lt;matthew@wellquite.org&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A module for accessing and manipulating X Window's mouse selection (the buffer used in copy and pasting).
+<TT
+><A HREF="XMonad-Util-XSelection.html#v%3AgetSelection"
+>getSelection</A
+></TT
+> and <TT
+><A HREF="XMonad-Util-XSelection.html#v%3AputSelection"
+>putSelection</A
+></TT
+> are adaptations of Hxsel.hs and Hxput.hs from the XMonad-utils, available:
+</P
+><PRE
+> $ darcs get &lt;http://gorgias.mine.nu/repos/xmonad-utils&gt;
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetSelection"
+>getSelection</A
+> :: MonadIO m =&gt; m <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApromptSelection"
+>promptSelection</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsafePromptSelection"
+>safePromptSelection</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AputSelection"
+>putSelection</A
+> :: MonadIO m =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Add <TT
+>import XMonad.Util.XSelection</TT
+> to the top of Config.hs
+   Then make use of getSelection or promptSelection as needed; if
+   one wanted to run Firefox with the selection as an argument (perhaps
+   the selection string is an URL you just highlighted), then one could add
+   to the xmonad.hs a line like thus:
+</P
+><PRE
+> , ((modMask .|. shiftMask, xK_b), promptSelection &quot;firefox&quot;)
+</PRE
+><P
+>There are a number of known problems with XSelection:
+</P
+><UL
+><LI
+> Unicode handling is busted. But it's still better than calling
+      <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#v%3Achr"
+>chr</A
+></TT
+> to translate to ASCII, at least.
+      As near as I can tell, the mangling happens when the String is
+      outputted somewhere, such as via promptSelection's passing through
+      the shell, or GHCi printing to the terminal. utf-string has IO functions
+      which can fix this, though I do not know have to use them here. It's
+      a complex issue; see
+      <A HREF="http://www.haskell.org/pipermail/xmonad/2007-September/001967.html"
+>http://www.haskell.org/pipermail/xmonad/2007-September/001967.html</A
+>
+      and <A HREF="http://www.haskell.org/pipermail/xmonad/2007-September/001966.html"
+>http://www.haskell.org/pipermail/xmonad/2007-September/001966.html</A
+>.
+</LI
+><LI
+> Needs more elaborate functionality: Emacs' registers are nice; if you
+      don't know what they are, see <A HREF="http://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html#Registers"
+>http://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html#Registers</A
+> 
+</LI
+></UL
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetSelection"
+></A
+><B
+>getSelection</B
+> :: MonadIO m =&gt; m <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Returns a String corresponding to the current mouse selection in X; if there is none, an empty string is returned. Note that this is
+ really only reliable for ASCII text and currently escapes or otherwise mangles more complex UTF-8 characters.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApromptSelection"
+></A
+><B
+>promptSelection</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A wrapper around <TT
+><A HREF="XMonad-Util-XSelection.html#v%3AgetSelection"
+>getSelection</A
+></TT
+>. Makes it convenient to run a program with the current selection as an argument.
+This is convenient for handling URLs, in particular. For example, in your Config.hs you could bind a key to
+         <TT
+>promptSelection &quot;firefox&quot;</TT
+>;
+this would allow you to highlight a URL string and then immediately open it up in Firefox.
+</P
+><P
+><TT
+><A HREF="XMonad-Util-XSelection.html#v%3ApromptSelection"
+>promptSelection</A
+></TT
+> passes strings through the system shell, /bin/sh; if you do not wish your selected text
+to be interpreted or mangled by the shell, use <TT
+><A HREF="XMonad-Util-XSelection.html#v%3AsafePromptSelection"
+>safePromptSelection</A
+></TT
+>. safePromptSelection will bypass the
+shell using <TT
+><A HREF="XMonad-Util-Run.html#v%3AsafeSpawn"
+>safeSpawn</A
+></TT
+> from <A HREF="XMonad-Util-Run.html"
+>XMonad.Util.Run</A
+>; see its documentation for more
+details on the advantages and disadvantages of using safeSpawn. 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsafePromptSelection"
+></A
+><B
+>safePromptSelection</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AputSelection"
+></A
+><B
+>putSelection</B
+> :: MonadIO m =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Set the current X Selection to a specified string.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

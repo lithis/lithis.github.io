@@ -1,0 +1,804 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.WindowNavigation</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.WindowNavigation</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>David Roundy &lt;droundy@darcs.net&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>WindowNavigation is an extension to allow easy navigation of a workspace.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwindowNavigation"
+>windowNavigation</A
+> :: LayoutClass l a =&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> WindowNavigation l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AconfigurableNavigation"
+>configurableNavigation</A
+> :: LayoutClass l a =&gt; WNConfig -&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> WindowNavigation l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ANavigate"
+>Navigate</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AGo"
+>Go</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ASwap"
+>Swap</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AMove"
+>Move</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ADirection"
+>Direction</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AU"
+>U</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AD"
+>D</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AR"
+>R</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AL"
+>L</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AMoveWindowToWindow"
+>MoveWindowToWindow</A
+> a = <A HREF="#v%3AMoveWindowToWindow"
+>MoveWindowToWindow</A
+> a a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnavigateColor"
+>navigateColor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; WNConfig</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnavigateBrightness"
+>navigateBrightness</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; WNConfig</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnoNavigateBorders"
+>noNavigateBorders</A
+> :: WNConfig</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdefaultWNConfig"
+>defaultWNConfig</A
+> :: WNConfig</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Layout.WindowNavigation
+</PRE
+><P
+>Then edit your <TT
+>layoutHook</TT
+> by adding the WindowNavigation layout modifier
+ to some layout:
+</P
+><PRE
+> myLayouts = windowNavigation (Tall 1 (3/100) (1/2))  ||| Full ||| etc..
+ main = xmonad defaultConfig { layoutHook = myLayouts }
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+><P
+>In keybindings:
+</P
+><PRE
+>    , ((modMask x,                 xK_Right), sendMessage $ Go R)
+    , ((modMask x,                 xK_Left ), sendMessage $ Go L)
+    , ((modMask x,                 xK_Up   ), sendMessage $ Go U)
+    , ((modMask x,                 xK_Down ), sendMessage $ Go D)
+    , ((modMask x .|. controlMask, xK_Right), sendMessage $ Swap R)
+    , ((modMask x .|. controlMask, xK_Left ), sendMessage $ Swap L)
+    , ((modMask x .|. controlMask, xK_Up   ), sendMessage $ Swap U)
+    , ((modMask x .|. controlMask, xK_Down ), sendMessage $ Swap D)
+</PRE
+><P
+>For detailed instruction on editing the key binding see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwindowNavigation"
+></A
+><B
+>windowNavigation</B
+> :: LayoutClass l a =&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> WindowNavigation l a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AconfigurableNavigation"
+></A
+><B
+>configurableNavigation</B
+> :: LayoutClass l a =&gt; WNConfig -&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> WindowNavigation l a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ANavigate"
+></A
+><B
+>Navigate</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGo"
+></A
+><B
+>Go</B
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASwap"
+></A
+><B
+>Swap</B
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMove"
+></A
+><B
+>Move</B
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Navigate')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Navigate" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Message <A HREF="XMonad-Layout-WindowNavigation.html#t%3ANavigate"
+>Navigate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ANavigate"
+>Navigate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ANavigate"
+>Navigate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Typeable <A HREF="XMonad-Layout-WindowNavigation.html#t%3ANavigate"
+>Navigate</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ADirection"
+></A
+><B
+>Direction</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+><P
+>An enumeration of the four cardinal directions/sides of the
+   screen.
+</P
+><P
+>Ideally this would go in its own separate module in Util,
+   but ManageDocks is angling for inclusion into the xmonad core,
+   so keep the dependencies to a minimum.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AU"
+></A
+><B
+>U</B
+></TD
+><TD CLASS="rdoc"
+>Up/top
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AD"
+></A
+><B
+>D</B
+></TD
+><TD CLASS="rdoc"
+>Down/bottom
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AR"
+></A
+><B
+>R</B
+></TD
+><TD CLASS="rdoc"
+>Right
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AL"
+></A
+><B
+>L</B
+></TD
+><TD CLASS="rdoc"
+>Left
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Direction')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Direction" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ABounded"
+>Bounded</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3AEnum"
+>Enum</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Ord.html#t%3AOrd"
+>Ord</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Layout-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AMoveWindowToWindow"
+></A
+><B
+>MoveWindowToWindow</B
+> a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMoveWindowToWindow"
+></A
+><B
+>MoveWindowToWindow</B
+> a a</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:MoveWindowToWindow')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:MoveWindowToWindow" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Typeable a =&gt; Message (<A HREF="XMonad-Layout-WindowNavigation.html#t%3AMoveWindowToWindow"
+>MoveWindowToWindow</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> a =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Layout-WindowNavigation.html#t%3AMoveWindowToWindow"
+>MoveWindowToWindow</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Layout-WindowNavigation.html#t%3AMoveWindowToWindow"
+>MoveWindowToWindow</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+>Typeable a =&gt; Typeable (<A HREF="XMonad-Layout-WindowNavigation.html#t%3AMoveWindowToWindow"
+>MoveWindowToWindow</A
+> a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnavigateColor"
+></A
+><B
+>navigateColor</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; WNConfig</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnavigateBrightness"
+></A
+><B
+>navigateBrightness</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; WNConfig</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnoNavigateBorders"
+></A
+><B
+>noNavigateBorders</B
+> :: WNConfig</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdefaultWNConfig"
+></A
+><B
+>defaultWNConfig</B
+> :: WNConfig</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

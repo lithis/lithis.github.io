@@ -1,0 +1,382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.FlexibleManipulate</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.FlexibleManipulate</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>&lt;mgsloan@gmail.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Move and resize floating windows without warping the mouse.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmouseWindow"
+>mouseWindow</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+>) -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Adiscrete"
+>discrete</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Alinear"
+>linear</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aresize"
+>resize</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aposition"
+>position</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>First, add this import to your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import qualified XMonad.Actions.FlexibleManipulate as Flex
+</PRE
+><P
+>Now set up the desired mouse binding, for example:
+</P
+><PRE
+>     , ((modMask x, button1), (\w -&gt; focus w &gt;&gt; Flex.mouseWindow Flex.linear w))
+</PRE
+><UL
+><LI
+> Flex.<TT
+><A HREF="XMonad-Actions-FlexibleManipulate.html#v%3Alinear"
+>linear</A
+></TT
+> indicates that positions between the edges and the
+   middle indicate a combination scale/position.
+</LI
+><LI
+> Flex.<TT
+><A HREF="XMonad-Actions-FlexibleManipulate.html#v%3Adiscrete"
+>discrete</A
+></TT
+> indicates that there are discrete pick
+   regions. (The window is divided by thirds for each axis.)
+</LI
+><LI
+> Flex.<TT
+><A HREF="XMonad-Actions-FlexibleManipulate.html#v%3Aresize"
+>resize</A
+></TT
+> performs only a resize of the window, based on which
+   quadrant the mouse is in.
+</LI
+><LI
+> Flex.<TT
+><A HREF="XMonad-Actions-FlexibleManipulate.html#v%3Aposition"
+>position</A
+></TT
+> is similar to the built-in
+   <TT
+><A HREF="XMonad-Operations.html#v%3AmouseMoveWindow"
+>mouseMoveWindow</A
+></TT
+>.
+</LI
+></UL
+><P
+>You can also write your own function for this parameter. It should take
+ a value between 0 and 1 indicating position, and return a value indicating
+ the corresponding position if plain Flex.<TT
+><A HREF="XMonad-Actions-FlexibleManipulate.html#v%3Alinear"
+>linear</A
+></TT
+> was used.
+</P
+><P
+>For detailed instructions on editing your mouse bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_mouse_bindings"
+>XMonad.Doc.Extending#Editing_mouse_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmouseWindow"
+></A
+><B
+>mouseWindow</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+>) -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given an interpolation function, implement an appropriate window
+   manipulation action.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adiscrete"
+></A
+><B
+>discrete</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Alinear"
+></A
+><B
+>linear</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aresize"
+></A
+><B
+>resize</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aposition"
+></A
+><B
+>position</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

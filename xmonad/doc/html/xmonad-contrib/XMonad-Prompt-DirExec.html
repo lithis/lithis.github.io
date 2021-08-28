@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Prompt.DirExec</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Prompt.DirExec</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>juhe_xmonad@hck.sk</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A directory file executables prompt for XMonad. This might be useful if you
+ don't want to have scripts in your PATH environment variable (same
+ executable names, different behavior) - otherwise you might want to use
+ <A HREF="XMonad-Prompt-Shell.html"
+>XMonad.Prompt.Shell</A
+> instead - but you want to have easy access to these
+ executables through the xmonad's prompt.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdirExecPrompt"
+>dirExecPrompt</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdirExecPromptNamed"
+>dirExecPromptNamed</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>1. In your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Prompt.DirExec
+</PRE
+><P
+>2. In your keybindings add something like:
+</P
+><PRE
+>   , (&quot;M-C-x&quot;, dirExecPrompt defaultXPConfig spawn &quot;/home/joe/.scipts&quot;)
+</PRE
+><P
+>or
+</P
+><PRE
+>   , (&quot;M-C-x&quot;, dirExecPromptNamed defaultXPConfig spawn
+                                  &quot;/home/joe/.scripts&quot; &quot;My Scripts: &quot;)
+</PRE
+><P
+>or add this after your default bindings:
+</P
+><PRE
+>   ++
+   [ (&quot;M-x &quot; ++ key, dirExecPrompt defaultXPConfig fn &quot;/home/joe/.scripts&quot;)
+     | (key, fn) &lt;- [ (&quot;x&quot;, spawn), (&quot;M-x&quot;, runInTerm &quot;-hold&quot;) ]
+   ]
+   ++
+</PRE
+><P
+>The first alternative uses the last element of the directory path for
+ a name of prompt. The second alternative uses the provided string
+ for the name of the prompt. The third alternative defines 2 key bindings,
+ first one spawns the program by shell, second one runs the program in
+ terminal
+</P
+><P
+>For detailed instruction on editing the key binding see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdirExecPrompt"
+></A
+><B
+>dirExecPrompt</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Function <TT
+><A HREF="XMonad-Prompt-DirExec.html#v%3AdirExecPrompt"
+>dirExecPrompt</A
+></TT
+> starts the prompt with list of all executable
+ files in directory specified by <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+></TT
+>. The name of the prompt is taken
+ from the last element of the path. If you specify root directory - <TT
+>/</TT
+> - as
+ the path, name <TT
+>Root:</TT
+> will be used as the name of the prompt instead. The
+ <TT
+><A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+></TT
+> parameter can be used to customize visuals of the prompt.
+ The runner parameter specifies the function used to run the program - see
+ usage for more information
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdirExecPromptNamed"
+></A
+><B
+>dirExecPromptNamed</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Function <TT
+><A HREF="XMonad-Prompt-DirExec.html#v%3AdirExecPromptNamed"
+>dirExecPromptNamed</A
+></TT
+> does the same as <TT
+><A HREF="XMonad-Prompt-DirExec.html#v%3AdirExecPrompt"
+>dirExecPrompt</A
+></TT
+> except
+ the name of the prompt is specified by <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TT
+> parameter.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

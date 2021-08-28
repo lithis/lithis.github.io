@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.CopyWindow</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.CopyWindow</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>???</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Provides a binding to duplicate a window on multiple workspaces,
+ providing dwm-like tagging functionality.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Acopy"
+>copy</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> s, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> i, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; i -&gt; StackSet i l a s sd -&gt; StackSet i l a s sd</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcopyToAll"
+>copyToAll</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> s, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> i, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; StackSet i l a s sd -&gt; StackSet i l a s sd</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcopyWindow"
+>copyWindow</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> i, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> s) =&gt; a -&gt; i -&gt; StackSet i l a s sd -&gt; StackSet i l a s sd</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AkillAllOtherCopies"
+>killAllOtherCopies</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Akill1"
+>kill1</A
+> :: X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+> file:
+</P
+><PRE
+> import XMonad.Actions.CopyWindow
+</PRE
+><P
+>Then add something like this to your keybindings:
+</P
+><PRE
+> -- mod-[1..9] @@ Switch to workspace N
+ -- mod-shift-[1..9] @@ Move client to workspace N
+ -- mod-control-shift-[1..9] @@ Copy client to workspace N
+ [((m .|. modMask x, k), windows $ f i)
+     | (i, k) &lt;- zip (workspaces x) [xK_1 ..]
+     , (f, m) &lt;- [(W.view, 0), (W.shift, shiftMask), (copy, shiftMask .|. controlMask)]]
+</PRE
+><P
+>To use the above key bindings you need also to import
+ <A HREF="XMonad-StackSet.html"
+>XMonad.StackSet</A
+>:
+</P
+><PRE
+> import qualified XMonad.StackSet as W
+</PRE
+><P
+>You may also wish to redefine the binding to kill a window so it only
+ removes it from the current workspace, if it's present elsewhere:
+</P
+><PRE
+>  , ((modMask x .|. shiftMask, xK_c     ), kill1) -- @@ Close the focused window
+</PRE
+><P
+>Another possibility which this extension provides is 'making window
+ always visible' (i.e. always on current workspace), similar to corresponding
+ metacity functionality. This behaviour is emulated through copying given
+ window to all the workspaces and then removing it when it's unneeded on
+ all workspaces any more.
+</P
+><P
+>Here is the example of keybindings which provide these actions:
+</P
+><PRE
+>  , ((modMask x, xK_v )&quot;, windows copyToAll) -- @@ Make focused window always visible
+  , ((modMask x .|. shiftMask, xK_v ),  killAllOtherCopies) -- @@ Toggle window state back
+</PRE
+><P
+>For detailed instructions on editing your key bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Acopy"
+></A
+><B
+>copy</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> s, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> i, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; i -&gt; StackSet i l a s sd -&gt; StackSet i l a s sd</TD
+></TR
+><TR
+><TD CLASS="doc"
+>copy. Copy the focussed window to a new workspace.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcopyToAll"
+></A
+><B
+>copyToAll</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> s, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> i, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; StackSet i l a s sd -&gt; StackSet i l a s sd</TD
+></TR
+><TR
+><TD CLASS="doc"
+>copyToAll. Copy the focused window to all of workspaces.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcopyWindow"
+></A
+><B
+>copyWindow</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> i, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> s) =&gt; a -&gt; i -&gt; StackSet i l a s sd -&gt; StackSet i l a s sd</TD
+></TR
+><TR
+><TD CLASS="doc"
+>copyWindow.  Copy a window to a new workspace
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AkillAllOtherCopies"
+></A
+><B
+>killAllOtherCopies</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Kill all other copies of focused window (if they're present)
+ 'All other' means here 'copies, which are not on current workspace'
+</P
+><P
+>Consider calling this function after copyToAll
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Akill1"
+></A
+><B
+>kill1</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Remove the focused window from this workspace.  If it's present in no
+ other workspace, then kill it instead. If we do kill it, we'll get a
+ delete notify back from X.
+</P
+><P
+>There are two ways to delete a window. Either just kill it, or if it
+ supports the delete protocol, send a delete event (e.g. firefox)
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.Scratchpad</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.Scratchpad</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Braden.Shepherdson@gmail.com</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Very handy hotkey-launched floating terminal window.
+</P
+><P
+>A tool like detach (<A HREF="http://detach.sourceforge.net"
+>http://detach.sourceforge.net</A
+>) turns it
+ into a launchpad for X apps.
+</P
+><P
+>By default, your xmonad terminal is used, and mod+s is the hotkey.
+ The default ManageHook uses a centered, half-screen-wide,
+ quarter-screen-tall window.
+ The key, position and size are configurable.
+</P
+><P
+>The terminal application must support the <TT
+>-title</TT
+> argument.
+ Known supported terminals: rxvt, rxvt-unicode, xterm.
+ Most others are likely to follow the lead set by xterm.
+</P
+><P
+>Add the following to your xmonad.hs keybindings to use the default mod+s:
+</P
+><PRE
+> scratchpadSpawnDefault conf
+</PRE
+><P
+>Or specify your own key binding, with the action:
+</P
+><PRE
+> scratchpadSpawnAction conf
+</PRE
+><P
+>And add one of the <TT
+>scratchpadManageHook*</TT
+>s to your ManageHook list.
+ The default rectangle is half the screen wide and a quarter of the
+ screen tall, centered.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AscratchpadSpawnDefault"
+>scratchpadSpawnDefault</A
+> :: XConfig l -&gt; ((KeyMask, KeySym), X ())</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AscratchpadSpawnAction"
+>scratchpadSpawnAction</A
+> :: XConfig l -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AscratchpadManageHookDefault"
+>scratchpadManageHookDefault</A
+> :: ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AscratchpadManageHook"
+>scratchpadManageHook</A
+> :: RationalRect -&gt; ManageHook</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AscratchpadSpawnDefault"
+></A
+><B
+>scratchpadSpawnDefault</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: XConfig l</TD
+><TD CLASS="rdoc"
+>The configuration, to retrieve terminal and modMask
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; ((KeyMask, KeySym), X ())</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Complete key binding. Pops up the terminal on mod+s.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AscratchpadSpawnAction"
+></A
+><B
+>scratchpadSpawnAction</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: XConfig l</TD
+><TD CLASS="rdoc"
+>The configuration, to retrieve the terminal
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; X ()</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Action to pop up the terminal, for the user to bind to a custom key.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AscratchpadManageHookDefault"
+></A
+><B
+>scratchpadManageHookDefault</B
+> :: ManageHook</TD
+></TR
+><TR
+><TD CLASS="doc"
+>The ManageHook, with the default rectangle:
+ Half the screen wide, a quarter of the screen tall, centered.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AscratchpadManageHook"
+></A
+><B
+>scratchpadManageHook</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: RationalRect</TD
+><TD CLASS="rdoc"
+>User-specified screen rectangle.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; ManageHook</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>The ManageHook, with a user-specified StackSet.RationalRect.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

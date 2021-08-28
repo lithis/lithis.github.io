@@ -1,0 +1,632 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.Themes</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.Themes</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A (hopefully) growing collection of themes for decorated layouts.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AlistOfThemes"
+>listOfThemes</A
+> :: [<A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AppThemeInfo"
+>ppThemeInfo</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AxmonadTheme"
+>xmonadTheme</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsmallClean"
+>smallClean</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArobertTheme"
+>robertTheme</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeiflTheme"
+>deiflTheme</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aoxymor00nTheme"
+>oxymor00nTheme</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdonaldTheme"
+>donaldTheme</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwfarrTheme"
+>wfarrTheme</A
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AThemeInfo"
+>ThemeInfo</A
+>  = <A HREF="#v%3ATI"
+>TI</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AthemeName"
+>themeName</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AthemeAuthor"
+>themeAuthor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AthemeDescription"
+>themeDescription</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Atheme"
+>theme</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TD
+></TR
+></TABLE
+>}</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This module stores some user contributed themes which can be used
+ with decorated layouts (such as Tabbed).  (Note that these themes
+ only apply to decorated layouts, such as those found in
+ <A HREF="XMonad-Layout-Tabbed.html"
+>XMonad.Layout.Tabbed</A
+> and <A HREF="XMonad-Layout-DecorationMadness.html"
+>XMonad.Layout.DecorationMadness</A
+>; they
+ do not apply to xmonad as a whole.)
+</P
+><P
+>If you want to use one of them with one of your decorated layouts,
+ you need to substitute defaultTheme with, for instance, (theme
+ smallClean).
+</P
+><P
+>Here is an example:
+</P
+><PRE
+> import XMonad
+ import XMonad.Util.Themes
+ import XMonad.Layout.Tabbed
+
+ myLayout = tabbed shrinkText (theme smallClean)
+
+ main = xmonad defaultConfig {layoutHook = myLayout}
+</PRE
+><P
+>If you have a theme you would like to share, adding it to this
+ module is very easy.
+</P
+><P
+>You can use <TT
+><A HREF="XMonad-Util-Themes.html#v%3AxmonadTheme"
+>xmonadTheme</A
+></TT
+> or <TT
+><A HREF="XMonad-Util-Themes.html#v%3AsmallClean"
+>smallClean</A
+></TT
+> as a template.
+</P
+><P
+>At the present time only the <TT
+><A HREF="XMonad-Util-Themes.html#v%3AthemeName"
+>themeName</A
+></TT
+> field is used. But please
+ provide all the other information, which will be used at a later
+ time.
+</P
+><P
+>Please, remember to add your theme to the list of exported
+ functions, and to the <TT
+><A HREF="XMonad-Util-Themes.html#v%3AlistOfThemes"
+>listOfThemes</A
+></TT
+>.
+</P
+><P
+>Thanks for your contribution!
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AlistOfThemes"
+></A
+><B
+>listOfThemes</B
+> :: [<A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AppThemeInfo"
+></A
+><B
+>ppThemeInfo</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AxmonadTheme"
+></A
+><B
+>xmonadTheme</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The default xmonad theme, by David Roundy.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsmallClean"
+></A
+><B
+>smallClean</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Small decorations with a Ion3 remembrance, by Andrea Rossato.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArobertTheme"
+></A
+><B
+>robertTheme</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Ffrom Robert Manea's prompt theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdeiflTheme"
+></A
+><B
+>deiflTheme</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>deifl's Theme, by deifl.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aoxymor00nTheme"
+></A
+><B
+>oxymor00nTheme</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>oxymor00n's theme, by Tom Rauchenwald.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdonaldTheme"
+></A
+><B
+>donaldTheme</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Don's prefered colors - from DynamicLog...;)
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwfarrTheme"
+></A
+><B
+>wfarrTheme</B
+> :: <A HREF="XMonad-Util-Themes.html#t%3AThemeInfo"
+>ThemeInfo</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AThemeInfo"
+></A
+><B
+>ThemeInfo</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATI"
+></A
+><B
+>TI</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AthemeName"
+></A
+><B
+>themeName</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AthemeAuthor"
+></A
+><B
+>themeAuthor</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AthemeDescription"
+></A
+><B
+>themeDescription</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Atheme"
+></A
+><B
+>theme</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,1824 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Prompt</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Prompt</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>X Utilities
+</A
+></DT
+><DT
+><A HREF="#3"
+>Other Utilities
+</A
+></DT
+><DT
+><A HREF="#4"
+><TT
+>nextCompletion</TT
+> implementations
+</A
+></DT
+><DT
+><A HREF="#5"
+>List utilities
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A module for writing graphical prompts for XMonad
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkXPrompt"
+>mkXPrompt</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> p =&gt; p -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AComplFunction"
+>ComplFunction</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()) -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkXPromptWithReturn"
+>mkXPromptWithReturn</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> p =&gt; p -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AComplFunction"
+>ComplFunction</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X a) -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdefaultXPConfig"
+>defaultXPConfig</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AXPType"
+>XPType</A
+>  = <SPAN CLASS="keyword"
+>forall</SPAN
+> p . XPrompt p =&gt; <A HREF="#v%3AXPT"
+>XPT</A
+> p</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AXPPosition"
+>XPPosition</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ATop"
+>Top</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ABottom"
+>Bottom</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AXPConfig"
+>XPConfig</A
+>  = <A HREF="#v%3AXPC"
+>XPC</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Afont"
+>font</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AbgColor"
+>bgColor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AfgColor"
+>fgColor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AfgHLight"
+>fgHLight</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AbgHLight"
+>bgHLight</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AborderColor"
+>borderColor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3ApromptBorderWidth"
+>promptBorderWidth</A
+> :: !Dimension</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aposition"
+>position</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aheight"
+>height</A
+> :: !Dimension</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AhistorySize"
+>historySize</A
+> :: !<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AdefaultText"
+>defaultText</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> <A HREF="#t%3AXPrompt"
+>XPrompt</A
+> t  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshowXPrompt"
+>showXPrompt</A
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnextCompletion"
+>nextCompletion</A
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcommandToComplete"
+>commandToComplete</A
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcompletionToCommand"
+>completionToCommand</A
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AComplFunction"
+>ComplFunction</A
+> = <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkUnmanagedWindow"
+>mkUnmanagedWindow</A
+> :: Display -&gt; Screen -&gt; Window -&gt; Position -&gt; Position -&gt; Dimension -&gt; Dimension -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfillDrawable"
+>fillDrawable</A
+> :: Display -&gt; Drawable -&gt; GC -&gt; Pixel -&gt; Pixel -&gt; Dimension -&gt; Dimension -&gt; Dimension -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkComplFunFromList"
+>mkComplFunFromList</A
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkComplFunFromList%27"
+>mkComplFunFromList'</A
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetNextOfLastWord"
+>getNextOfLastWord</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> t =&gt; t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetNextCompletion"
+>getNextCompletion</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetLastWord"
+>getLastWord</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AskipLastWord"
+>skipLastWord</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsplitInSubListsAt"
+>splitInSubListsAt</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; [a] -&gt; [[a]]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AbreakAtSpace"
+>breakAtSpace</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AuniqSort"
+>uniqSort</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Ord.html#t%3AOrd"
+>Ord</A
+> a =&gt; [a] -&gt; [a]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdecodeInput"
+>decodeInput</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AencodeOutput"
+>encodeOutput</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>For usage examples see <A HREF="XMonad-Prompt-Shell.html"
+>XMonad.Prompt.Shell</A
+>,
+ <A HREF="XMonad-Prompt-XMonad.html"
+>XMonad.Prompt.XMonad</A
+> or <A HREF="XMonad-Prompt-Ssh.html"
+>XMonad.Prompt.Ssh</A
+>
+</P
+><P
+>TODO:
+</P
+><UL
+><LI
+> scrolling the completions that don't fit in the window (?)
+</LI
+></UL
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkXPrompt"
+></A
+><B
+>mkXPrompt</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> p =&gt; p -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AComplFunction"
+>ComplFunction</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()) -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Creates a prompt given:
+</P
+><UL
+><LI
+> a prompt type, instance of the <TT
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+></TT
+> class.
+</LI
+><LI
+> a prompt configuration (<TT
+><A HREF="XMonad-Prompt.html#v%3AdefaultXPConfig"
+>defaultXPConfig</A
+></TT
+> can be used as a
+ starting point)
+</LI
+><LI
+> a completion function (<TT
+><A HREF="XMonad-Prompt.html#v%3AmkComplFunFromList"
+>mkComplFunFromList</A
+></TT
+> can be used to
+ create a completions function given a list of possible completions)
+</LI
+><LI
+> an action to be run: the action must take a string and return <TT
+><A HREF="XMonad.html#t%3AX"
+>X</A
+></TT
+> ()
+</LI
+></UL
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkXPromptWithReturn"
+></A
+><B
+>mkXPromptWithReturn</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> p =&gt; p -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AComplFunction"
+>ComplFunction</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X a) -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Same as <TT
+><A HREF="XMonad-Prompt.html#v%3AmkXPrompt"
+>mkXPrompt</A
+></TT
+>, except that the action function can have
+   type <TT
+>String -&gt; X a</TT
+>, for any <TT
+>a</TT
+>, and the final action returned
+   by <TT
+><A HREF="XMonad-Prompt.html#v%3AmkXPromptWithReturn"
+>mkXPromptWithReturn</A
+></TT
+> will have type <TT
+>X (Maybe a)</TT
+>.  <TT
+>Nothing</TT
+>
+   is yielded if the user cancels the prompt (by e.g. hitting Esc or
+   Ctrl-G).  For an example of use, see the <TT
+><A HREF="XMonad-Prompt.html#t%3AInput"
+>Input</A
+></TT
+>
+   module.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdefaultXPConfig"
+></A
+><B
+>defaultXPConfig</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AXPType"
+></A
+><B
+>XPType</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><SPAN CLASS="keyword"
+>forall</SPAN
+> p . XPrompt p =&gt; <A NAME="v%3AXPT"
+></A
+><B
+>XPT</B
+> p</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:XPType')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:XPType" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Prompt.html#t%3AXPType"
+>XPType</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> <A HREF="XMonad-Prompt.html#t%3AXPType"
+>XPType</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AXPPosition"
+></A
+><B
+>XPPosition</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATop"
+></A
+><B
+>Top</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ABottom"
+></A
+><B
+>Bottom</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:XPPosition')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:XPPosition" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Prompt.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Prompt.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AXPConfig"
+></A
+><B
+>XPConfig</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AXPC"
+></A
+><B
+>XPC</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Afont"
+></A
+><B
+>font</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Font
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AbgColor"
+></A
+><B
+>bgColor</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Background color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AfgColor"
+></A
+><B
+>fgColor</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Font color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AfgHLight"
+></A
+><B
+>fgHLight</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Font color of a highlighted completion entry
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AbgHLight"
+></A
+><B
+>bgHLight</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Background color of a highlighted completion entry
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AborderColor"
+></A
+><B
+>borderColor</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Border color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ApromptBorderWidth"
+></A
+><B
+>promptBorderWidth</B
+> :: !Dimension</TD
+><TD CLASS="rdoc"
+>Border width
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Aposition"
+></A
+><B
+>position</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+><TD CLASS="rdoc"
+>Position: <TT
+><A HREF="XMonad-Prompt.html#v%3ATop"
+>Top</A
+></TT
+> or <TT
+><A HREF="XMonad-Prompt.html#v%3ABottom"
+>Bottom</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Aheight"
+></A
+><B
+>height</B
+> :: !Dimension</TD
+><TD CLASS="rdoc"
+>Window height
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AhistorySize"
+></A
+><B
+>historySize</B
+> :: !<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+>The number of history entries to be saved
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AdefaultText"
+></A
+><B
+>defaultText</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>The text by default in the prompt line
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:XPConfig')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:XPConfig" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> <A NAME="t%3AXPrompt"
+></A
+><B
+>XPrompt</B
+> t  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+><P
+>The class prompt types must be an instance of. In order to
+ create a prompt you need to create a data type, without parameters,
+ and make it an instance of this class, by implementing a simple
+ method, <TT
+><A HREF="XMonad-Prompt.html#v%3AshowXPrompt"
+>showXPrompt</A
+></TT
+>, which will be used to print the string to be
+ displayed in the command line window.
+</P
+><P
+>This is an example of a XPrompt instance definition:
+</P
+><PRE
+>     instance XPrompt Shell where
+          showXPrompt Shell = &quot;Run: &quot;
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshowXPrompt"
+></A
+><B
+>showXPrompt</B
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>This method is used to print the string to be
+ displayed in the command line window.
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnextCompletion"
+></A
+><B
+>nextCompletion</B
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>This method is used to generate the next completion to be
+ printed in the command line when tab is pressed, given the
+ string presently in the command line and the list of
+ completion.
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcommandToComplete"
+></A
+><B
+>commandToComplete</B
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>This method is used to generate the string to be passed to
+ the completion function.
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcompletionToCommand"
+></A
+><B
+>completionToCommand</B
+> :: t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>This method is used to process each completion in order to
+ generate the string that will be compared with the command
+ presently displayed in the command line. If the prompt is using
+ <TT
+><A HREF="XMonad-Prompt.html#v%3AgetNextOfLastWord"
+>getNextOfLastWord</A
+></TT
+> for implementing <TT
+><A HREF="XMonad-Prompt.html#v%3AnextCompletion"
+>nextCompletion</A
+></TT
+> (the
+ default implementation), this method is also used to generate,
+ from the returned completion, the string that will form the
+ next command line when tab is pressed.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:XPrompt')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:XPrompt" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> AppPrompt</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> AppendFile</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Dir</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> DirExec</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> InputPrompt</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Man</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> RunOrRaisePrompt</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Search</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Shell</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Ssh</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> TagPrompt</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> ThemePrompt</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> WindowPrompt</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Wor</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Wor</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> Wor</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> XMonad</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> <A HREF="XMonad-Prompt.html#t%3AXPType"
+>XPType</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AComplFunction"
+></A
+><B
+>ComplFunction</B
+> = <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>X Utilities
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkUnmanagedWindow"
+></A
+><B
+>mkUnmanagedWindow</B
+> :: Display -&gt; Screen -&gt; Window -&gt; Position -&gt; Position -&gt; Dimension -&gt; Dimension -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Creates a window with the attribute override_redirect set to True.
+ Windows Managers should not touch this kind of windows.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfillDrawable"
+></A
+><B
+>fillDrawable</B
+> :: Display -&gt; Drawable -&gt; GC -&gt; Pixel -&gt; Pixel -&gt; Dimension -&gt; Dimension -&gt; Dimension -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Fills a Drawable with a rectangle and a border
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>Other Utilities
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkComplFunFromList"
+></A
+><B
+>mkComplFunFromList</B
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>This function takes a list of possible completions and returns a
+ completions function to be used with <TT
+><A HREF="XMonad-Prompt.html#v%3AmkXPrompt"
+>mkXPrompt</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkComplFunFromList%27"
+></A
+><B
+>mkComplFunFromList'</B
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>This function takes a list of possible completions and returns a
+ completions function to be used with <TT
+><A HREF="XMonad-Prompt.html#v%3AmkXPrompt"
+>mkXPrompt</A
+></TT
+>. If the string is
+ null it will return all completions.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="4"
+><TT
+>nextCompletion</TT
+> implementations
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetNextOfLastWord"
+></A
+><B
+>getNextOfLastWord</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPrompt"
+>XPrompt</A
+> t =&gt; t -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given the prompt type, the command line and the completion list,
+ return the next completion in the list for the last word of the
+ command line. This is the default <TT
+><A HREF="XMonad-Prompt.html#v%3AnextCompletion"
+>nextCompletion</A
+></TT
+> implementation.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetNextCompletion"
+></A
+><B
+>getNextCompletion</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>An alternative <TT
+><A HREF="XMonad-Prompt.html#v%3AnextCompletion"
+>nextCompletion</A
+></TT
+> implementation: given a command
+ and a completion list, get the next completion in the list matching
+ the whole command line.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="5"
+>List utilities
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetLastWord"
+></A
+><B
+>getLastWord</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Gets the last word of a string or the whole string if formed by
+ only one word
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AskipLastWord"
+></A
+><B
+>skipLastWord</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Skips the last word of the string, if the string is composed by
+ more then one word. Otherwise returns the string.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsplitInSubListsAt"
+></A
+><B
+>splitInSubListsAt</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; [a] -&gt; [[a]]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given a maximum length, splits a list into sublists
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AbreakAtSpace"
+></A
+><B
+>breakAtSpace</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AuniqSort"
+></A
+><B
+>uniqSort</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Ord.html#t%3AOrd"
+>Ord</A
+> a =&gt; [a] -&gt; [a]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Sort a list and remove duplicates.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdecodeInput"
+></A
+><B
+>decodeInput</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AencodeOutput"
+></A
+><B
+>encodeOutput</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

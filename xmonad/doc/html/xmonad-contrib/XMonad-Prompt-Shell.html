@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Prompt.Shell</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Prompt.Shell</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A shell prompt for XMonad
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshellPrompt"
+>shellPrompt</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetCommands"
+>getCommands</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetBrowser"
+>getBrowser</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetEditor"
+>getEditor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetShellCompl"
+>getShellCompl</A
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Asplit"
+>split</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; a -&gt; [a] -&gt; [[a]]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aprompt"
+>prompt</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsafePrompt"
+>safePrompt</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>1. In your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Prompt
+ import XMonad.Prompt.Shell
+</PRE
+><P
+>2. In your keybindings add something like:
+</P
+><PRE
+>   , ((modMask x .|. controlMask, xK_x), shellPrompt defaultXPConfig)
+</PRE
+><P
+>For detailed instruction on editing the key binding see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshellPrompt"
+></A
+><B
+>shellPrompt</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetCommands"
+></A
+><B
+>getCommands</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetBrowser"
+></A
+><B
+>getBrowser</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Ask the shell what browser the user likes. If the user hasn't defined any
+   $BROWSER, defaults to returning &quot;firefox&quot;, since that seems to be the most
+   common X web browser.
+   Note that if you don't specify a GUI browser but a textual one, that'll be a problem
+   as <TT
+><A HREF="XMonad-Prompt-Shell.html#v%3AgetBrowser"
+>getBrowser</A
+></TT
+> will be called by functions expecting to be able to just execute the string
+   or pass it to a shell; so in that case, define $BROWSER as something like &quot;xterm -e elinks&quot;
+   or as the name of a shell script doing much the same thing. 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetEditor"
+></A
+><B
+>getEditor</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Like <TT
+><A HREF="XMonad-Prompt-Shell.html#v%3AgetBrowser"
+>getBrowser</A
+></TT
+>, but should be of a text editor. This gets the $EDITOR variable, defaulting to &quot;emacs&quot;.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetShellCompl"
+></A
+><B
+>getShellCompl</B
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Asplit"
+></A
+><B
+>split</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; a -&gt; [a] -&gt; [[a]]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aprompt"
+></A
+><B
+>prompt</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>See safe and unsafeSpawn. prompt is an alias for safePrompt;
+ safePrompt and unsafePrompt work on the same principles, but will use
+ XPrompt to interactively query the user for input; the appearance is
+ set by passing an XPConfig as the second argument. The first argument
+ is the program to be run with the interactive input.
+ You would use these like this:
+</P
+><PRE
+>     , ((modMask,               xK_b), safePrompt &quot;firefox&quot; greenXPConfig)
+     , ((modMask .|. shiftMask, xK_c), prompt (&quot;xterm&quot; ++ &quot; -e&quot;) greenXPConfig)
+</PRE
+><P
+>Note that you want to use safePrompt for Firefox input, as Firefox
+ wants URLs, and unsafePrompt for the XTerm example because this allows
+ you to easily start a terminal executing an arbitrary command, like
+ top.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsafePrompt"
+></A
+><B
+>safePrompt</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

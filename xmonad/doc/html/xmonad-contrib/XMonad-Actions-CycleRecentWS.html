@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.CycleRecentWS</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.CycleRecentWS</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Michal Janeczek &lt;janeczek@gmail.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Provides bindings to cycle through most recently used workspaces
+ with repeated presses of a single key (as long as modifier key is
+ held down). This is similar to how many window managers handle
+ window switching.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcycleRecentWS"
+>cycleRecentWS</A
+> :: [KeySym] -&gt; KeySym -&gt; KeySym -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcycleWindowSets"
+>cycleWindowSets</A
+> :: (WindowSet -&gt; [WindowSet]) -&gt; [KeySym] -&gt; KeySym -&gt; KeySym -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+> file:
+</P
+><PRE
+> import XMonad.Actions.CycleRecentWS
+
+   , ((modMask x, xK_Tab), cycleRecentWS [xK_Alt_L] xK_Tab xK_grave)
+</PRE
+><P
+>For detailed instructions on editing your key bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcycleRecentWS"
+></A
+><B
+>cycleRecentWS</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: [KeySym]</TD
+><TD CLASS="rdoc"
+>A list of modifier keys used when invoking this action.
+   As soon as one of them is released, the final switch is made.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; KeySym</TD
+><TD CLASS="rdoc"
+>Key used to switch to next (less recent) workspace.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; KeySym</TD
+><TD CLASS="rdoc"
+>Key used to switch to previous (more recent) workspace.
+   If it's the same as the nextWorkspace key, it is effectively ignored.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; X ()</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Cycle through most recent workspaces with repeated presses of a key, while
+   a modifier key is held down. The recency of workspaces previewed while browsing
+   to the target workspace is not affected. That way a stack of most recently used
+   workspaces is maintained, similarly to how many window managers handle window
+   switching. For best effects use the same modkey+key combination as the one used
+   to invoke this action.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcycleWindowSets"
+></A
+><B
+>cycleWindowSets</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: (WindowSet -&gt; [WindowSet])</TD
+><TD CLASS="rdoc"
+>A function used to create a list of WindowSets to choose from
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; [KeySym]</TD
+><TD CLASS="rdoc"
+>A list of modifier keys used when invoking this action.
+   As soon as one of them is released, the final WindowSet is chosen and the action exits.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; KeySym</TD
+><TD CLASS="rdoc"
+>Key used to preview next WindowSet from the list of generated options
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; KeySym</TD
+><TD CLASS="rdoc"
+>Key used to preview previous WindowSet from the list of generated options.
+   If it's the same as nextOption key, it is effectively ignored.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; X ()</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Cycle through a finite list of WindowSets with repeated presses of a key, while
+   a modifier key is held down. For best effects use the same modkey+key combination
+   as the one used to invoke this action.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,1373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.LayoutModifier</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.LayoutModifier</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>David Roundy &lt;droundy@darcs.net&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>The <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> class
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A module for writing easy layout modifiers, which do not define a
+ layout in and of themselves, but modify the behavior of or add new
+ functionality to other layouts.  If you ever find yourself writing
+ a layout which takes another layout as a parameter, chances are you
+ should be writing a LayoutModifier instead!
+</P
+><P
+>In case it is not clear, this module is not intended to help you
+ configure xmonad, it is to help you write other extension modules.
+ So get hacking!
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (m a), <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (m a)) =&gt; <A HREF="#t%3ALayoutModifier"
+>LayoutModifier</A
+> m a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmodifyLayout"
+>modifyLayout</A
+> :: LayoutClass l a =&gt; m a -&gt; Workspace WorkspaceId (l a) a -&gt; Rectangle -&gt; X ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (l a))</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AhandleMess"
+>handleMess</A
+> :: m a -&gt; SomeMessage -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AhandleMessOrMaybeModifyIt"
+>handleMessOrMaybeModifyIt</A
+> :: m a -&gt; SomeMessage -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Either.html#t%3AEither"
+>Either</A
+> (m a) SomeMessage))</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApureMess"
+>pureMess</A
+> :: m a -&gt; SomeMessage -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AredoLayout"
+>redoLayout</A
+> :: m a -&gt; Rectangle -&gt; Stack a -&gt; [(a, Rectangle)] -&gt; X ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApureModifier"
+>pureModifier</A
+> :: m a -&gt; Rectangle -&gt; Stack a -&gt; [(a, Rectangle)] -&gt; ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AemptyLayoutMod"
+>emptyLayoutMod</A
+> :: m a -&gt; Rectangle -&gt; [(a, Rectangle)] -&gt; X ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Ahook"
+>hook</A
+> :: m a -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aunhook"
+>unhook</A
+> :: m a -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmodifierDescription"
+>modifierDescription</A
+> :: m a -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmodifyDescription"
+>modifyDescription</A
+> :: LayoutClass l a =&gt; m a -&gt; l a -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AModifiedLayout"
+>ModifiedLayout</A
+> m l a = <A HREF="#v%3AModifiedLayout"
+>ModifiedLayout</A
+> (m a) (l a)</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>The <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> class is provided to help extension developers
+ write easy layout modifiers.  End users won't find much of interest
+ here. =)
+</P
+><P
+>To write a layout modifier using the <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> class, define
+ a data type to represent the layout modification (storing any
+ necessary state), define an instance of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+>, and
+ export an appropriate function for applying the modifier.  For example:
+</P
+><PRE
+> data MyModifier a = MyModifier MyState
+   deriving (Show, Read)
+
+ instance LayoutModifier MyModifier a where
+   -- override whatever methods from LayoutModifier you like
+
+ modify :: l a -&gt; ModifiedLayout MyModifier l a
+ modify = ModifiedLayout (MyModifier initialState)
+</PRE
+><P
+>When defining an instance of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+>, you are free to
+ override as many or as few of the methods as you see fit.  See the
+ documentation below for specific information about the effect of
+ overriding each method.  Every method has a default implementation;
+ an instance of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> which did not provide a non-default
+ implementation of any of the methods would simply act as the
+ identity on any layouts to which it is applied.
+</P
+><P
+>For more specific usage examples, see
+</P
+><UL
+><LI
+> <A HREF="XMonad-Layout-WorkspaceDir.html"
+>XMonad.Layout.WorkspaceDir</A
+>
+</LI
+><LI
+> <A HREF="XMonad-Layout-Magnifier.html"
+>XMonad.Layout.Magnifier</A
+>
+</LI
+><LI
+> <A HREF="XMonad-Layout-NoBorders.html"
+>XMonad.Layout.NoBorders</A
+>
+</LI
+><LI
+> <A HREF="XMonad-Layout-Reflect.html"
+>XMonad.Layout.Reflect</A
+>
+</LI
+><LI
+> <A HREF="XMonad-Layout-Named.html"
+>XMonad.Layout.Named</A
+>
+</LI
+><LI
+> <A HREF="XMonad-Layout-WindowNavigation.html"
+>XMonad.Layout.WindowNavigation</A
+>
+</LI
+></UL
+><P
+>and several others.  You probably want to start by looking at some
+ of the above examples; the documentation below is detailed but
+ possibly confusing, and in many cases the creation of a
+ <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> is actually quite simple.
+</P
+><P
+><EM
+>Important note</EM
+>: because of the way the <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> class is
+ intended to be used, by overriding any of its methods and keeping
+ default implementations for all the others, <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+>
+ methods should never be called explicitly.  It is likely that such
+ explicit calls will not have the intended effect.  Rather, the
+ <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> methods should only be called indirectly through
+ the LayoutClass instance for <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+></TT
+>, since it is this
+ instance that defines the semantics of overriding the various
+ <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> methods.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>The <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+></TT
+> class
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (m a), <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (m a)) =&gt; <A NAME="t%3ALayoutModifier"
+></A
+><B
+>LayoutModifier</B
+> m a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmodifyLayout"
+></A
+><B
+>modifyLayout</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: LayoutClass l a</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>=&gt; m a</TD
+><TD CLASS="rdoc"
+>the layout modifier
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Workspace WorkspaceId (l a) a</TD
+><TD CLASS="rdoc"
+>current workspace
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Rectangle</TD
+><TD CLASS="rdoc"
+>screen rectangle
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; X ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (l a))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AmodifyLayout"
+>modifyLayout</A
+></TT
+> allows you to intercept a call to runLayout
+   <EM
+>before</EM
+> it is called on the underlying layout, in order to
+   perform some effect in the X monad, and/or modify some of
+   the parameters before passing them on to the runLayout
+   method of the underlying layout.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AmodifyLayout"
+>modifyLayout</A
+></TT
+> simply calls
+   runLayout on the underlying layout.
+</P
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AhandleMess"
+></A
+><B
+>handleMess</B
+> :: m a -&gt; SomeMessage -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMess"
+>handleMess</A
+></TT
+> allows you to spy on messages to the underlying
+   layout, in order to have an effect in the X monad, or alter
+   the layout modifier state in some way (by returning <TT
+>Just
+   nm</TT
+>, where <TT
+>nm</TT
+> is a new modifier).  In all cases, the
+   underlying layout will also receive the message as usual,
+   after the message has been processed by <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMess"
+>handleMess</A
+></TT
+>.
+</P
+><P
+>If you wish to possibly modify a message before it reaches
+   the underlying layout, you should use
+   <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMessOrMaybeModifyIt"
+>handleMessOrMaybeModifyIt</A
+></TT
+> instead.  If you do not need to
+   modify messages or have access to the X monad, you should use
+   <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureMess"
+>pureMess</A
+></TT
+> instead.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMess"
+>handleMess</A
+></TT
+> calls <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3Aunhook"
+>unhook</A
+></TT
+>
+   when receiving a Hide or ReleaseResources method (after
+   which it returns <TT
+>Nothing</TT
+>), and otherwise passes the message
+   on to <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureMess"
+>pureMess</A
+></TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AhandleMessOrMaybeModifyIt"
+></A
+><B
+>handleMessOrMaybeModifyIt</B
+> :: m a -&gt; SomeMessage -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Either.html#t%3AEither"
+>Either</A
+> (m a) SomeMessage))</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMessOrMaybeModifyIt"
+>handleMessOrMaybeModifyIt</A
+></TT
+> allows you to intercept messages
+   sent to the underlying layout, in order to have an effect in
+   the X monad, alter the layout modifier state, or produce a
+   modified message to be passed on to the underlying layout.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMessOrMaybeModifyIt"
+>handleMessOrMaybeModifyIt</A
+></TT
+>
+   simply passes on the message to <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMess"
+>handleMess</A
+></TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApureMess"
+></A
+><B
+>pureMess</B
+> :: m a -&gt; SomeMessage -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a)</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureMess"
+>pureMess</A
+></TT
+> allows you to spy on messages sent to the
+   underlying layout, in order to possibly change the layout
+   modifier state.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureMess"
+>pureMess</A
+></TT
+> ignores messages
+   sent to it, and returns <TT
+>Nothing</TT
+> (causing the layout
+   modifier to remain unchanged).
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AredoLayout"
+></A
+><B
+>redoLayout</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: m a</TD
+><TD CLASS="rdoc"
+>the layout modifier
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Rectangle</TD
+><TD CLASS="rdoc"
+>screen rectangle
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Stack a</TD
+><TD CLASS="rdoc"
+>current window stack
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; [(a, Rectangle)]</TD
+><TD CLASS="rdoc"
+>(window,rectangle) pairs returned
+ by the underlying layout
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; X ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AredoLayout"
+>redoLayout</A
+></TT
+> allows you to intercept a call to runLayout on
+   workspaces with at least one window, <EM
+>after</EM
+> it is called on
+   the underlying layout, in order to perform some effect in the
+   X monad, possibly return a new layout modifier, and/or
+   modify the results of runLayout before returning them.
+</P
+><P
+>If you don't need access to the X monad, use <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureModifier"
+>pureModifier</A
+></TT
+>
+   instead.  Also, if the behavior you need can be cleanly
+   separated into an effect in the X monad, followed by a pure
+   transformation of the results of runLayout, you should
+   consider implementing <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3Ahook"
+>hook</A
+></TT
+> and <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureModifier"
+>pureModifier</A
+></TT
+> instead of
+   <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AredoLayout"
+>redoLayout</A
+></TT
+>.
+</P
+><P
+>If you also need to perform some action when runLayout is
+   called on an empty workspace, see <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AemptyLayoutMod"
+>emptyLayoutMod</A
+></TT
+>.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AredoLayout"
+>redoLayout</A
+></TT
+> calls <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3Ahook"
+>hook</A
+></TT
+> and
+   then <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureModifier"
+>pureModifier</A
+></TT
+>.
+</P
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApureModifier"
+></A
+><B
+>pureModifier</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: m a</TD
+><TD CLASS="rdoc"
+>the layout modifier
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Rectangle</TD
+><TD CLASS="rdoc"
+>screen rectangle
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Stack a</TD
+><TD CLASS="rdoc"
+>current window stack
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; [(a, Rectangle)]</TD
+><TD CLASS="rdoc"
+>(window, rectangle) pairs returned
+ by the underlying layout
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureModifier"
+>pureModifier</A
+></TT
+> allows you to intercept a call to runLayout
+   <EM
+>after</EM
+> it is called on the underlying layout, in order to
+   modify the list of window/rectangle pairings it has returned,
+   and/or return a new layout modifier.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3ApureModifier"
+>pureModifier</A
+></TT
+> returns the
+   window rectangles unmodified.
+</P
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AemptyLayoutMod"
+></A
+><B
+>emptyLayoutMod</B
+> :: m a -&gt; Rectangle -&gt; [(a, Rectangle)] -&gt; X ([(a, Rectangle)], <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (m a))</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AemptyLayoutMod"
+>emptyLayoutMod</A
+></TT
+> allows you to intercept a call to
+   runLayout on an empty workspace, <EM
+>after</EM
+> it is called on
+   the underlying layout, in order to perform some effect in the
+   X monad, possibly return a new layout modifier, and/or
+   modify the results of runLayout before returning them.
+</P
+><P
+>If you don't need access to the X monad, then tough luck.
+   There isn't a pure version of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AemptyLayoutMod"
+>emptyLayoutMod</A
+></TT
+>.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AemptyLayoutMod"
+>emptyLayoutMod</A
+></TT
+> ignores its
+   arguments and returns an empty list of window/rectangle
+   pairings.
+</P
+><P
+><EM
+>NOTE</EM
+>: <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AemptyLayoutMod"
+>emptyLayoutMod</A
+></TT
+> will likely be combined with
+   <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AredoLayout"
+>redoLayout</A
+></TT
+> soon!
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Ahook"
+></A
+><B
+>hook</B
+> :: m a -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3Ahook"
+>hook</A
+></TT
+> is called by the default implementation of
+   <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AredoLayout"
+>redoLayout</A
+></TT
+>, and as such represents an X action which is to
+   be run each time runLayout is called on the underlying
+   layout, <EM
+>after</EM
+> runLayout has completed.  Of course, if you
+   override <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AredoLayout"
+>redoLayout</A
+></TT
+>, then <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3Ahook"
+>hook</A
+></TT
+> will not be called unless
+   you explicitly call it.
+</P
+><P
+>The default implementation of <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3Ahook"
+>hook</A
+></TT
+> is <TT
+>return ()</TT
+> (i.e., it
+   has no effect).
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aunhook"
+></A
+><B
+>unhook</B
+> :: m a -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3Aunhook"
+>unhook</A
+></TT
+> is called by the default implementation of
+   <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AhandleMess"
+>handleMess</A
+></TT
+> upon receiving a Hide or a ReleaseResources
+   message.
+</P
+><P
+>The default implementation, of course, does nothing.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmodifierDescription"
+></A
+><B
+>modifierDescription</B
+> :: m a -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AmodifierDescription"
+>modifierDescription</A
+></TT
+> is used to give a String description to
+   this layout modifier.  It is the empty string by default; you
+   should only override this if it is important that the
+   presence of the layout modifier be displayed in text
+   representations of the layout (for example, in the status bar
+   of a <A HREF="XMonad-Hooks-DynamicLog.html"
+>XMonad.Hooks.DynamicLog</A
+> user).
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmodifyDescription"
+></A
+><B
+>modifyDescription</B
+> :: LayoutClass l a =&gt; m a -&gt; l a -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AmodifyDescription"
+>modifyDescription</A
+></TT
+> gives a String description for the entire
+   layout (modifier + underlying layout).  By default, it is
+   derived from the concatenation of the <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AmodifierDescription"
+>modifierDescription</A
+></TT
+>
+   with the description of the underlying layout, with a
+   &quot;smart space&quot; in between (the space is not included if the
+   <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#v%3AmodifierDescription"
+>modifierDescription</A
+></TT
+> is empty).
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:LayoutModifier')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:LayoutModifier" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> AddRoster Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> <A HREF="XMonad-Hooks-ManageDocks.html#t%3AAvoidStruts"
+>AvoidStruts</A
+> a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> BoringWindows Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> Gaps a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> <A HREF="XMonad-Layout-LayoutHints.html#t%3ALayoutHints"
+>LayoutHints</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> MagicFocus Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> Magnifier Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> Maximize Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> Named a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> Reflect a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> ShowWName a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> SmartBorder Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+>(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> WindowNavigation Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> WithBorder Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> WorkspaceDir Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+>(<A HREF="XMonad-Layout-Decoration.html#t%3ADecorationStyle"
+>DecorationStyle</A
+> ds Window, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> ds s) Window</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AModifiedLayout"
+></A
+><B
+>ModifiedLayout</B
+> m l a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A <TT
+><A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+></TT
+> is simply a container for a layout modifier
+   combined with an underlying layout.  It is, of course, itself a
+   layout (i.e. an instance of LayoutClass).
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AModifiedLayout"
+></A
+><B
+>ModifiedLayout</B
+> (m a) (l a)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ModifiedLayout')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ModifiedLayout" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>(<A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> m a, LayoutClass l a) =&gt; LayoutClass (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> m l) a</TD
+></TR
+><TR
+><TD CLASS="decl"
+>(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (m a), <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (l a)) =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> m l a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+>(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (m a), <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (l a)) =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> m l a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

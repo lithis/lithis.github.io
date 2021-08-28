@@ -1,0 +1,4039 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.DecorationMadness</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.DecorationMadness</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>Decorated layouts based on Circle
+</A
+></DT
+><DT
+><A HREF="#3"
+>Decorated layouts based on Accordion
+</A
+></DT
+><DT
+><A HREF="#4"
+>Tall decorated layouts
+</A
+></DT
+><DT
+><A HREF="#5"
+>Mirror Tall decorated layouts
+</A
+></DT
+><DT
+><A HREF="#6"
+>Floating decorated layouts
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A collection of decorated layouts: some of them may be nice, some
+ usable, others just funny.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleSimpleDefault"
+>circleSimpleDefault</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleDefault"
+>circleDefault</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleSimpleDefaultResizable"
+>circleSimpleDefaultResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleDefaultResizable"
+>circleDefaultResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleSimpleDeco"
+>circleSimpleDeco</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleSimpleDecoResizable"
+>circleSimpleDecoResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleDeco"
+>circleDeco</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleDecoResizable"
+>circleDecoResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleSimpleDwmStyle"
+>circleSimpleDwmStyle</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleDwmStyle"
+>circleDwmStyle</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleSimpleTabbed"
+>circleSimpleTabbed</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcircleTabbed"
+>circleTabbed</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionSimpleDefault"
+>accordionSimpleDefault</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionDefault"
+>accordionDefault</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionSimpleDefaultResizable"
+>accordionSimpleDefaultResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionDefaultResizable"
+>accordionDefaultResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionSimpleDeco"
+>accordionSimpleDeco</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionSimpleDecoResizable"
+>accordionSimpleDecoResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionDeco"
+>accordionDeco</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionDecoResizable"
+>accordionDecoResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionSimpleDwmStyle"
+>accordionSimpleDwmStyle</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionDwmStyle"
+>accordionDwmStyle</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionSimpleTabbed"
+>accordionSimpleTabbed</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaccordionTabbed"
+>accordionTabbed</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallSimpleDefault"
+>tallSimpleDefault</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) Tall Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallDefault"
+>tallDefault</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) Tall Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallSimpleDefaultResizable"
+>tallSimpleDefaultResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallDefaultResizable"
+>tallDefaultResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallSimpleDeco"
+>tallSimpleDeco</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) Tall Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallDeco"
+>tallDeco</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) Tall Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallSimpleDecoResizable"
+>tallSimpleDecoResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallDecoResizable"
+>tallDecoResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallSimpleDwmStyle"
+>tallSimpleDwmStyle</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) Tall Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallDwmStyle"
+>tallDwmStyle</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) Tall Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallSimpleTabbed"
+>tallSimpleTabbed</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtallTabbed"
+>tallTabbed</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallSimpleDefault"
+>mirrorTallSimpleDefault</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallDefault"
+>mirrorTallDefault</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallSimpleDefaultResizable"
+>mirrorTallSimpleDefaultResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallDefaultResizable"
+>mirrorTallDefaultResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallSimpleDeco"
+>mirrorTallSimpleDeco</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallDeco"
+>mirrorTallDeco</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallSimpleDecoResizable"
+>mirrorTallSimpleDecoResizable</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallDecoResizable"
+>mirrorTallDecoResizable</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallSimpleDwmStyle"
+>mirrorTallSimpleDwmStyle</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallDwmStyle"
+>mirrorTallDwmStyle</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallSimpleTabbed"
+>mirrorTallSimpleTabbed</A
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> (Mirror Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmirrorTallTabbed"
+>mirrorTallTabbed</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> (Mirror Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatSimpleSimple"
+>floatSimpleSimple</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatSimple"
+>floatSimple</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatSimpleDefault"
+>floatSimpleDefault</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatDefault"
+>floatDefault</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatSimpleDwmStyle"
+>floatSimpleDwmStyle</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatDwmStyle"
+>floatDwmStyle</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatSimpleTabbed"
+>floatSimpleTabbed</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfloatTabbed"
+>floatTabbed</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdefaultTheme"
+>defaultTheme</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshrinkText"
+>shrinkText</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your
+ <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Layout.DecorationMadness
+</PRE
+><P
+>Then edit your <TT
+>layoutHook</TT
+> by adding the layout you want:
+</P
+><PRE
+> main = xmonad defaultConfig { layoutHook = someMadLayout }
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+><P
+>You can also edit the default theme:
+</P
+><PRE
+> myTheme = defaultTheme { inactiveBorderColor = &quot;#FF0000&quot;
+                        , activeTextColor     = &quot;#00FF00&quot; }
+</PRE
+><P
+>and
+</P
+><PRE
+> mylayout = tabbed shrinkText myTheme ||| Full ||| etc..
+</PRE
+><P
+>When a layout is resizable, this means two different things: you
+ can grab a window's decoration with the pointer and move it around,
+ and you can move and resize windows with the keyboard. For setting
+ up the key bindings, please read the documentation of
+ <A HREF="XMonad-Layout-WindowArranger.html"
+>XMonad.Layout.WindowArranger</A
+>
+</P
+><P
+>The deafult theme can be dynamically change with the xmonad theme
+ selector. See <A HREF="XMonad-Prompt-Theme.html"
+>XMonad.Prompt.Theme</A
+>. For more themse, look at
+ <A HREF="XMonad-Util-Themes.html"
+>XMonad.Util.Themes</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Decorated layouts based on Circle
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Here you will find <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+> based decorated layouts.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleSimpleDefault"
+></A
+><B
+>circleSimpleDefault</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+> layout with the xmonad default decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/circleSimpleDefault.png"
+>http://code.haskell.org/~arossato/xmonadShots/circleSimpleDefault.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleDefault"
+></A
+><B
+>circleDefault</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AcircleSimpleDefault"
+>circleSimpleDefault</A
+></TT
+> but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleSimpleDefaultResizable"
+></A
+><B
+>circleSimpleDefaultResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+> layout with the xmonad default decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/circleSimpleDefaultResizable.png"
+>http://code.haskell.org/~arossato/xmonadShots/circleSimpleDefaultResizable.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleDefaultResizable"
+></A
+><B
+>circleDefaultResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AcircleSimpleDefaultResizable"
+>circleSimpleDefaultResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleSimpleDeco"
+></A
+><B
+>circleSimpleDeco</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+> layout with the xmonad simple decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/circleSimpleDeco.png"
+>http://code.haskell.org/~arossato/xmonadShots/circleSimpleDeco.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleSimpleDecoResizable"
+></A
+><B
+>circleSimpleDecoResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+> layout with the xmonad simple decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/circleSimpleDecoResizable.png"
+>http://code.haskell.org/~arossato/xmonadShots/circleSimpleDecoResizable.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleDeco"
+></A
+><B
+>circleDeco</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to circleSimpleDece but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleDecoResizable"
+></A
+><B
+>circleDecoResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AcircleSimpleDecoResizable"
+>circleSimpleDecoResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleSimpleDwmStyle"
+></A
+><B
+>circleSimpleDwmStyle</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+> layout with the xmonad DwmStyle decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/circleSimpleDwmStyle.png"
+>http://code.haskell.org/~arossato/xmonadShots/circleSimpleDwmStyle.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleDwmStyle"
+></A
+><B
+>circleDwmStyle</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AcircleSimpleDwmStyle"
+>circleSimpleDwmStyle</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleSimpleTabbed"
+></A
+><B
+>circleSimpleTabbed</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+> layout with the xmonad tabbed decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/circleSimpleTabbed.png"
+>http://code.haskell.org/~arossato/xmonadShots/circleSimpleTabbed.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcircleTabbed"
+></A
+><B
+>circleTabbed</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AcircleSimpleTabbed"
+>circleSimpleTabbed</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>Decorated layouts based on Accordion
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Here you will find decorated layouts based on the <TT
+><A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+></TT
+>
+ layout.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionSimpleDefault"
+></A
+><B
+>accordionSimpleDefault</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>An <TT
+><A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+></TT
+> layout with the xmonad default decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/accordionSimpleDefault.png"
+>http://code.haskell.org/~arossato/xmonadShots/accordionSimpleDefault.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionDefault"
+></A
+><B
+>accordionDefault</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AaccordionSimpleDefault"
+>accordionSimpleDefault</A
+></TT
+> but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionSimpleDefaultResizable"
+></A
+><B
+>accordionSimpleDefaultResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>An <TT
+><A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+></TT
+> layout with the xmonad default decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionDefaultResizable"
+></A
+><B
+>accordionDefaultResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AaccordionSimpleDefaultResizable"
+>accordionSimpleDefaultResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionSimpleDeco"
+></A
+><B
+>accordionSimpleDeco</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>An <TT
+><A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+></TT
+> layout with the xmonad simple decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/accordionSimpleDeco.png"
+>http://code.haskell.org/~arossato/xmonadShots/accordionSimpleDeco.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionSimpleDecoResizable"
+></A
+><B
+>accordionSimpleDecoResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>An <TT
+><A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+></TT
+> layout with the xmonad simple decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionDeco"
+></A
+><B
+>accordionDeco</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to accordionSimpleDece but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionDecoResizable"
+></A
+><B
+>accordionDecoResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AaccordionSimpleDecoResizable"
+>accordionSimpleDecoResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionSimpleDwmStyle"
+></A
+><B
+>accordionSimpleDwmStyle</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>An <TT
+><A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+></TT
+> layout with the xmonad DwmStyle decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/accordionSimpleDwmStyle.png"
+>http://code.haskell.org/~arossato/xmonadShots/accordionSimpleDwmStyle.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionDwmStyle"
+></A
+><B
+>accordionDwmStyle</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AaccordionSimpleDwmStyle"
+>accordionSimpleDwmStyle</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionSimpleTabbed"
+></A
+><B
+>accordionSimpleTabbed</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>An <TT
+><A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+></TT
+> layout with the xmonad tabbed decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/accordionSimpleTabbed.png"
+>http://code.haskell.org/~arossato/xmonadShots/accordionSimpleTabbed.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaccordionTabbed"
+></A
+><B
+>accordionTabbed</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> <A HREF="XMonad-Layout-Accordion.html#t%3AAccordion"
+>Accordion</A
+>) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AaccordionSimpleTabbed"
+>accordionSimpleTabbed</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="4"
+>Tall decorated layouts
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>In this section you will find decorated layouts based on the
+ Tall layout.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallSimpleDefault"
+></A
+><B
+>tallSimpleDefault</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) Tall Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A Tall layout with the xmonad default decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/tallSimpleDefault.png"
+>http://code.haskell.org/~arossato/xmonadShots/tallSimpleDefault.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallDefault"
+></A
+><B
+>tallDefault</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) Tall Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AtallSimpleDefault"
+>tallSimpleDefault</A
+></TT
+> but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallSimpleDefaultResizable"
+></A
+><B
+>tallSimpleDefaultResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A Tall layout with the xmonad default decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/tallSimpleDefaultResizable.png"
+>http://code.haskell.org/~arossato/xmonadShots/tallSimpleDefaultResizable.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallDefaultResizable"
+></A
+><B
+>tallDefaultResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AtallSimpleDefaultResizable"
+>tallSimpleDefaultResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallSimpleDeco"
+></A
+><B
+>tallSimpleDeco</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) Tall Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A Tall layout with the xmonad simple decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/tallSimpleDeco.png"
+>http://code.haskell.org/~arossato/xmonadShots/tallSimpleDeco.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallDeco"
+></A
+><B
+>tallDeco</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) Tall Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to tallSimpleDece but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallSimpleDecoResizable"
+></A
+><B
+>tallSimpleDecoResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A Tall layout with the xmonad simple decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/tallSimpleDecoResizable.png"
+>http://code.haskell.org/~arossato/xmonadShots/tallSimpleDecoResizable.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallDecoResizable"
+></A
+><B
+>tallDecoResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AtallSimpleDecoResizable"
+>tallSimpleDecoResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallSimpleDwmStyle"
+></A
+><B
+>tallSimpleDwmStyle</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) Tall Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A Tall layout with the xmonad DwmStyle decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/tallSimpleDwmStyle.png"
+>http://code.haskell.org/~arossato/xmonadShots/tallSimpleDwmStyle.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallDwmStyle"
+></A
+><B
+>tallDwmStyle</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) Tall Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AtallSimpleDwmStyle"
+>tallSimpleDwmStyle</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallSimpleTabbed"
+></A
+><B
+>tallSimpleTabbed</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A Tall layout with the xmonad tabbed decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/tallSimpleTabbed.png"
+>http://code.haskell.org/~arossato/xmonadShots/tallSimpleTabbed.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtallTabbed"
+></A
+><B
+>tallTabbed</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AtallSimpleTabbed"
+>tallSimpleTabbed</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="5"
+>Mirror Tall decorated layouts
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>In this section you will find decorated layouts based on the
+ Mirror layout modifier applied to Tall.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallSimpleDefault"
+></A
+><B
+>mirrorTallSimpleDefault</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A 'Mirror Tall' layout with the xmonad default decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDefault.png"
+>http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDefault.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallDefault"
+></A
+><B
+>mirrorTallDefault</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AmirrorTallSimpleDefault"
+>mirrorTallSimpleDefault</A
+></TT
+> but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallSimpleDefaultResizable"
+></A
+><B
+>mirrorTallSimpleDefaultResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A 'Mirror Tall' layout with the xmonad default decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDefaultResizable.png"
+>http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDefaultResizable.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallDefaultResizable"
+></A
+><B
+>mirrorTallDefaultResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AmirrorTallSimpleDefaultResizable"
+>mirrorTallSimpleDefaultResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallSimpleDeco"
+></A
+><B
+>mirrorTallSimpleDeco</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A 'Mirror Tall' layout with the xmonad simple decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDeco.png"
+>http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDeco.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallDeco"
+></A
+><B
+>mirrorTallDeco</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to mirrorTallSimpleDece but with the possibility of
+ setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallSimpleDecoResizable"
+></A
+><B
+>mirrorTallSimpleDecoResizable</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A 'Mirror Tall' layout with the xmonad simple decoration, default
+ theme and default shrinker, but with the possibility of moving
+ windows with the mouse, and resize/move them with the keyboard.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDecoResizable.png"
+>http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDecoResizable.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallDecoResizable"
+></A
+><B
+>mirrorTallDecoResizable</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> (Mirror Tall))) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AmirrorTallSimpleDecoResizable"
+>mirrorTallSimpleDecoResizable</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallSimpleDwmStyle"
+></A
+><B
+>mirrorTallSimpleDwmStyle</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A 'Mirror Tall' layout with the xmonad DwmStyle decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDwmStyle.png"
+>http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleDwmStyle.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallDwmStyle"
+></A
+><B
+>mirrorTallDwmStyle</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) (Mirror Tall) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AmirrorTallSimpleDwmStyle"
+>mirrorTallSimpleDwmStyle</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallSimpleTabbed"
+></A
+><B
+>mirrorTallSimpleTabbed</B
+> :: <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> (Mirror Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A 'Mirror Tall' layout with the xmonad tabbed decoration, default
+ theme and default shrinker.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleTabbed.png"
+>http://code.haskell.org/~arossato/xmonadShots/mirrorTallSimpleTabbed.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmirrorTallTabbed"
+></A
+><B
+>mirrorTallTabbed</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> (Mirror Tall)) Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Similar to <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AmirrorTallSimpleTabbed"
+>mirrorTallSimpleTabbed</A
+></TT
+> but with the
+ possibility of setting a custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="6"
+>Floating decorated layouts
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Here you will find decorated layout based on the SimpleFloating
+ layout
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatSimpleSimple"
+></A
+><B
+>floatSimpleSimple</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A simple floating layout where every window is placed according
+ to the window's initial attributes.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/floatSimpleSimple.png"
+>http://code.haskell.org/~arossato/xmonadShots/floatSimpleSimple.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatSimple"
+></A
+><B
+>floatSimple</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleDecoration.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatSimpleDefault"
+></A
+><B
+>floatSimpleDefault</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This version is decorated with the <TT
+><A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+></TT
+> style.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/floatSimpleDefault.png"
+>http://code.haskell.org/~arossato/xmonadShots/floatSimpleDefault.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatDefault"
+></A
+><B
+>floatDefault</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultDecoration"
+>DefaultDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Same as <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AfloatSimpleDefault"
+>floatSimpleDefault</A
+></TT
+>, but with the possibility of setting a
+ custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatSimpleDwmStyle"
+></A
+><B
+>floatSimpleDwmStyle</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This version is decorated with the <TT
+><A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+></TT
+>. Note that this is
+ a keyboard only floating layout.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/floatSimpleDwmStyle.png"
+>http://code.haskell.org/~arossato/xmonadShots/floatSimpleDwmStyle.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatDwmStyle"
+></A
+><B
+>floatDwmStyle</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-DwmStyle.html#t%3ADwmStyle"
+>DwmStyle</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Same as <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AfloatSimpleDwmStyle"
+>floatSimpleDwmStyle</A
+></TT
+>, but with the possibility of setting a
+ custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatSimpleTabbed"
+></A
+><B
+>floatSimpleTabbed</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This version is decorated with the TabbedDecoration style.
+ | Mouse dragging is somehow weird.
+</P
+><P
+>Here you can find a screen shot:
+</P
+><P
+><A HREF="http://code.haskell.org/~arossato/xmonadShots/floatSimpleTabbed.png"
+>http://code.haskell.org/~arossato/xmonadShots/floatSimpleTabbed.png</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfloatTabbed"
+></A
+><B
+>floatTabbed</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Same as <TT
+><A HREF="XMonad-Layout-DecorationMadness.html#v%3AfloatSimpleTabbed"
+>floatSimpleTabbed</A
+></TT
+>, but with the possibility of setting a
+ custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdefaultTheme"
+></A
+><B
+>defaultTheme</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The default xmonad <TT
+><A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshrinkText"
+></A
+><B
+>shrinkText</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

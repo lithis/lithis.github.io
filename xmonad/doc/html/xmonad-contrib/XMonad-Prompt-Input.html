@@ -1,0 +1,421 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Prompt.Input</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Prompt.Input</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>&lt;byorgey@gmail.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A generic framework for prompting the user for input and passing it
+ along to some other action.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinputPrompt"
+>inputPrompt</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinputPromptWithCompl"
+>inputPromptWithCompl</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AComplFunction"
+>ComplFunction</A
+> -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%3F%2B"
+>(?+)</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; m (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> a) -&gt; (a -&gt; m ()) -&gt; m ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>To use this module, import it along with <A HREF="XMonad-Prompt.html"
+>XMonad.Prompt</A
+>:
+</P
+><PRE
+> import XMonad.Prompt
+ import XMonad.Prompt.Input
+</PRE
+><P
+>This module provides no useful functionality in isolation, but
+ is intended for use in building other actions which require user
+ input.
+</P
+><P
+>For example, suppose Mr. Big wants a way to easily fire his
+ employees. We'll assume that he already has a function
+</P
+><PRE
+> fireEmployee :: String -&gt; X ()
+</PRE
+><P
+>which takes as input the name of an employee, and fires them.  He
+ just wants a convenient way to provide the input for this function
+ from within xmonad.  Here is where the <A HREF="XMonad-Prompt-Input.html"
+>XMonad.Prompt.Input</A
+> module
+ comes into play.  He can use the <TT
+><A HREF="XMonad-Prompt-Input.html#v%3AinputPrompt"
+>inputPrompt</A
+></TT
+> function to create a
+ prompt, and the <TT
+><A HREF="XMonad-Prompt-Input.html#v%3A%3F%2B"
+>?+</A
+></TT
+> operator to compose the prompt with the
+ <TT
+>fireEmployee</TT
+> action, like so:
+</P
+><PRE
+> firingPrompt :: X ()
+ firingPrompt = inputPrompt defaultXPConfig \&quot;Fire\&quot; ?+ fireEmployee
+</PRE
+><P
+>If <TT
+>employees</TT
+> contains a list of all his employees, he could also
+ create an autocompleting version, like this:
+</P
+><PRE
+> firingPrompt' = inputPromptWithCompl defaultXPConfig \&quot;Fire\&quot;
+                     (mkComplFunFromList employees) ?+ fireEmployee
+</PRE
+><P
+>Now all he has to do is add a keybinding to <TT
+>firingPrompt</TT
+> (or
+ <TT
+>firingPrompt'</TT
+>), such as
+</P
+><PRE
+>  , ((modMask x .|. controlMask, xK_f),  firingPrompt)
+</PRE
+><P
+>Now when Mr. Big hits mod-ctrl-f, a prompt will pop up saying
+ &quot;Fire: &quot;, waiting for him to type the name of someone to fire.
+ If he thinks better of it after hitting mod-ctrl-f and cancels the
+ prompt (e.g. by hitting Esc), the <TT
+>fireEmployee</TT
+> action will not be
+ invoked.
+</P
+><P
+>(For detailed instructions on editing your key bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.)
+</P
+><P
+><A HREF="XMonad-Prompt-Input.html"
+>XMonad.Prompt.Input</A
+> is also intended to ease the process of
+ developing other modules which require user input. For an example
+ of a module developed using this functionality, see
+ <A HREF="XMonad-Prompt-Email.html"
+>XMonad.Prompt.Email</A
+>, which prompts the user for a recipient,
+ subject, and one-line body, and sends a quick email.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AinputPrompt"
+></A
+><B
+>inputPrompt</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given a prompt configuration and some prompt text, create an X
+   action which pops up a prompt waiting for user input, and returns
+   whatever they type.  Note that the type of the action is <TT
+>X
+   (Maybe String)</TT
+>, which reflects the fact that the user might
+   cancel the prompt (resulting in <TT
+>Nothing</TT
+>), or enter an input
+   string <TT
+>s</TT
+> (resulting in <TT
+>Just s</TT
+>).
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AinputPromptWithCompl"
+></A
+><B
+>inputPromptWithCompl</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="XMonad-Prompt.html#t%3AComplFunction"
+>ComplFunction</A
+> -&gt; X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>The same as <TT
+><A HREF="XMonad-Prompt-Input.html#v%3AinputPrompt"
+>inputPrompt</A
+></TT
+>, but with a completion function.  The
+   type <TT
+>ComplFunction</TT
+> is <TT
+>String -&gt; IO [String]</TT
+>, as defined in
+   <A HREF="XMonad-Prompt.html"
+>XMonad.Prompt</A
+>.  The <TT
+><A HREF="XMonad-Prompt.html#v%3AmkComplFunFromList"
+>mkComplFunFromList</A
+></TT
+> utility function, also
+   defined in <A HREF="XMonad-Prompt.html"
+>XMonad.Prompt</A
+>, is useful for creating such a
+   function from a known list of possibilities.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A%3F%2B"
+></A
+><B
+>(?+)</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; m (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> a) -&gt; (a -&gt; m ()) -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A combinator for hooking up an input prompt action to a function
+   which can take the result of the input prompt and produce another
+   action. If the user cancels the input prompt, the
+   second function will not be run.
+</P
+><P
+>The astute student of types will note that this is actually a
+   very general combinator and has nothing in particular to do
+   with input prompts.  If you find a more general use for it and
+   want to move it to a different module, be my guest.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Hooks.XPropManage</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Hooks.XPropManage</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Karsten Schoelzel &lt;kuser@gmx.de&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A ManageHook matching on XProperties.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AxPropManageHook"
+>xPropManageHook</A
+> :: [<A HREF="XMonad-Hooks-XPropManage.html#t%3AXPropMatch"
+>XPropMatch</A
+>] -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AXPropMatch"
+>XPropMatch</A
+> = ([(Atom, [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>)], Window -&gt; X (WindowSet -&gt; WindowSet))</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApmX"
+>pmX</A
+> :: (Window -&gt; X ()) -&gt; Window -&gt; X (WindowSet -&gt; WindowSet)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApmP"
+>pmP</A
+> :: (WindowSet -&gt; WindowSet) -&gt; Window -&gt; X (WindowSet -&gt; WindowSet)</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Hooks.XPropManage
+ import qualified XMonad.StackSet as W
+ import XMonad.Actions.TagWindows
+ import Data.List
+</PRE
+><PRE
+> manageHook = xPropManageHook xPropMatches 
+
+ xPropMatches :: [XPropMatch]
+ xPropMatches = [ ([ (wM_CLASS, any (&quot;gimp&quot;==))], (\w -&gt; float w &gt;&gt; return (W.shift &quot;2&quot;)))
+                , ([ (wM_COMMAND, any (&quot;screen&quot; ==)), (wM_CLASS, any (&quot;xterm&quot; ==))], pmX (addTag &quot;screen&quot;))
+                , ([ (wM_NAME, any (&quot;Iceweasel&quot; `isInfixOf`))], pmP (W.shift &quot;3&quot;))
+                ]
+</PRE
+><P
+>Properties known to work: wM_CLASS, wM_NAME, wM_COMMAND
+</P
+><P
+>A XPropMatch consists of a list of conditions and function telling what to do.
+</P
+><P
+>The list entries are pairs of an XProperty to match on (like wM_CLASS, wM_NAME)^1,
+ and an function which matches onto the value of the property (represented as a List
+ of Strings).
+</P
+><P
+>If a match succeeds the function is called immediately, can perform any action and then return
+ a function to apply in windows (see Operations.hs). So if the action does only work on the
+ WindowSet use just 'pmP function'.
+</P
+><P
+>*1 You can get the available properties of an application with the xprop utility. STRING properties
+ should work fine. Others might not work.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AxPropManageHook"
+></A
+><B
+>xPropManageHook</B
+> :: [<A HREF="XMonad-Hooks-XPropManage.html#t%3AXPropMatch"
+>XPropMatch</A
+>] -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AXPropMatch"
+></A
+><B
+>XPropMatch</B
+> = ([(Atom, [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>)], Window -&gt; X (WindowSet -&gt; WindowSet))</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApmX"
+></A
+><B
+>pmX</B
+> :: (Window -&gt; X ()) -&gt; Window -&gt; X (WindowSet -&gt; WindowSet)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApmP"
+></A
+><B
+>pmP</B
+> :: (WindowSet -&gt; WindowSet) -&gt; Window -&gt; X (WindowSet -&gt; WindowSet)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

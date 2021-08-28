@@ -1,0 +1,25 @@
+Mickey & Malarie   1534   Zig & Zag          1627
+Zig & Zag          1954   Mickey & Malarie   1860
+-------
+Zig & Zag          1790.5
+Mickey & Malarie   1697
+
+X Crome & Y Crome  1717   Braino & Braino    1810
+Braino & Braino    1781   X Crome & Y Crome  1688
+-------
+Braino & Braino    1795.5
+X Crome & Y Crome  1702.5
+
+Gin & Tonic        2424   Ratman & Bobin     1296
+Ratman & Bobin	   1076   Gin & Tonic        2200
+-------
+Gin & Tonic        2312
+Ratman & Bobin     1186
+
+Ram & Side          942   Yes & No           2350
+Yes & No	   2558   Ram & Side         1150
+-------
+Yes & No           2454
+Ram & Side         1046
+
+Bye            : 9 RT-B5a & RT-B5b

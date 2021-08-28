@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.Run</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.Run</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Christian Thiemann &lt;mail@christian-thiemann.de&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>This modules provides several commands to run an external process.
+ It is composed of functions formerly defined in <A HREF="XMonad-Util-Dmenu.html"
+>XMonad.Util.Dmenu</A
+> (by
+ Spencer Janssen), <A HREF="XMonad-Util-Dzen.html"
+>XMonad.Util.Dzen</A
+> (by glasser@mit.edu) and
+ XMonad.Util.RunInXTerm (by Andrea Rossato).
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunProcessWithInput"
+>runProcessWithInput</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunProcessWithInputAndWait"
+>runProcessWithInputAndWait</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsafeSpawn"
+>safeSpawn</A
+> :: MonadIO m =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AunsafeSpawn"
+>unsafeSpawn</A
+> :: MonadIO m =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunInTerm"
+>runInTerm</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsafeRunInTerm"
+>safeRunInTerm</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aseconds"
+>seconds</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AspawnPipe"
+>spawnPipe</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AHandle"
+>Handle</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#v%3AhPutStr"
+>hPutStr</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#v%3AhPutStrLn"
+>hPutStrLn</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>For an example usage of <TT
+><A HREF="XMonad-Util-Run.html#v%3ArunInTerm"
+>runInTerm</A
+></TT
+> see <A HREF="XMonad-Prompt-Ssh.html"
+>XMonad.Prompt.Ssh</A
+>
+</P
+><P
+>For an example usage of <TT
+><A HREF="XMonad-Util-Run.html#v%3ArunProcessWithInput"
+>runProcessWithInput</A
+></TT
+> see
+ <A HREF="XMonad-Prompt-DirectoryPrompt.html"
+>XMonad.Prompt.DirectoryPrompt</A
+>, <A HREF="XMonad-Util-Dmenu.html"
+>XMonad.Util.Dmenu</A
+>,
+ <A HREF="XMonad-Prompt-ShellPrompt.html"
+>XMonad.Prompt.ShellPrompt</A
+>, <A HREF="XMonad-Actions-WmiiActions.html"
+>XMonad.Actions.WmiiActions</A
+>,
+ <A HREF="XMonad-Prompt-WorkspaceDir.html"
+>XMonad.Prompt.WorkspaceDir</A
+>
+</P
+><P
+>For an example usage of <TT
+><A HREF="XMonad-Util-Run.html#v%3ArunProcessWithInputAndWait"
+>runProcessWithInputAndWait</A
+></TT
+> see
+ <A HREF="XMonad-Util-Dzen.html"
+>XMonad.Util.Dzen</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunProcessWithInput"
+></A
+><B
+>runProcessWithInput</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Return output if the command succeeded, otherwise return <TT
+>()</TT
+>.
+ This corresponds to dmenu's notion of exit code 1 for a cancelled invocation.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunProcessWithInputAndWait"
+></A
+><B
+>runProcessWithInputAndWait</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Wait is in &#xc2;&#xb5;s (microseconds)
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsafeSpawn"
+></A
+><B
+>safeSpawn</B
+> :: MonadIO m =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Util-Run.html#v%3AsafeSpawn"
+>safeSpawn</A
+></TT
+> bypasses <A HREF="XMonad-Core.html"
+>XMonad.Core</A
+>'s spawn command, because spawn passes
+strings to /bin/sh to be interpreted as shell commands. This is
+often what one wants, but in many cases the passed string will contain
+shell metacharacters which one does not want interpreted as such (URLs
+particularly often have shell metacharacters like '&amp;' in them). In
+this case, it is more useful to specify a file or program to be run
+and a string to give it as an argument so as to bypass the shell and
+be certain the program will receive the string as you typed it.
+unsafeSpawn is internally an alias for XMonad's spawn, to remind one that use
+of it can be, well, unsafe.
+Examples:
+</P
+><PRE
+> , ((modMask, xK_Print), unsafeSpawn &quot;import -window root $HOME/xwd-$(date +%s)$$.png&quot;)
+ , ((modMask, xK_d    ), safeSpawn &quot;firefox&quot; &quot;&quot;)
+</PRE
+><P
+>Note that the unsafeSpawn example must be unsafe and not safe because
+it makes use of shell interpretation by relying on <TT
+>$HOME</TT
+> and
+interpolation, whereas the safeSpawn example can be safe because
+Firefox doesn't need any arguments if it is just being started. 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AunsafeSpawn"
+></A
+><B
+>unsafeSpawn</B
+> :: MonadIO m =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunInTerm"
+></A
+><B
+>runInTerm</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsafeRunInTerm"
+></A
+><B
+>safeRunInTerm</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Run a given program in the preferred terminal emulator; see <TT
+><A HREF="XMonad-Util-Run.html#v%3ArunInTerm"
+>runInTerm</A
+></TT
+>. This makes use of <TT
+><A HREF="XMonad-Util-Run.html#v%3AsafeSpawn"
+>safeSpawn</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aseconds"
+></A
+><B
+>seconds</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Multiplies by ONE MILLION, for functions that take microseconds.
+</P
+><P
+>Use like:
+</P
+><PRE
+> (5.5 `seconds`)
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AspawnPipe"
+></A
+><B
+>spawnPipe</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AHandle"
+>Handle</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Launch an external application through the system shell and return a <TT
+>Handle</TT
+> to its standard input.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#v%3AhPutStr"
+>hPutStr</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#v%3AhPutStrLn"
+>hPutStrLn</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

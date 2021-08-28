@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.Loggers</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.Loggers</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>&lt;byorgey@gmail.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A collection of simple logger functions which can be used in the
+ <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AppExtras"
+>ppExtras</A
+></TT
+> field of a pretty-printing status
+ logger format. See <A HREF="XMonad-Hooks-DynamicLog.html"
+>XMonad.Hooks.DynamicLog</A
+> for more information.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ALogger"
+>Logger</A
+> = X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Adate"
+>date</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AloadAvg"
+>loadAvg</A
+> :: <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Abattery"
+>battery</A
+> :: <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AlogCmd"
+>logCmd</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module by importing it into your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Util.Loggers
+</PRE
+><P
+>Then, add one or more loggers to the
+ <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AppExtras"
+>ppExtras</A
+></TT
+> field of your
+ <TT
+><A HREF="XMonad-Hooks-DynamicLoc.html#t%3APP"
+>PP</A
+></TT
+> format.  For example:
+</P
+><PRE
+>     -- display load averages and a pithy quote along with xmonad status.
+   , logHook = dynamicLogWithPP $ defaultPP { ppExtras = [ loadAvg, logCmd &quot;fortune -n 40 -s&quot; ] }
+</PRE
+><P
+>Of course, there is nothing really special about these so-called
+ 'loggers': they are just <TT
+>X (Maybe String)</TT
+> actions.  So you can
+ use them anywhere you would use an <TT
+>X (Maybe String)</TT
+>, not just
+ with DynamicLog.
+</P
+><P
+>Additional loggers welcome!
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3ALogger"
+></A
+><B
+>Logger</B
+> = X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TT
+> is just a convenient synonym for <TT
+>X (Maybe String)</TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adate"
+></A
+><B
+>date</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the current date and time, and format them via the
+   given format string.  The format used is the same as that used
+   by the C library function strftime; for example,
+   <TT
+>date &quot;%a %b %d&quot;</TT
+> might display something like <TT
+>Tue Feb 19</TT
+>.
+   For more information see something like
+   <A HREF="http://www.cplusplus.com/reference/clibrary/ctime/strftime.html"
+>http://www.cplusplus.com/reference/clibrary/ctime/strftime.html</A
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AloadAvg"
+></A
+><B
+>loadAvg</B
+> :: <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the load average.  This assumes that you have a
+   utility called <TT
+>/usr/bin/uptime</TT
+> and that you have <TT
+>sed</TT
+>
+   installed; these are fairly common on GNU/Linux systems but it
+   would be nice to make this more general.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Abattery"
+></A
+><B
+>battery</B
+> :: <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the battery status (percent charge and charging/discharging
+   status). This is an ugly hack and may not work for some people.
+   At some point it would be nice to make this more general/have
+   fewer dependencies.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AlogCmd"
+></A
+><B
+>logCmd</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a <TT
+><A HREF="XMonad-Util-Loggers.html#t%3ALogger"
+>Logger</A
+></TT
+> from an arbitrary shell command.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,949 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.Search</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.Search</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>Use case: searching with a submap
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Asearch"
+>search</A
+> :: Browser -&gt; Site -&gt; Query -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ASearchEngine"
+>SearchEngine</A
+> </TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsearchEngine"
+>searchEngine</A
+> :: Name -&gt; Site -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApromptSearch"
+>promptSearch</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApromptSearchBrowser"
+>promptSearchBrowser</A
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; Browser -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectSearch"
+>selectSearch</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectSearchBrowser"
+>selectSearchBrowser</A
+> :: Browser -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aamazon"
+>amazon</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Adictionary"
+>dictionary</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Agoogle"
+>google</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Ahoogle"
+>hoogle</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aimdb"
+>imdb</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Amaps"
+>maps</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Amathworld"
+>mathworld</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Ascholar"
+>scholar</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Awayback"
+>wayback</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Awikipedia"
+>wikipedia</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Ayoutube"
+>youtube</A
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This module is intended to allow easy access to databases on the
+   Internet through xmonad's interface. The idea is that one wants to
+   run a search but the query string and the browser to use must come
+   from somewhere. There are two places the query string can come from
+   - the user can type it into a prompt which pops up, or the query
+   could be available already in the X Windows copy/paste buffer
+   (perhaps you just highlighted the string of interest).
+</P
+><P
+>Thus, there are two main functions: <TT
+><A HREF="XMonad-Actions-Search.html#v%3ApromptSearch"
+>promptSearch</A
+></TT
+>, and
+   <TT
+><A HREF="XMonad-Actions-Search.html#v%3AselectSearch"
+>selectSearch</A
+></TT
+> (implemented using the more primitive <TT
+><A HREF="XMonad-Actions-Search.html#v%3Asearch"
+>search</A
+></TT
+>). To
+   each of these is passed an engine function; this is a function that
+   knows how to search a particular site.
+</P
+><P
+>For example, the <TT
+><A HREF="XMonad-Actions-Search.html#v%3Agoogle"
+>google</A
+></TT
+> function knows how to search Google, and
+   so on. You pass <TT
+><A HREF="XMonad-Actions-Search.html#v%3ApromptSearch"
+>promptSearch</A
+></TT
+> and <TT
+><A HREF="XMonad-Actions-Search.html#v%3AselectSearch"
+>selectSearch</A
+></TT
+> the engine you
+   want, the browser you want, and anything special they might need;
+   this whole line is then bound to a key of you choosing in your
+   xmonad.hs. For specific examples, see each function.  This module
+   is easily extended to new sites by using <TT
+><A HREF="XMonad-Actions-Search.html#v%3AsearchEngine"
+>searchEngine</A
+></TT
+>.
+</P
+><P
+>The currently available search engines are:
+</P
+><UL
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Aamazon"
+>amazon</A
+></TT
+> -- Amazon keyword search.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Adictionary"
+>dictionary</A
+></TT
+> -- dictionary.com search.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Agoogle"
+>google</A
+></TT
+> -- basic Google search.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Ahoogle"
+>hoogle</A
+></TT
+> -- Hoogle, the Haskell libraries search engine.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Aimdb"
+>imdb</A
+></TT
+>   -- the Internet Movie Database.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Amaps"
+>maps</A
+></TT
+>   -- Google maps.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Amathworld"
+>mathworld</A
+></TT
+> -- Wolfram MathWorld search.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Ascholar"
+>scholar</A
+></TT
+> -- Google scholar academic search.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Awayback"
+>wayback</A
+></TT
+> -- the Wayback Machine.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Awikipedia"
+>wikipedia</A
+></TT
+> -- basic Wikipedia search.
+</LI
+><LI
+> <TT
+><A HREF="XMonad-Actions-Search.html#v%3Ayoutube"
+>youtube</A
+></TT
+> -- Youtube video search.
+</LI
+></UL
+><P
+>Feel free to add more! 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Asearch"
+></A
+><B
+>search</B
+> :: Browser -&gt; Site -&gt; Query -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given a browser, a search engine, and a search term, perform the
+   requested search in the browser.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ASearchEngine"
+></A
+><B
+>SearchEngine</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsearchEngine"
+></A
+><B
+>searchEngine</B
+> :: Name -&gt; Site -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Given a base URL, create the <TT
+><A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TT
+> that escapes the query and
+   appends it to the base. You can easily define a new engine locally using
+   exported functions without needing to modify <A HREF="XMonad-Actions-Search.html"
+>XMonad.Actions.Search</A
+>:
+</P
+><PRE
+> myNewEngine = searchEngine &quot;site&quot; &quot;http://site.com/search=&quot;
+</PRE
+><P
+>The important thing is that the site has a interface which accepts the escaped query
+   string as part of the URL. Alas, the exact URL to feed searchEngine varies
+   from site to site, often considerably, so there's no general way to cover this.
+</P
+><P
+>Generally, examining the resultant URL of a search will allow you to reverse-engineer
+   it if you can't find the necessary URL already described in other projects such as Surfraw. 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApromptSearch"
+></A
+><B
+>promptSearch</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Like <TT
+><A HREF="XMonad-Actions-Search.html#v%3Asearch"
+>search</A
+></TT
+>, but in this case, the string is not specified but grabbed
+ from the user's response to a prompt. Example:
+</P
+><PRE
+> , ((modm, xK_g), promptSearch greenXPConfig google)
+</PRE
+><P
+>This specializes <A HREF="promptSearchBrowser.html"
+>promptSearchBrowser</A
+> by supplying the browser argument as
+   supplied by <TT
+><A HREF="XMonad-Prompt-Shell.html#v%3AgetBrowser"
+>getBrowser</A
+></TT
+> from <A HREF="XMonad-Prompt-Shell.html"
+>XMonad.Prompt.Shell</A
+>. 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApromptSearchBrowser"
+></A
+><B
+>promptSearchBrowser</B
+> :: <A HREF="XMonad-Prompt.html#t%3AXPConfig"
+>XPConfig</A
+> -&gt; Browser -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Like <TT
+><A HREF="XMonad-Actions-Search.html#v%3Asearch"
+>search</A
+></TT
+>, but for use with the output from a Prompt; it grabs the
+   Prompt's result, passes it to a given searchEngine and opens it in a given
+   browser. 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AselectSearch"
+></A
+><B
+>selectSearch</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Like <TT
+><A HREF="XMonad-Actions-Search.html#v%3Asearch"
+>search</A
+></TT
+>, but for use with the X selection; it grabs the selection,
+   passes it to a given searchEngine and opens it in the default browser . Example:
+</P
+><PRE
+> , ((modm .|. shiftMask, xK_g), selectSearch google)
+</PRE
+><P
+>This specializes <A HREF="selectSearchBrowser.html"
+>selectSearchBrowser</A
+> by supplying the browser argument as
+   supplied by <TT
+><A HREF="XMonad-Prompt-Shell.html#v%3AgetBrowser"
+>getBrowser</A
+></TT
+> from <A HREF="XMonad-Prompt-Shell.html"
+>XMonad.Prompt.Shell</A
+>. 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AselectSearchBrowser"
+></A
+><B
+>selectSearchBrowser</B
+> :: Browser -&gt; <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Like <TT
+><A HREF="XMonad-Actions-Search.html#v%3Asearch"
+>search</A
+></TT
+>, but for use with the X selection; it grabs the selection,
+   passes it to a given searchEngine and opens it in a given browser.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aamazon"
+></A
+><B
+>amazon</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adictionary"
+></A
+><B
+>dictionary</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Agoogle"
+></A
+><B
+>google</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Ahoogle"
+></A
+><B
+>hoogle</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aimdb"
+></A
+><B
+>imdb</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Amaps"
+></A
+><B
+>maps</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Amathworld"
+></A
+><B
+>mathworld</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Ascholar"
+></A
+><B
+>scholar</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Awayback"
+></A
+><B
+>wayback</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Awikipedia"
+></A
+><B
+>wikipedia</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Ayoutube"
+></A
+><B
+>youtube</B
+> :: <A HREF="XMonad-Actions-Search.html#t%3ASearchEngine"
+>SearchEngine</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Use case: searching with a submap
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>In combination with <A HREF="XMonad-Actions-Submap.html"
+>XMonad.Actions.Submap</A
+> you can create a powerful
+and easy way to search without adding a whole bunch of bindings.
+</P
+><P
+>First import the necessary modules:
+</P
+><PRE
+> import qualified XMonad.Prompt         as P
+ import qualified XMonad.Actions.Submap as SM
+ import qualified XMonad.Actions.Search as S
+</PRE
+><P
+>Then add the following to your key bindings:
+</P
+><PRE
+> ...
+ -- Search commands
+ , ((modm, xK_s), SM.submap $ searchEngineMap $ S.promptSearch P.defaultXPConfig)
+ , ((modm .|. shiftMask, xK_s), SM.submap $ searchEngineMap $ S.selectSearch)
+
+ ...
+
+ searchEngineMap method = M.fromList $
+       [ ((0, xK_g), method S.google)
+       , ((0, xK_h), method S.hoogle)
+       , ((0, xK_w), method S.wikipedia)
+       ]
+</PRE
+><P
+>Make sure to set firefox to open new pages in a new window instead of
+in a new tab: <TT
+>Firefox -&gt; Edit -&gt; Preferences -&gt; Tabs -&gt; New pages
+should be opened in...</TT
+>
+</P
+><P
+>Now <EM
+>mod-s</EM
+> + <EM
+>g</EM
+>/<EM
+>h</EM
+>/<EM
+>w</EM
+> prompts you for a search string, then
+opens a new firefox window that performs the search on Google, Hoogle
+or Wikipedia respectively.
+</P
+><P
+>If you select something in whatever application and hit <EM
+>mod-shift-s</EM
+> +
+<EM
+>g</EM
+>/<EM
+>h</EM
+>/<EM
+>w</EM
+> it will search the selected string with the specified
+engine.
+</P
+><P
+>Happy searching! 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

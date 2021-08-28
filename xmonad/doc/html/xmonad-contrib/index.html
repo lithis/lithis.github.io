@@ -1,0 +1,1523 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>xmonad-contrib-0.7: Third party extensions for xmonad</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Third party tiling algorithms, configurations and scripts to xmonad,
+a tiling window manager for X.
+</P
+><P
+>For an introduction to building, configuring and using xmonad
+extensions, see <A HREF="XMonad-Doc.html"
+>XMonad.Doc</A
+>. In particular:
+</P
+><P
+><A HREF="XMonad-Doc-Configuring.html"
+>XMonad.Doc.Configuring</A
+>, a guide to configuring xmonad
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html"
+>XMonad.Doc.Extending</A
+>, using the contributed extensions library
+</P
+><P
+><A HREF="XMonad-Doc-Developing.html"
+>XMonad.Doc.Developing</A
+>, introduction to xmonad internals and writing
+your own extensions.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Modules</TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD STYLE="width: 50em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:0')" ALT="show/hide"
+>XMonad</TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:0" STYLE="display:block;"
+><TR
+><TD STYLE="width: 48em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:1')" ALT="show/hide"
+>Actions</TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:1" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-Commands.html"
+>XMonad.Actions.Commands</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-ConstrainedResize.html"
+>XMonad.Actions.ConstrainedResize</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-CopyWindow.html"
+>XMonad.Actions.CopyWindow</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-CycleRecentWS.html"
+>XMonad.Actions.CycleRecentWS</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-CycleSelectedLayouts.html"
+>XMonad.Actions.CycleSelectedLayouts</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-CycleWS.html"
+>XMonad.Actions.CycleWS</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-DeManage.html"
+>XMonad.Actions.DeManage</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-DwmPromote.html"
+>XMonad.Actions.DwmPromote</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-DynamicWorkspaces.html"
+>XMonad.Actions.DynamicWorkspaces</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-FindEmptyWorkspace.html"
+>XMonad.Actions.FindEmptyWorkspace</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-FlexibleManipulate.html"
+>XMonad.Actions.FlexibleManipulate</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-FlexibleResize.html"
+>XMonad.Actions.FlexibleResize</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-FloatKeys.html"
+>XMonad.Actions.FloatKeys</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-FocusNth.html"
+>XMonad.Actions.FocusNth</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-MouseGestures.html"
+>XMonad.Actions.MouseGestures</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-MouseResize.html"
+>XMonad.Actions.MouseResize</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-NoBorders.html"
+>XMonad.Actions.NoBorders</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-PerWorkspaceKeys.html"
+>XMonad.Actions.PerWorkspaceKeys</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-Promote.html"
+>XMonad.Actions.Promote</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-RotSlaves.html"
+>XMonad.Actions.RotSlaves</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-Search.html"
+>XMonad.Actions.Search</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-SimpleDate.html"
+>XMonad.Actions.SimpleDate</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-SinkAll.html"
+>XMonad.Actions.SinkAll</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-Submap.html"
+>XMonad.Actions.Submap</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-SwapWorkspaces.html"
+>XMonad.Actions.SwapWorkspaces</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-TagWindows.html"
+>XMonad.Actions.TagWindows</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-UpdatePointer.html"
+>XMonad.Actions.UpdatePointer</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-Warp.html"
+>XMonad.Actions.Warp</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-WindowBringer.html"
+>XMonad.Actions.WindowBringer</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-WindowGo.html"
+>XMonad.Actions.WindowGo</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Actions-WindowNavigation.html"
+>XMonad.Actions.WindowNavigation</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD STYLE="width: 48em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:2')" ALT="show/hide"
+>Config</TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:2" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Config-Arossato.html"
+>XMonad.Config.Arossato</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Config-Desktop.html"
+>XMonad.Config.Desktop</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Config-Droundy.html"
+>XMonad.Config.Droundy</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Config-Gnome.html"
+>XMonad.Config.Gnome</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Config-Kde.html"
+>XMonad.Config.Kde</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Config-PlainConfig.html"
+>XMonad.Config.PlainConfig</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Config-Sjanssen.html"
+>XMonad.Config.Sjanssen</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD STYLE="width: 48em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:3')" ALT="show/hide"
+><A HREF="XMonad-Doc.html"
+>XMonad.Doc</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:3" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Doc-Configuring.html"
+>XMonad.Doc.Configuring</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Doc-Developing.html"
+>XMonad.Doc.Developing</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Doc-Extending.html"
+>XMonad.Doc.Extending</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD STYLE="width: 48em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:4')" ALT="show/hide"
+>Hooks</TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:4" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-DynamicLog.html"
+>XMonad.Hooks.DynamicLog</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-EventHook.html"
+>XMonad.Hooks.EventHook</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-EwmhDesktops.html"
+>XMonad.Hooks.EwmhDesktops</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-ManageDocks.html"
+>XMonad.Hooks.ManageDocks</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-ManageHelpers.html"
+>XMonad.Hooks.ManageHelpers</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-Script.html"
+>XMonad.Hooks.Script</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-ServerMode.html"
+>XMonad.Hooks.ServerMode</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-SetWMName.html"
+>XMonad.Hooks.SetWMName</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-UrgencyHook.html"
+>XMonad.Hooks.UrgencyHook</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Hooks-XPropManage.html"
+>XMonad.Hooks.XPropManage</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD STYLE="width: 48em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:5')" ALT="show/hide"
+>Layout</TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:5" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Accordion.html"
+>XMonad.Layout.Accordion</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-BoringWindows.html"
+>XMonad.Layout.BoringWindows</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Circle.html"
+>XMonad.Layout.Circle</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Combo.html"
+>XMonad.Layout.Combo</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Decoration.html"
+>XMonad.Layout.Decoration</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-DecorationMadness.html"
+>XMonad.Layout.DecorationMadness</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Dishes.html"
+>XMonad.Layout.Dishes</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-DragPane.html"
+>XMonad.Layout.DragPane</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-DwmStyle.html"
+>XMonad.Layout.DwmStyle</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Gaps.html"
+>XMonad.Layout.Gaps</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Grid.html"
+>XMonad.Layout.Grid</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-HintedGrid.html"
+>XMonad.Layout.HintedGrid</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-HintedTile.html"
+>XMonad.Layout.HintedTile</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-IM.html"
+>XMonad.Layout.IM</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-LayoutCombinators.html"
+>XMonad.Layout.LayoutCombinators</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-LayoutHints.html"
+>XMonad.Layout.LayoutHints</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-LayoutModifier.html"
+>XMonad.Layout.LayoutModifier</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-LayoutScreens.html"
+>XMonad.Layout.LayoutScreens</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-MagicFocus.html"
+>XMonad.Layout.MagicFocus</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Magnifier.html"
+>XMonad.Layout.Magnifier</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Master.html"
+>XMonad.Layout.Master</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Maximize.html"
+>XMonad.Layout.Maximize</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-MosaicAlt.html"
+>XMonad.Layout.MosaicAlt</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="width: 46em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:6')" ALT="show/hide"
+><A HREF="XMonad-Layout-MultiToggle.html"
+>XMonad.Layout.MultiToggle</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:6" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 44em"
+><A HREF="XMonad-Layout-MultiToggle-Instances.html"
+>XMonad.Layout.MultiToggle.Instances</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Named.html"
+>XMonad.Layout.Named</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-NoBorders.html"
+>XMonad.Layout.NoBorders</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-PerWorkspace.html"
+>XMonad.Layout.PerWorkspace</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Reflect.html"
+>XMonad.Layout.Reflect</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-ResizableTile.html"
+>XMonad.Layout.ResizableTile</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-ResizeScreen.html"
+>XMonad.Layout.ResizeScreen</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Roledex.html"
+>XMonad.Layout.Roledex</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-ShowWName.html"
+>XMonad.Layout.ShowWName</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-SimpleDecoration.html"
+>XMonad.Layout.SimpleDecoration</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-SimpleFloat.html"
+>XMonad.Layout.SimpleFloat</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Simplest.html"
+>XMonad.Layout.Simplest</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-SimplestFloat.html"
+>XMonad.Layout.SimplestFloat</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Spiral.html"
+>XMonad.Layout.Spiral</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Square.html"
+>XMonad.Layout.Square</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-StackTile.html"
+>XMonad.Layout.StackTile</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-TabBarDecoration.html"
+>XMonad.Layout.TabBarDecoration</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-Tabbed.html"
+>XMonad.Layout.Tabbed</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-ThreeColumns.html"
+>XMonad.Layout.ThreeColumns</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-ToggleLayouts.html"
+>XMonad.Layout.ToggleLayouts</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-TwoPane.html"
+>XMonad.Layout.TwoPane</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-WindowArranger.html"
+>XMonad.Layout.WindowArranger</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-WindowNavigation.html"
+>XMonad.Layout.WindowNavigation</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Layout-WorkspaceDir.html"
+>XMonad.Layout.WorkspaceDir</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD STYLE="width: 48em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:7')" ALT="show/hide"
+><A HREF="XMonad-Prompt.html"
+>XMonad.Prompt</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:7" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-AppLauncher.html"
+>XMonad.Prompt.AppLauncher</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-AppendFile.html"
+>XMonad.Prompt.AppendFile</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-DirExec.html"
+>XMonad.Prompt.DirExec</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Directory.html"
+>XMonad.Prompt.Directory</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Email.html"
+>XMonad.Prompt.Email</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Input.html"
+>XMonad.Prompt.Input</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Layout.html"
+>XMonad.Prompt.Layout</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Man.html"
+>XMonad.Prompt.Man</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-RunOrRaise.html"
+>XMonad.Prompt.RunOrRaise</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Shell.html"
+>XMonad.Prompt.Shell</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Ssh.html"
+>XMonad.Prompt.Ssh</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Theme.html"
+>XMonad.Prompt.Theme</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Window.html"
+>XMonad.Prompt.Window</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-Workspace.html"
+>XMonad.Prompt.Workspace</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Prompt-XMonad.html"
+>XMonad.Prompt.XMonad</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD STYLE="width: 48em"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'n:8')" ALT="show/hide"
+>Util</TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding: 0; padding-left: 2em" COLSPAN="3"
+><TABLE CLASS="vanilla2" CELLSPACING="0" CELLPADDING="0" ID="n:8" STYLE="display:block;"
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-CustomKeys.html"
+>XMonad.Util.CustomKeys</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Dmenu.html"
+>XMonad.Util.Dmenu</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Dzen.html"
+>XMonad.Util.Dzen</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-EZConfig.html"
+>XMonad.Util.EZConfig</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Font.html"
+>XMonad.Util.Font</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Invisible.html"
+>XMonad.Util.Invisible</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Loggers.html"
+>XMonad.Util.Loggers</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-NamedWindows.html"
+>XMonad.Util.NamedWindows</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Run.html"
+>XMonad.Util.Run</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Scratchpad.html"
+>XMonad.Util.Scratchpad</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Themes.html"
+>XMonad.Util.Themes</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-Timer.html"
+>XMonad.Util.Timer</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-WindowProperties.html"
+>XMonad.Util.WindowProperties</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-WorkspaceCompare.html"
+>XMonad.Util.WorkspaceCompare</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-XSelection.html"
+>XMonad.Util.XSelection</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+><TR
+><TD STYLE="padding-left: 1.25em;width: 46em"
+><A HREF="XMonad-Util-XUtils.html"
+>XMonad.Util.XUtils</A
+></TD
+><TD
+></TD
+><TD
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

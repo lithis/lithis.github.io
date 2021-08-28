@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.LayoutScreens</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.LayoutScreens</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>David Roundy &lt;droundy@darcs.net&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AlayoutScreens"
+>layoutScreens</A
+> :: LayoutClass l <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; l <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfixedLayout"
+>fixedLayout</A
+> :: [Rectangle] -&gt; FixedLayout a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This module allows you to pretend that you have more than one screen by
+ dividing a single screen into multiple screens that xmonad will treat as
+ separate screens.  This should definitely be useful for testing the
+ behavior of xmonad under Xinerama, and it's possible that it'd also be
+ handy for use as an actual user interface, if you've got a very large
+ screen and long for greater flexibility (e.g. being able to see your
+ email window at all times, a crude mimic of sticky windows).
+</P
+><P
+>You can use this module with the following in your
+ <TT
+>~/.xmonad/xmonad.hs</TT
+> file:
+</P
+><PRE
+> import XMonad.Layout.LayoutScreens
+ import XMonad.Layout.TwoPane
+</PRE
+><P
+>Then add some keybindings; for example:
+</P
+><PRE
+>   , ((modMask x .|. shiftMask,                 xK_space), layoutScreens 2 (TwoPane 0.5 0.5))
+   , ((modMask x .|. controlMask .|. shiftMask, xK_space), rescreen)
+</PRE
+><P
+>Another example use would be to handle a scenario where xrandr didn't
+ work properly (e.g. a VNC X server in my case) and you want to be able
+ to resize your screen (e.g. to match the size of a remote VNC client):
+</P
+><PRE
+> import XMonad.Layout.LayoutScreens
+</PRE
+><PRE
+>   , ((modMask x .|. shiftMask, xK_space),
+        layoutScreens 1 (fixedLayout [Rectangle 0 0 1024 768]))
+   , ((modMask x .|. controlMask .|. shiftMask, xK_space), rescreen)
+</PRE
+><P
+>For detailed instructions on editing your key bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AlayoutScreens"
+></A
+><B
+>layoutScreens</B
+> :: LayoutClass l <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; l <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfixedLayout"
+></A
+><B
+>fixedLayout</B
+> :: [Rectangle] -&gt; FixedLayout a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

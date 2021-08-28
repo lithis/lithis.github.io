@@ -1,0 +1,697 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.EZConfig</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.EZConfig</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Devin Mullins &lt;me@twifkak.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>Adding or removing keybindings
+</A
+></DT
+><DT
+><A HREF="#3"
+>Emacs-style keybinding specifications
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Useful helper functions for amending the defaultConfig, and for
+ parsing keybindings specified in a special (emacs-like) format.
+</P
+><P
+>(See also <A HREF="XMonad-Util-CustomKeys.html"
+>XMonad.Util.CustomKeys</A
+> in xmonad-contrib.)
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AadditionalKeys"
+>additionalKeys</A
+> :: XConfig a -&gt; [((ButtonMask, KeySym), X ())] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AadditionalKeysP"
+>additionalKeysP</A
+> :: XConfig l -&gt; [(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, X ())] -&gt; XConfig l</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AremoveKeys"
+>removeKeys</A
+> :: XConfig a -&gt; [(ButtonMask, KeySym)] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AremoveKeysP"
+>removeKeysP</A
+> :: XConfig l -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; XConfig l</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AadditionalMouseBindings"
+>additionalMouseBindings</A
+> :: XConfig a -&gt; [((ButtonMask, Button), Window -&gt; X ())] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AremoveMouseBindings"
+>removeMouseBindings</A
+> :: XConfig a -&gt; [(ButtonMask, Button)] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkKeymap"
+>mkKeymap</A
+> :: XConfig l -&gt; [(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, X ())] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/containers/Data-Map.html#t%3AMap"
+>Map</A
+> (KeyMask, KeySym) (X ())</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcheckKeymap"
+>checkKeymap</A
+> :: XConfig l -&gt; [(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, a)] -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>To use this module, first import it into your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Util.EZConfig
+</PRE
+><P
+>Then, use one of the provided functions to modify your
+ configuration.  You can use <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AadditionalKeys"
+>additionalKeys</A
+></TT
+>, <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AremoveKeys"
+>removeKeys</A
+></TT
+>,
+ <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AadditionalMouseBindings"
+>additionalMouseBindings</A
+></TT
+>, and <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AremoveMouseBindings"
+>removeMouseBindings</A
+></TT
+> to easily add
+ and remove keybindings or mouse bindings.  You can use <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AmkKeymap"
+>mkKeymap</A
+></TT
+>
+ to create a keymap using emacs-style keybinding specifications
+ like <TT
+>&quot;M-x&quot;</TT
+> instead of <TT
+>(modMask, xK_x)</TT
+>, or <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AadditionalKeysP"
+>additionalKeysP</A
+></TT
+>
+ and <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AremoveKeysP"
+>removeKeysP</A
+></TT
+> to easily add or remove emacs-style keybindings.
+ If you use emacs-style keybindings, the <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AcheckKeymap"
+>checkKeymap</A
+></TT
+> function is
+ provided, suitable for adding to your startupHook, which can warn
+ you of any parse errors or duplicate bindings in your keymap.
+</P
+><P
+>For more information and usage eamples, see the documentation
+ provided with each exported function, and check the xmonad config
+ archive (<A HREF="http://haskell.org/haskellwiki/Xmonad/Config_archive"
+>http://haskell.org/haskellwiki/Xmonad/Config_archive</A
+>)
+ for some real examples of use.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Adding or removing keybindings
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AadditionalKeys"
+></A
+><B
+>additionalKeys</B
+> :: XConfig a -&gt; [((ButtonMask, KeySym), X ())] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Add or override keybindings from the existing set. Example use:
+</P
+><PRE
+> main = xmonad $ defaultConfig { terminal = &quot;urxvt&quot; }
+                 `additionalKeys`
+                 [ ((mod1Mask, xK_m        ), spawn &quot;echo 'Hi, mom!' | dzen2 -p 4&quot;)
+                 , ((mod1Mask, xK_BackSpace), withFocused hide) -- N.B. this is an absurd thing to do
+                 ]
+</PRE
+><P
+>This overrides the previous definition of mod-m.
+</P
+><P
+>Note that, unlike in xmonad 0.4 and previous, you can't use modMask to refer
+ to the modMask you configured earlier. You must specify mod1Mask (or
+ whichever), or add your own <TT
+>myModMask = mod1Mask</TT
+> line.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AadditionalKeysP"
+></A
+><B
+>additionalKeysP</B
+> :: XConfig l -&gt; [(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, X ())] -&gt; XConfig l</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Like <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AadditionalKeys"
+>additionalKeys</A
+></TT
+>, except using short <TT
+>String</TT
+> key
+   descriptors like <TT
+>&quot;M-m&quot;</TT
+> instead of <TT
+>(modMask, xK_m)</TT
+>, as
+   described in the documentation for <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AmkKeymap"
+>mkKeymap</A
+></TT
+>.  For example:
+</P
+><PRE
+> main = xmonad $ defaultConfig { terminal = &quot;urxvt&quot; }
+                 `additionalKeysP`
+                 [ (&quot;M-m&quot;, spawn &quot;echo 'Hi, mom!' | dzen2 -p 4&quot;)
+                 , (&quot;M-&lt;Backspace&gt;&quot;, withFocused hide) -- N.B. this is an absurd thing to do
+                 ]
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AremoveKeys"
+></A
+><B
+>removeKeys</B
+> :: XConfig a -&gt; [(ButtonMask, KeySym)] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Remove standard keybindings you're not using. Example use:
+</P
+><PRE
+> main = xmonad $ defaultConfig { terminal = &quot;urxvt&quot; }
+                 `removeKeys` [(mod1Mask .|. shiftMask, n) | n &lt;- [xK_1 .. xK_9]]
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AremoveKeysP"
+></A
+><B
+>removeKeysP</B
+> :: XConfig l -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; XConfig l</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Like <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AremoveKeys"
+>removeKeys</A
+></TT
+>, except using short <TT
+>String</TT
+> key descriptors
+   like <TT
+>&quot;M-m&quot;</TT
+> instead of <TT
+>(modMask, xK_m)</TT
+>, as described in the
+   documentation for <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AmkKeymap"
+>mkKeymap</A
+></TT
+>. For example:
+</P
+><PRE
+> main = xmonad $ defaultConfig { terminal = &quot;urxvt&quot; }
+                 `removeKeysP` [&quot;M-S-&quot; ++ [n] | n &lt;- ['1'..'9']]
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AadditionalMouseBindings"
+></A
+><B
+>additionalMouseBindings</B
+> :: XConfig a -&gt; [((ButtonMask, Button), Window -&gt; X ())] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Like <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AadditionalKeys"
+>additionalKeys</A
+></TT
+>, but for mouse bindings.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AremoveMouseBindings"
+></A
+><B
+>removeMouseBindings</B
+> :: XConfig a -&gt; [(ButtonMask, Button)] -&gt; XConfig a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Like <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AremoveKeys"
+>removeKeys</A
+></TT
+>, but for mouse bindings.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>Emacs-style keybinding specifications
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkKeymap"
+></A
+><B
+>mkKeymap</B
+> :: XConfig l -&gt; [(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, X ())] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/containers/Data-Map.html#t%3AMap"
+>Map</A
+> (KeyMask, KeySym) (X ())</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Given a config (used to determine the proper modifier key to use)
+   and a list of <TT
+>(String, X ())</TT
+> pairs, create a key map by parsing
+   the key sequence descriptions contained in the Strings.  The key
+   sequence descriptions are &quot;emacs-style&quot;: <TT
+>M-</TT
+>, <TT
+>C-</TT
+>, <TT
+>S-</TT
+>, and
+   <TT
+>M#-</TT
+> denote mod, control, shift, and mod1-mod5 (where <TT
+>#</TT
+> is
+   replaced by the appropriate number) respectively; some special
+   keys can be specified by enclosing their name in angle brackets.
+</P
+><P
+>For example, <TT
+>&quot;M-C-x&quot;</TT
+> denotes mod+ctrl+x; <TT
+>&quot;S-&lt;Escape&gt;&quot;</TT
+> denotes
+   shift-escape.
+</P
+><P
+>Sequences of keys can also be specified by separating the key
+   descriptions with spaces. For example, <TT
+>&quot;M-x y &lt;Down&gt;&quot;</TT
+> denotes the
+   sequence of keys mod+x, y, down.  Submaps (see
+   <A HREF="XMonad-Actions-Submap.html"
+>XMonad.Actions.Submap</A
+>) will be automatically generated to
+   correctly handle these cases.
+</P
+><P
+>So, for example, a complete key map might be specified as
+</P
+><PRE
+> keys = \c -&gt; mkKeymap c $
+     [ (&quot;M-S-&lt;Return&gt;&quot;, spawn $ terminal c)
+     , (&quot;M-x w&quot;, spawn &quot;xmessage 'woohoo!'&quot;)  -- type mod+x then w to pop up 'woohoo!'
+     , (&quot;M-x y&quot;, spawn &quot;xmessage 'yay!'&quot;)     -- type mod+x then y to pop up 'yay!'
+     , (&quot;M-S-c&quot;, kill)
+     ]
+</PRE
+><P
+>Alternatively, you can use <TT
+><A HREF="XMonad-Util-EZConfig.html#v%3AadditionalKeysP"
+>additionalKeysP</A
+></TT
+> to automatically
+ create a keymap and add it to your config.
+</P
+><P
+>Here is a complete list of supported special keys.  Note that a few
+ keys, such as the arrow keys, have synonyms:
+</P
+><PRE
+> &lt;Backspace&gt;
+ &lt;Tab&gt;
+ &lt;Return&gt;
+ &lt;Pause&gt;
+ &lt;Scroll_lock&gt;
+ &lt;Sys_Req&gt;
+ &lt;Escape&gt;, &lt;Esc&gt;
+ &lt;Delete&gt;
+ &lt;Home&gt;
+ &lt;Left&gt;, &lt;L&gt;
+ &lt;Up&gt;, &lt;U&gt;
+ &lt;Right&gt;, &lt;R&gt;
+ &lt;Down&gt;, &lt;D&gt;
+ &lt;Page_Up&gt;
+ &lt;Page_Down&gt;
+ &lt;End&gt;
+ &lt;Insert&gt;
+ &lt;Break&gt;
+ &lt;Space&gt;
+ &lt;F1&gt;-&lt;F12&gt;
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcheckKeymap"
+></A
+><B
+>checkKeymap</B
+> :: XConfig l -&gt; [(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>, a)] -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Given a configuration record and a list of (key sequence
+   description, action) pairs, check the key sequence descriptions
+   for validity, and warn the user (via a popup xmessage window) of
+   any unparseable or duplicate key sequences.  This function is
+   appropriate for adding to your <TT
+>startupHook</TT
+>, and you are highly
+   encouraged to do so; otherwise, duplicate or unparseable
+   keybindings will be silently ignored.
+</P
+><P
+>For example, you might do something like this:
+</P
+><PRE
+> main = xmonad $ myConfig
+
+ myKeymap = [(&quot;S-M-c&quot;, kill), ...]
+ myConfig = defaultConfig {
+     ...
+     keys = \c -&gt; mkKeymap c myKeymap
+     startupHook = return () &gt;&gt; checkKeymap myConfig myKeymap
+     ...
+ }
+</PRE
+><P
+>NOTE: the <TT
+>return ()</TT
+> in the example above is very important!
+ Otherwise, you might run into problems with infinite mutual
+ recursion: the definition of myConfig depends on the definition of
+ startupHook, which depends on the definition of myConfig, ... and
+ so on.  Actually, it's likely that the above example in particular
+ would be OK without the <TT
+>return ()</TT
+>, but making <TT
+>myKeymap</TT
+> take
+ <TT
+>myConfig</TT
+> as a parameter would definitely lead to
+ problems. Believe me.  It, uh, happened to my friend. In... a
+ dream. Yeah. In any event, the <TT
+>return () &gt;&gt;</TT
+> introduces enough
+ laziness to break the deadlock.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

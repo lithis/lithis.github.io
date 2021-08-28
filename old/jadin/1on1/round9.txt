@@ -1,0 +1,50 @@
+calvin          668       malarie          364
+malarie         332       calvin           636
+-------
+calvin          652
+malarie         348
+
+marvin          440       al bundy         624
+albundy         560       marvin           376
+------
+albundy         592
+marvin          408
+
+lycanthrope     610       coupdegrace      343
+coupdegrace     390       lycanthrope      656
+-------
+lycanthrope     633
+coupdegrace     366.5
+
+whitman         342       Lucky Luke       696
+lucky luke      656       whitman          304
+------
+lucky luke      676
+whitman         323
+
+braino          742       dante            198
+dante           258       braino           802
+-------
+braino          772
+dante           228
+
+fullfire        206       goethe           728
+goethe          794       fullfire         272
+------
+goethe          761
+fullfire        239
+
+nimbus          858       worms3a          170
+worms3a         142       nimbus           830
+-------
+nimbus          844
+worms3a         156
+
+deflatermouse   162       spot             768
+spot            838       deflatermouse    232
+-------
+spot            803
+deflatermouse   197
+
+bye: worms4a
+loss by default: legion

@@ -1,0 +1,1726 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Hooks.DynamicLog</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Hooks.DynamicLog</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Don Stewart &lt;dons@cse.unsw.edu.au&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>Drop-in loggers
+</A
+></DT
+><DT
+><A HREF="#3"
+>Build your own formatter
+</A
+></DT
+><DT
+><A HREF="#4"
+>Formatting utilities
+</A
+></DT
+><DT
+><A HREF="#5"
+>Internal formatting functions
+</A
+></DT
+><DT
+><A HREF="#6"
+>To Do
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>xmonad calls the logHook with every internal state update, which is
+ useful for (among other things) outputting status information to an
+ external status bar program such as xmobar or dzen.  DynamicLog
+ provides several drop-in logHooks for this purpose, as well as
+ flexible tools for specifying your own formatting.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Adzen"
+>dzen</A
+> :: (XConfig (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Hooks-ManageDocks.html#t%3AAvoidStruts"
+>AvoidStruts</A
+> (Choose Tall (Choose (Mirror Tall) Full))) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Axmobar"
+>xmobar</A
+> :: (XConfig (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Hooks-ManageDocks.html#t%3AAvoidStruts"
+>AvoidStruts</A
+> (Choose Tall (Choose (Mirror Tall) Full))) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdynamicLog"
+>dynamicLog</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdynamicLogDzen"
+>dynamicLogDzen</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdynamicLogXmobar"
+>dynamicLogXmobar</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdynamicLogXinerama"
+>dynamicLogXinerama</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdynamicLogWithPP"
+>dynamicLogWithPP</A
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdynamicLogString"
+>dynamicLogString</A
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+> -&gt; X <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3APP"
+>PP</A
+>  = <A HREF="#v%3APP"
+>PP</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppCurrent"
+>ppCurrent</A
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppVisible"
+>ppVisible</A
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppHidden"
+>ppHidden</A
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppHiddenNoWindows"
+>ppHiddenNoWindows</A
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppUrgent"
+>ppUrgent</A
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppSep"
+>ppSep</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppWsSep"
+>ppWsSep</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppTitle"
+>ppTitle</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppLayout"
+>ppLayout</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppOrder"
+>ppOrder</A
+> :: ([<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>])</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppSort"
+>ppSort</A
+> :: (X ([WindowSpace] -&gt; [WindowSpace]))</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppExtras"
+>ppExtras</A
+> :: [X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AppOutput"
+>ppOutput</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ())</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdefaultPP"
+>defaultPP</A
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdzenPP"
+>dzenPP</A
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AxmobarPP"
+>xmobarPP</A
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsjanssenPP"
+>sjanssenPP</A
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AbyorgeyPP"
+>byorgeyPP</A
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Awrap"
+>wrap</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Apad"
+>pad</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Ashorten"
+>shorten</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AxmobarColor"
+>xmobarColor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdzenColor"
+>dzenColor</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdzenEscape"
+>dzenEscape</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApprWindowSet"
+>pprWindowSet</A
+> :: <A HREF="XMonad-Util-WorkspaceCompare.html#t%3AWorkspaceSort"
+>WorkspaceSort</A
+> -&gt; [Window] -&gt; <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+> -&gt; WindowSet -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApprWindowSetXinerama"
+>pprWindowSetXinerama</A
+> :: WindowSet -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+>    import XMonad
+    import XMonad.Hooks.DynamicLog
+</PRE
+><P
+>If you just want a quick-and-dirty status bar with zero effort, try
+ the <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3Adzen"
+>dzen</A
+></TT
+> function, which sets up a dzen status bar with a default
+ format:
+</P
+><PRE
+> main = dzen xmonad
+</PRE
+><P
+>or, to use this with your own custom xmonad configuration,
+</P
+><PRE
+> main = dzen $ \conf -&gt; xmonad $ conf { &lt;your customizations&gt; }
+</PRE
+><P
+>Also you can use <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3Axmobar"
+>xmobar</A
+></TT
+> function instead of <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3Adzen"
+>dzen</A
+></TT
+> in the examples above,
+ if you have xmobar installed.
+</P
+><P
+>Alternatively, you can choose among several default status bar
+ formats (<TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLog"
+>dynamicLog</A
+></TT
+>, <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogDzen"
+>dynamicLogDzen</A
+></TT
+>, <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogXmobar"
+>dynamicLogXmobar</A
+></TT
+>, or
+ <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogXinerama"
+>dynamicLogXinerama</A
+></TT
+>) by simply setting your logHook to the
+ appropriate function, for instance:
+</P
+><PRE
+> main = xmonad $ defaultConfig {
+    ...
+    logHook = dynamicLog
+    ...
+  }
+</PRE
+><P
+>For more flexibility, you can also use <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogWithPP"
+>dynamicLogWithPP</A
+></TT
+> and supply
+ your own pretty-printing format (by either defining one from scratch,
+ or customizing one of the provided examples).
+ For example:
+</P
+><PRE
+>    -- use sjanssen's pretty-printer format, but with the sections
+    -- in reverse
+    logHook = dynamicLogWithPP $ sjanssenPP { ppOrder = reverse }
+</PRE
+><P
+>Note that setting the <TT
+>logHook</TT
+> only sets up xmonad's output; you
+ are responsible for starting your own status bar program (e.g. dzen
+ or xmobar) and making sure xmonad's output is piped into it
+ appropriately, either by putting it in your <TT
+>.xsession</TT
+> or similar
+ file, or by using <TT
+>spawnPipe</TT
+> in your <TT
+>main</TT
+> function, for example:
+</P
+><PRE
+> import XMonad.Util.Run   -- for spawnPipe and hPutStrLn
+
+ main = do
+     h &lt;- spawnPipe &quot;xmobar -options -foo -bar&quot;
+     xmonad $ defaultConfig {
+       ...
+       logHook = dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn h }
+</PRE
+><P
+>If you use <TT
+>spawnPipe</TT
+>, be sure to redefine the <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AppOutput"
+>ppOutput</A
+></TT
+> field of
+ your pretty-printer as in the example above; by default the status
+ will be printed to stdout rather than the pipe you create.
+</P
+><P
+>Even if you don't use a statusbar, you can still use
+ <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogString"
+>dynamicLogString</A
+></TT
+> to show on-screen notifications in response to
+ some events. For example, to show the current layout when it
+ changes, you could make a keybinding to cycle the layout and
+ display the current status:
+</P
+><PRE
+>    , ((mod1Mask, xK_a     ), sendMessage NextLayout &gt;&gt; (dynamicLogString myPP &gt;&gt;= \d-&gt;spawn $&quot;xmessage &quot;++d))
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Drop-in loggers
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adzen"
+></A
+><B
+>dzen</B
+> :: (XConfig (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Hooks-ManageDocks.html#t%3AAvoidStruts"
+>AvoidStruts</A
+> (Choose Tall (Choose (Mirror Tall) Full))) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Run xmonad with a dzen status bar set to some nice defaults. Output
+ is taken from the dynamicLogWithPP hook.
+</P
+><PRE
+> main = dzen xmonad
+</PRE
+><P
+>The intent is that the above config file should provide a nice
+ status bar with minimal effort.  If you want to customize your xmonad
+ configuration while using this, you'll have to do something like
+</P
+><PRE
+> main = dzen $ \conf -&gt; xmonad $ conf { &lt;your customized settings...&gt; }
+</PRE
+><P
+>If you wish to customize the status bar format at all, you'll have to
+ use something like <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogWithPP"
+>dynamicLogWithPP</A
+></TT
+> instead.
+</P
+><P
+>The binding uses the XMonad.Hooks.ManageDocks module to automatically
+ handle screen placement for dzen, and enables <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#v%3Amod"
+>mod</A
+></TT
+> for toggling
+ the menu bar.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Axmobar"
+></A
+><B
+>xmobar</B
+> :: (XConfig (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Hooks-ManageDocks.html#t%3AAvoidStruts"
+>AvoidStruts</A
+> (Choose Tall (Choose (Mirror Tall) Full))) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t) -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> t</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Run xmonad with a xmobar status bar set to some nice defaults. Output
+ is taken from the dynamicLogWithPP hook.
+</P
+><PRE
+> main = xmobar xmonad
+</PRE
+><P
+>This works pretty much the same as <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3Adzen"
+>dzen</A
+></TT
+> function above
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdynamicLog"
+></A
+><B
+>dynamicLog</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>An example log hook, which prints status information to stdout in
+ the default format:
+</P
+><PRE
+> 1 2 [3] 4 7 : full : title
+</PRE
+><P
+>That is, the currently populated workspaces, the current
+ workspace layout, and the title of the focused window.
+</P
+><P
+>To customize the output format, see <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogWithPP"
+>dynamicLogWithPP</A
+></TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdynamicLogDzen"
+></A
+><B
+>dynamicLogDzen</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>An example log hook that emulates dwm's status bar, using colour
+ codes printed to dzen.  Requires dzen. Workspaces, xinerama,
+ layouts and the window title are handled.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdynamicLogXmobar"
+></A
+><B
+>dynamicLogXmobar</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>These are good defaults to be used with the xmobar status bar.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdynamicLogXinerama"
+></A
+><B
+>dynamicLogXinerama</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Workspace logger with a format designed for Xinerama:
+</P
+><PRE
+> [1 9 3] 2 7
+</PRE
+><P
+>where 1, 9, and 3 are the workspaces on screens 1, 2 and 3, respectively,
+ and 2 and 7 are non-visible, non-empty workspaces.
+</P
+><P
+>Unfortunately, at the present time, the current layout and window title
+ are not shown, and there is no way to incorporate the xinerama
+ workspace format shown above with <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogWithPP"
+>dynamicLogWithPP</A
+></TT
+>.  Hopefully this
+ will change soon.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>Build your own formatter
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdynamicLogWithPP"
+></A
+><B
+>dynamicLogWithPP</B
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Format the current status using the supplied pretty-printing format,
+   and write it to stdout.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdynamicLogString"
+></A
+><B
+>dynamicLogString</B
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+> -&gt; X <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The same as <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLogWithPP"
+>dynamicLogWithPP</A
+></TT
+>, except it simply returns the status
+   as a formatted string without actually printing it to stdout, to
+   allow for further processing, or use in some application other than
+   a status bar.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3APP"
+></A
+><B
+>PP</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>The <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TT
+> type allows the user to customize the formatting of
+   status information.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3APP"
+></A
+><B
+>PP</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppCurrent"
+></A
+><B
+>ppCurrent</B
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>how to print the tag of the currently focused
+ workspace
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppVisible"
+></A
+><B
+>ppVisible</B
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>how to print tags of visible but not focused
+ workspaces (xinerama only)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppHidden"
+></A
+><B
+>ppHidden</B
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>how to print tags of hidden workspaces which
+ contain windows
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppHiddenNoWindows"
+></A
+><B
+>ppHiddenNoWindows</B
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>how to print tags of empty hidden workspaces
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppUrgent"
+></A
+><B
+>ppUrgent</B
+> :: (WorkspaceId -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>format to be applied to tags of urgent workspaces.
+ NOTE that <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AppUrgent"
+>ppUrgent</A
+></TT
+> is applied <EM
+>in addition to</EM
+>
+ <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AppHidden"
+>ppHidden</A
+></TT
+>!
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppSep"
+></A
+><B
+>ppSep</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>separator to use between different log sections
+ (window name, layout, workspaces)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppWsSep"
+></A
+><B
+>ppWsSep</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>separator to use between workspace tags
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppTitle"
+></A
+><B
+>ppTitle</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>window title format
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppLayout"
+></A
+><B
+>ppLayout</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>layout name format
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppOrder"
+></A
+><B
+>ppOrder</B
+> :: ([<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>] -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>])</TD
+><TD CLASS="rdoc"
+>how to order the different log sections. By
+   default, this function receives a list with three
+   formatted strings, representing the workspaces,
+   the layout, and the current window title,
+   respectively. If you have specified any extra
+   loggers in <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AppExtras"
+>ppExtras</A
+></TT
+>, their output will also be
+   appended to the list.  To get them in the reverse
+   order, you can just use <TT
+>ppOrder = reverse</TT
+>.  If
+   you don't want to display the current layout, you
+   could use something like <TT
+>ppOrder = \(ws:_:t:_) -&gt;
+   [ws,t]</TT
+>, and so on.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppSort"
+></A
+><B
+>ppSort</B
+> :: (X ([WindowSpace] -&gt; [WindowSpace]))</TD
+><TD CLASS="rdoc"
+>how to sort the workspaces.  See
+ <A HREF="XMonad-Util-WorkspaceCompare.html"
+>XMonad.Util.WorkspaceCompare</A
+> for some useful
+ sorts.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppExtras"
+></A
+><B
+>ppExtras</B
+> :: [X (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+><TD CLASS="rdoc"
+>loggers for generating extra information such as
+ time and date, system load, battery status, and so
+ on.  See <A HREF="XMonad-Util-Loggers.html"
+>XMonad.Util.Loggers</A
+> for examples, or create
+ your own!
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AppOutput"
+></A
+><B
+>ppOutput</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ())</TD
+><TD CLASS="rdoc"
+>applied to the entire formatted string in order to
+ output it.  Can be used to specify an alternative
+ output method (e.g. write to a pipe instead of
+ stdout), and/or to perform some last-minute
+ formatting.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdefaultPP"
+></A
+><B
+>defaultPP</B
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The default pretty printing options, as seen in <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdynamicLog"
+>dynamicLog</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdzenPP"
+></A
+><B
+>dzenPP</B
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Settings to emulate dwm's statusbar, dzen only.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AxmobarPP"
+></A
+><B
+>xmobarPP</B
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Some nice xmobar defaults.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsjanssenPP"
+></A
+><B
+>sjanssenPP</B
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The options that sjanssen likes to use with xmobar, as an
+ example.  Note the use of <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AxmobarColor"
+>xmobarColor</A
+></TT
+> and the record update on
+ <TT
+><A HREF="XMonad-Hooks-DynamicLog.html#v%3AdefaultPP"
+>defaultPP</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AbyorgeyPP"
+></A
+><B
+>byorgeyPP</B
+> :: <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The options that byorgey likes to use with dzen, as another example.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="4"
+>Formatting utilities
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Awrap"
+></A
+><B
+>wrap</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>left delimiter
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>right delimiter
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>output string
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Wrap a string in delimiters, unless it is empty.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Apad"
+></A
+><B
+>pad</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Pad a string with a leading and trailing space.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Ashorten"
+></A
+><B
+>shorten</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Limit a string to a certain length, adding <A HREF="---.html"
+>...</A
+> if truncated.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AxmobarColor"
+></A
+><B
+>xmobarColor</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>foreground color: a color name, or #rrggbb format
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>background color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>output string
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Use xmobar escape codes to output a string with given foreground
+   and background colors.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdzenColor"
+></A
+><B
+>dzenColor</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>foreground color: a color name, or #rrggbb format
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>background color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>output string
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Use dzen escape codes to output a string with given foreground
+   and background colors.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdzenEscape"
+></A
+><B
+>dzenEscape</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Escape any dzen metacharacters.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="5"
+>Internal formatting functions
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApprWindowSet"
+></A
+><B
+>pprWindowSet</B
+> :: <A HREF="XMonad-Util-WorkspaceCompare.html#t%3AWorkspaceSort"
+>WorkspaceSort</A
+> -&gt; [Window] -&gt; <A HREF="XMonad-Hooks-DynamicLog.html#t%3APP"
+>PP</A
+> -&gt; WindowSet -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Format the workspace information, given a workspace sorting function,
+   a list of urgent windows, a pretty-printer format, and the current
+   WindowSet.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApprWindowSetXinerama"
+></A
+><B
+>pprWindowSetXinerama</B
+> :: WindowSet -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="6"
+>To Do
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><UL
+><LI
+> incorporate dynamicLogXinerama into the PP framework somehow
+</LI
+><LI
+> add an xmobarEscape function
+</LI
+></UL
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

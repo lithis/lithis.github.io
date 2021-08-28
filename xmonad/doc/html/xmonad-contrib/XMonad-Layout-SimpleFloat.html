@@ -1,0 +1,760 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.SimpleFloat</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.SimpleFloat</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage:
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A basic floating layout.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsimpleFloat"
+>simpleFloat</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsimpleFloat%27"
+>simpleFloat'</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-SimpleFloat.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> a = <A HREF="#v%3ASimple"
+>Simple</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ASimpleFloat"
+>SimpleFloat</A
+> a = <A HREF="#v%3ASF"
+>SF</A
+> Dimension</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshrinkText"
+>shrinkText</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ACustomShrink"
+>CustomShrink</A
+>  = <A HREF="#v%3ACustomShrink"
+>CustomShrink</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> s, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> s) =&gt; <A HREF="#t%3AShrinker"
+>Shrinker</A
+> s  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshrinkIt"
+>shrinkIt</A
+> :: s -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage:
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your
+ <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Layout.SimpleFloat
+</PRE
+><P
+>Then edit your <TT
+>layoutHook</TT
+> by adding the SimpleFloat layout:
+</P
+><PRE
+> myLayouts = simpleFloat ||| Full ||| etc..
+ main = xmonad defaultConfig { layoutHook = myLayouts }
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsimpleFloat"
+></A
+><B
+>simpleFloat</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A simple floating layout where every window is placed according
+ to the window's initial attributes.
+</P
+><P
+>This version is decorated with the <TT
+><A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+></TT
+> style.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsimpleFloat%27"
+></A
+><B
+>simpleFloat'</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-SimpleFloat.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> s) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Actions-MouseResize.html#t%3AMouseResize"
+>MouseResize</A
+> (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+>)) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Same as <TT
+><A HREF="XMonad-Layout-SimpleFloat.html#v%3AsimpleFloat"
+>simpleFloat</A
+></TT
+>, but with the possibility of setting a
+ custom shrinker and a custom theme.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ASimpleDecoration"
+></A
+><B
+>SimpleDecoration</B
+> a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASimple"
+></A
+><B
+>Simple</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:SimpleDecoration')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:SimpleDecoration" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ADecorationStyle"
+>DecorationStyle</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleDecoration"
+>SimpleDecoration</A
+> a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ASimpleFloat"
+></A
+><B
+>SimpleFloat</B
+> a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASF"
+></A
+><B
+>SF</B
+> Dimension</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:SimpleFloat')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:SimpleFloat" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>LayoutClass <A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Layout-SimpleFloat.html#t%3ASimpleFloat"
+>SimpleFloat</A
+> a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshrinkText"
+></A
+><B
+>shrinkText</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ACustomShrink"
+></A
+><B
+>CustomShrink</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACustomShrink"
+></A
+><B
+>CustomShrink</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:CustomShrink')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:CustomShrink" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ACustomShrink"
+>CustomShrink</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ACustomShrink"
+>CustomShrink</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-SimpleFloat.html#t%3AShrinker"
+>Shrinker</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ACustomShrink"
+>CustomShrink</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> s, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> s) =&gt; <A NAME="t%3AShrinker"
+></A
+><B
+>Shrinker</B
+> s  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshrinkIt"
+></A
+><B
+>shrinkIt</B
+> :: s -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Shrinker')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Shrinker" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-SimpleFloat.html#t%3AShrinker"
+>Shrinker</A
+> <A HREF="XMonad-Layout-SimpleFloat.html#t%3ACustomShrink"
+>CustomShrink</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-SimpleFloat.html#t%3AShrinker"
+>Shrinker</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

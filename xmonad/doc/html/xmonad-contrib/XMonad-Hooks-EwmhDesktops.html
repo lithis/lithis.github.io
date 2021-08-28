@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Hooks.EwmhDesktops</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Hooks.EwmhDesktops</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Joachim Breitner &lt;mail@joachim-breitner.de&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Makes xmonad use the EWMH hints to tell panel applications about its
+ workspaces and the windows therein. It also allows the user to interact
+ with xmonad by clicking on panels and window lists.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AewmhDesktopsLogHook"
+>ewmhDesktopsLogHook</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AewmhDesktopsLayout"
+>ewmhDesktopsLayout</A
+> :: layout a -&gt; <A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> EwmhDesktopsHook layout a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad
+ import XMonad.Hooks.EwmhDesktops
+
+ myLogHook :: X ()
+ myLogHook = do ewmhDesktopsLogHook
+                return ()
+
+ layoutHook = ewmhDesktopsLayout $ avoidStruts $ simpleTabbed ||| Full ||| etc..
+
+ main = xmonad defaultConfig { layoutHook = myLayouts, logHook = myLogHook }
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#The_log_hook_and_external_status_bars"
+>XMonad.Doc.Extending#The_log_hook_and_external_status_bars</A
+>
+</P
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AewmhDesktopsLogHook"
+></A
+><B
+>ewmhDesktopsLogHook</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Notifies pagers and window lists, such as those in the gnome-panel
+ of the current state of workspaces and windows.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AewmhDesktopsLayout"
+></A
+><B
+>ewmhDesktopsLayout</B
+> :: layout a -&gt; <A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> EwmhDesktopsHook layout a</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Intercepts messages from pagers and similar applications and reacts on them.
+ Currently supports:
+</P
+><UL
+><LI
+> _NET_CURRENT_DESKTOP (switching desktops)
+</LI
+><LI
+> _NET_WM_DESKTOP (move windows to other desktops)
+</LI
+><LI
+> _NET_ACTIVE_WINDOW (activate another window, changing workspace if needed)
+</LI
+></UL
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

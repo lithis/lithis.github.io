@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>ReadMail</TITLE>
+   <META NAME="Author" CONTENT="Kristofer Nelson">
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.01Gold (Win95; I) [Netscape]">
+   <META NAME="KeyWords" CONTENT="Hethrael, ReadMail">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<H1>NON-FUNCTIONAL PROTOTYPE!</H1>
+
+<P>ReadMail will retrieve your mail and let you read it over the web, given your mail server, username, and password. It offers you the convenience of web-based mail reading (you can read your mail anywhere) without requiring that you change your e-mail address and always use the web interface. If you have a standard POP3 mail reader (Internet Explorer's mail reader, Netscape Navigator's or Communicator's mail reader, Eudora, etc.), ReadMail will work.</P>
+
+<P>ReadMail leaves your mail on the server. The next time you open your e-mail reader, your mail will show up.</P>
+
+<TABLE><FORM ACTION="cgi-bin/readmail.cgi">
+<TR>
+<TD>POP3 Server</TD><TD><INPUT NAME="server"></TD>
+</TR>
+<TR>
+<TD>Username</TD><TD><INPUT NAME="user"></TD>
+</TR>
+<TR>
+<TD>Password</TD><TD><INPUT TYPE="PASSWORD" NAME="PASS"></TD>
+</TR>
+<TR>
+<TD COLSPAN=2 ALIGN=CENTER><INPUT TYPE=SUBMIT></TD>
+</TR>
+</FORM></TABLE>
+
+<P><B>Disclaimer:</B> This is version 0.1 of ReadMail. The main purpose of this program is just to get a functional POP3 mail reader on the web. It is not designed to have fancy features for reading mail. Big changes will come soon, though. Keep checking on the progress or <A HREF="mailto:lithis@computerpro.com">ask me</A> to be notified when ReadMail becomes a full-featured mail reader.</P>
+
+<P><B>Security Notice:</B> Note that you are sending my program your server name, username, and password, and that my program is reading your mail and sending it to you. I could intercept this information and use it, but I don't. Internet Mail, Netscape Mail, and all other mail readers could do the same things with your information, but they don't. If you want, I will provide you with the source code and an explaination for those of you who don't program in Perl. ReadMail does nothing with your information other than log in to your mail server and return your mail to you. By the time you are reading your mail, ReadMail has totally forgotten that you exist.</P>
+
+<CENTER><P>WWW: <A HREF="http://www.computerpro.com/~lithis/">http://www.computerpro.com/~lithis/<BR>
+</A>E-Mail: <A HREF="mailto:lithis@computerpro.com">lithis@computerpro.com</A></P></CENTER>
+
+<CENTER><P>Copyright Kristofer Nelson, 1997.<BR>
+All Rights Reserved.</P></CENTER>
+
+</BODY>
+</HTML>

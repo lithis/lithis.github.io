@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>hethrael - white pictures</title>
+	<meta name="generator" content="vi">
+	<meta name="description" content="lithis's white pictues...">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
+	<link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<script language="javascript">
+function changeimage(image, width, height)
+{
+	document.white.width = width;
+	document.white.height = height;
+	document.white.src = "images/white/white" + image + ".jpg";
+}
+</script>
+<frameset rows="40,*" border=0>
+	<frame src="white_head.html" marginheight=0 marginwidth=4 noresize>
+	<frameset cols="124,*" border=0>
+		<frame src="white_thumb.html" marginheight=0 marginwidth=4 noresize>
+		<frameset rows="*,32" border=0 name="body">
+			<frame src="white_pict.html" marginheight=0 marginwidth=4 noresize>
+			<frame src="white_desc.html" marginheight=0 marginwidth=4 noresize>
+		</frameset>
+	</frameset>
+</frameset>
+</html>

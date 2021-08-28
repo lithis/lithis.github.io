@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Star Position Calculations&mdash;The Big Dipper&mdash;Hethrael</title>
+	<meta name="generator" content="Vim" />
+	<meta name="author" content="Lithis" />
+	<link rel="stylesheet" type="text/css" href="/hethrael.css" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+	<link rel="icon" href="/favicon.png" type="image/png" />
+</head>
+<body>
+
+<h1>Star Position Calculations</h1>
+<h2><a href="/big-dipper/">The Big Dipper</a></h2>
+<p>Version 1.1<br />
+2011-03-19</p>
+
+<p>This spreadsheet calculates the positions of stars on a scale to fit them inside a room.</p>
+
+<p><a href="Star%20Position%20Calculations,%20The%20Big%20Dipper%201.1.ods">Download the star position calculation spreadsheet</a>.</p>
+
+<p>I created this spreadsheet to calculate where to hang the stars of <a href="/big-dipper/">the Big Dipper</a>.
+It is an OpenDocument Format spreadsheet and can be opened with <a href="http://www.libreoffice.org/">LibreOffice</a>
+or any other <a href="http://en.wikipedia.org/wiki/OpenDocument_software#Spreadsheets">OpenDocument-compatible spreadsheet application</a>.
+A <a href="star%20position%20calculations preview,%20the%20big%20dipper%201.0.pdf">PDF preview</a> is available, but it contains none of the interactivity or formulae of the spreadsheet.
+<a href="mailto:webpage2@seregdor.hethrael.com">Email me</a> with any questions or comments.</p>
+
+<p>Notes for using this spreadsheet:</p>
+<ul>
+<li>In LibreOffice, choose View | Value Highlighting (or press Ctrl+F8) to turn user-entered numbers blue.</li>
+<li>For the bearing entry, 0 is North, 90 is East, 180 is South, and 270 is West.</li>
+<li>An orange background means the object falls outside of the room, i.e. it has a negative in a &ldquo;From Corner&rdquo; column or a positive in a &ldquo;From Opposite Corner&rdquo; or &ldquo;From Ceiling&rdquo; column.</li>
+<li>If your ceiling is flat, all values in the ceiling height column will be the same. Otherwise, ceiling height is the height of the ceiling at that X, Y coordinate.</li>
+<li>The charts do not automatically match the size of the room. Their widths, heights, and axes maximum scales must be manually changed if you change the size of the room.</li>
+<li>If you want to use units other than light years and inches, enter the units on the parameters sheet.</li>
+<li>LST is the local sidereal time.</li>
+</ul>
+
+<p>Notes unnecessary for using this spreadsheet:</p>
+<ul>
+<li>The RA and Dec of the Earth are meaningless; the equally meaningless azimuthal values simply look nicer with the values of RA and Dec given.</li>
+<li>There are hidden columns on the Parameters and Coordinates sheets that show intermediate calculations. To show all the hidden columns in a single sheet in LibreOffice, select all cells and choose Format | Column | Show.
+(A <a href="star%20position%20calculations preview with everything,%20the%20big%20dipper%201.0.pdf">PDF preview with all columns shown</a> is also available.)</li>
+<li>The azimuthal and bearing coordinate systems are left-handed. All other coordinate systems are right-handed. (Right-handed: 7&deg; is 1&deg; to the left of 6&deg;; the X and Y axes are as you would see a standard graph lying on the floor, X pointing to the right and Y forward. Left-handed: 7&deg; is 1&deg; to the right of 6&deg;; the X and Y axes are swapped. The Z axis points up in both systems.)</li>
+<li>The positive X axis of the azimuthal Cartesian coordinate system points North. The azimuthal rotated Cartesian coordinate system points toward the bearing entered. They will match if the bearing is 0.</li>
+<li>The azimuthal Cartesian coordinate system is calculated from the polar equatorial coordinates using trigonometry. The azimuthal rotated Cartesian coordinate system uses matrix multiplication and Euler angles to convert the Cartesian equatorial coordinates. The transformation matrix is hidden on the parameters sheet.</li>
+</ul>
+
+<p>Return to the <a href="/big-dipper/">main Big Dipper page</a>.</p>
+
+<p class="dontfearthecopyrightiwontgoriaaonyourass">
+	I love the view source command and you should, too.<br />
+	Copyright Lithis, 2007&ndash;2011.
+</p>
+
+</body>
+</html>

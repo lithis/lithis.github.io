@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Doc.Configuring</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Doc.Configuring</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Configuring xmonad
+</A
+></DT
+><DT
+><A HREF="#2"
+>A simple example
+</A
+></DT
+><DT
+><A HREF="#3"
+>Checking whether your xmonad.hs is correct
+</A
+></DT
+><DT
+><A HREF="#4"
+>Loading your configuration
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This is a brief tutorial that will teach you how to create a
+ basic xmonad configuration.
+</P
+><P
+>For more detailed instructions on extending xmonad with the
+ xmonad-contrib library, see <A HREF="XMonad-Doc-Extending.html"
+>XMonad.Doc.Extending</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Configuring xmonad
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><A NAME="Configuring_xmonad"
+></A
+>
+xmonad can be configured by creating and editing the Haskell file:
+</P
+><PRE
+>    ~/.xmonad/xmonad.hs
+</PRE
+><P
+>If this file does not exist, xmonad will simply use default settings;
+if it does exist, xmonad will use whatever settings you specify.  Note
+that this file can contain arbitrary Haskell code, which means that
+you have quite a lot of flexibility in configuring xmonad.
+</P
+><P
+>NOTE for users of previous versions (&lt; 0.5) of xmonad: this is a major
+change in the way xmonad is configured.  Prior to version 0.5,
+configuring xmonad required editing an xmonad source file called
+Config.hs, recompiling xmonad, and then restarting.  From version 0.5
+onwards, however, you should NOT edit this file.  All you have to do
+is edit xmonad.hs and restart with <TT
+>mod-q</TT
+>; xmonad does the
+recompiling itself.  The format of the configuration file has also
+changed; it is now simpler and much shorter, only requiring you to
+list those settings which are different from the defaults.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>A simple example
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><A NAME="A_simple_example"
+></A
+>
+</P
+><P
+>Here is a basic example, which starts with the default xmonad
+configuration and overrides the border width, default terminal, and
+some colours:
+</P
+><PRE
+>    --
+    -- An example, simple ~/.xmonad/xmonad.hs file.
+    -- It overrides a few basic settings, reusing all the other defaults.
+    --
+
+    import XMonad
+
+    main = xmonad $ defaultConfig
+        { borderWidth        = 2
+        , terminal           = &quot;urxvt&quot;
+        , normalBorderColor  = &quot;#cccccc&quot;
+        , focusedBorderColor = &quot;#cd8b00&quot; }
+</PRE
+><P
+>This will run 'xmonad', the window manager, with your settings
+passed as arguments.
+</P
+><P
+>Overriding default settings like this (using &quot;record update
+syntax&quot;), will yield the shortest config file, as you only have to
+describe values that differ from the defaults.
+</P
+><P
+>As an alternative, you can copy the template <TT
+>xmonad.hs</TT
+> file (found
+either in the <TT
+>man</TT
+> directory, if you have the xmonad source, or on
+the xmonad wiki at
+<TT
+>http://haskell.org/haskellwiki/Xmonad/Config_archive/Template_xmonad.hs</TT
+>)
+into your <TT
+>~/.xmonad/</TT
+> directory.  This template file contains all
+the default settings spelled out, and you should be able to simply
+change the ones you would like to change.
+</P
+><P
+>To see what fields can be customized beyond the ones in the example
+above, the definition of the <TT
+><A HREF="XMonad-Core.html#t%3AXConfig"
+>XConfig</A
+></TT
+> data structure can
+be found in <A HREF="XMonad-Core.html"
+>XMonad.Core</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>Checking whether your xmonad.hs is correct
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><A NAME="Checking_whether_your_xmonad.hs_is_correct"
+></A
+>
+</P
+><P
+>After changing your configuration, it is a good idea to check that it
+is syntactically and type correct.  You can do this easily by loading
+your configuration file in the Haskell interpreter:
+</P
+><PRE
+>    $ ghci ~/.xmonad/xmonad.hs
+    GHCi, version 6.8.2: http://www.haskell.org/ghc/  :? for help
+    Loading package base ... linking ... done.
+    Ok, modules loaded: Main.
+
+    Prelude Main&gt; :t main
+    main :: IO ()
+</PRE
+><P
+>Ok, looks good.
+</P
+><P
+>Note, however, that if you skip this step and try restarting xmonad
+with errors in your xmonad.hs, it's not the end of the world; xmonad
+will simply display a window showing the errors and continue with the
+previous configuration settings. (This assumes that you have the
+'xmessage' utility installed; you probably do.)
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="4"
+>Loading your configuration
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><A NAME="Loading_your_configuration"
+></A
+>
+</P
+><P
+>To get xmonad to use your new settings, type <TT
+>mod-q</TT
+>. (Remember, the
+mod key is 'alt' by default, but you can configure it to be
+something else, such as your Windows key if you have one.) xmonad will
+attempt to compile this file, and run it.  If everything goes well,
+xmonad will seamlessly restart itself with the new settings, keeping
+all your windows, layouts, etc. intact.  (If you change anything
+related to your layouts, you may need to hit <TT
+>mod-shift-space</TT
+> after
+restarting to see the changes take effect.)  If something goes wrong,
+the previous (default) settings will be used.  Note this requires that
+GHC and xmonad are in your <TT
+>$PATH</TT
+>. If GHC isn't in your path, you can
+still compile <TT
+>xmonad.hs</TT
+> yourself:
+</P
+><PRE
+>    $ cd ~/.xmonad
+    $ /path/to/ghc --make xmonad.hs
+    $ ls
+    xmonad    xmonad.hi xmonad.hs xmonad.o
+</PRE
+><P
+>When you hit <TT
+>mod-q</TT
+>, this newly compiled xmonad will be used.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

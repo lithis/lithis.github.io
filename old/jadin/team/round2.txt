@@ -1,0 +1,25 @@
+Braino & Braino       2180  RT-B5a & RT-B5b     961
+RT-B5a & RT-B5b       1312  Braino & Braino    2531
+-------
+Braino & Braino       2355.5
+RT-B5a & RT-B5b       1136.5
+
+Yes & No              1676  Gin & Tonic        1874
+Gin & Tonic           1822  Yes & No           1626
+-------
+Gin & Tonic           1848
+Yes & No              1651
+
+Zig & Zag             1984  X Crome & Y Crome  1488
+X Crome & Y Crome     1508  Zig & Zag          2005
+-------
+Zig & Zag             1994.5
+X Crome & Y Crome     1494
+
+Ratman & Bobin        1511  Mickey & Malarie   2001
+Mickey & Malarie      1981  Ratman & Bobin     1487
+-------
+Mickey & Malarie      1991
+Ratman & Bobin        1499
+
+Bye            : 8 Ram & Side

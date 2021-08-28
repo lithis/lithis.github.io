@@ -1,0 +1,571 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.WindowNavigation</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.WindowNavigation</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Devin Mullins &lt;me@twifkak.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>License     :  BSD3-style (see LICENSE)
+</P
+><P
+>This is a rewrite of <A HREF="XMonad-Layout-WindowNavigation.html"
+>XMonad.Layout.WindowNavigation</A
+>, for the purposes of
+ code cleanup and Xinerama support. It's not complete, so you'll want to
+ use that one for now.
+</P
+><P
+>WindowNavigation lets you assign keys to move up<EM
+>down</EM
+>left<EM
+>right, based on
+ actual cartesian window coordinates, rather than just going j</EM
+>k on the stack.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwithWindowNavigation"
+>withWindowNavigation</A
+> :: (KeySym, KeySym, KeySym, KeySym) -&gt; XConfig l -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> (XConfig l)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwithWindowNavigationKeys"
+>withWindowNavigationKeys</A
+> :: [((KeyMask, KeySym), <A HREF="XMonad-Actions-WindowNavigation.html#t%3AWNAction"
+>WNAction</A
+>)] -&gt; XConfig l -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> (XConfig l)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AWNAction"
+>WNAction</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AWNGo"
+>WNGo</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AWNSwap"
+>WNSwap</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Ago"
+>go</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-IORef.html#t%3AIORef"
+>IORef</A
+> WNState -&gt; <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aswap"
+>swap</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-IORef.html#t%3AIORef"
+>IORef</A
+> WNState -&gt; <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ADirection"
+>Direction</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AU"
+>U</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AD"
+>D</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AR"
+>R</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AL"
+>L</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Don't use it! What, are you crazy?
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwithWindowNavigation"
+></A
+><B
+>withWindowNavigation</B
+> :: (KeySym, KeySym, KeySym, KeySym) -&gt; XConfig l -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> (XConfig l)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwithWindowNavigationKeys"
+></A
+><B
+>withWindowNavigationKeys</B
+> :: [((KeyMask, KeySym), <A HREF="XMonad-Actions-WindowNavigation.html#t%3AWNAction"
+>WNAction</A
+>)] -&gt; XConfig l -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> (XConfig l)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AWNAction"
+></A
+><B
+>WNAction</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AWNGo"
+></A
+><B
+>WNGo</B
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AWNSwap"
+></A
+><B
+>WNSwap</B
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Ago"
+></A
+><B
+>go</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-IORef.html#t%3AIORef"
+>IORef</A
+> WNState -&gt; <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aswap"
+></A
+><B
+>swap</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-IORef.html#t%3AIORef"
+>IORef</A
+> WNState -&gt; <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ADirection"
+></A
+><B
+>Direction</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+><P
+>An enumeration of the four cardinal directions/sides of the
+   screen.
+</P
+><P
+>Ideally this would go in its own separate module in Util,
+   but ManageDocks is angling for inclusion into the xmonad core,
+   so keep the dependencies to a minimum.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AU"
+></A
+><B
+>U</B
+></TD
+><TD CLASS="rdoc"
+>Up/top
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AD"
+></A
+><B
+>D</B
+></TD
+><TD CLASS="rdoc"
+>Down/bottom
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AR"
+></A
+><B
+>R</B
+></TD
+><TD CLASS="rdoc"
+>Right
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AL"
+></A
+><B
+>L</B
+></TD
+><TD CLASS="rdoc"
+>Left
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Direction')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Direction" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ABounded"
+>Bounded</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3AEnum"
+>Enum</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Ord.html#t%3AOrd"
+>Ord</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Actions-WindowNavigation.html#t%3ADirection"
+>Direction</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

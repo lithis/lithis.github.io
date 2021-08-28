@@ -1,0 +1,19 @@
+<TR><TD>Do you love your mother, or if your mother is dead, did you love your mother:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Pick a number:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>7</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Have you been abducted by aliens:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>What entrances to your house do you leave unlocked:</TD><TD WIDTH=7></TD><TD><SELECT MULTIPLE SIZE=7><OPTION>Front Door<OPTION>Back Door<OPTION>First Story Windows<OPTION>Second Story Windows<OPTION>Chimney<OPTION>Garage<OPTION>Secret Underground Tunnel</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Have you been psychoanalyzed:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>I am 'enery the <FONT COLOR="#666666">seven</FONT>th, I am.<BR>'enery the <FONT COLOR="#666666">seven</FONT>th, I am, I am.<BR>I got married to the widow next door.<BR>She's been married six times before.<BR>And every one was an 'enery. 'enery!<BR>She wouldn't have a Willie or a Sam. No Sam!<BR>I'm her <FONT COLOR="#666666">seven</FONT>th old man, I'm 'enery.<BR>'enery the <FONT COLOR="#666666">seven</FONT>th I am.<BR><FONT SIZE=-2>Second verse, same as the first.</FONT>:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>True or false:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>What did you break:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>How can this web page be improved (be truthful):</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42 MAXLENGTH=7></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Pick a number:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Have you ever seen a whale with a polka-dot tail:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Do you agree to the terms of this agreement:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD></TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Why:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Can I smack you:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>Have you ever been turned into a newt:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR><TR><TD>Did you get better:</TD><TD WIDTH=7></TD><TD><SELECT SIZE=1><OPTION>Yes<OPTION>No</SELECT></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>What is your name:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR><TR><TD>What is your quest:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR><TR><TD>What is your favorite color:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>What is your name:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR><TR><TD>What is your quest:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR><TR><TD>What is the capital of Assyria:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR>
+<TR><TD>What is your name:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR><TR><TD>What is your quest:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR><TR><TD>What is the air speed velocity of an unladen swallow:</TD><TD WIDTH=7></TD><TD><INPUT SIZE=42></TD></TR><TR><TD HEIGHT=7></TD></TR>

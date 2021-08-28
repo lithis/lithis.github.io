@@ -1,0 +1,1058 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.CycleWS</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.CycleWS</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Joachim Breitner &lt;mail@joachim-breitner.de&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>Moving between workspaces
+</A
+></DT
+><DT
+><A HREF="#3"
+>Moving between screens (xinerama)
+</A
+></DT
+><DT
+><A HREF="#4"
+>Moving between workspaces, take two!
+</A
+></DT
+><DT
+><A HREF="#5"
+>The mother-combinator
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Provides bindings to cycle forward or backward through the list of
+ workspaces, to move windows between workspaces, and to cycle
+ between screens.  More general combinators provide ways to cycle
+ through workspaces in various orders, to only cycle through some
+ subset of workspaces, and to cycle by more than one workspace at a
+ time.
+</P
+><P
+>Note that this module now subsumes the functionality of the former
+ <TT
+>XMonad.Actions.RotView</TT
+>.  Former users of <TT
+>rotView</TT
+> can simply replace
+ <TT
+>rotView True</TT
+> with <TT
+>moveTo Next NonEmptyWS</TT
+>, and so on.
+</P
+><P
+>If you want to exactly replicate the action of <TT
+>rotView</TT
+> (cycling
+ through workspace in order lexicographically by tag, instead of in
+ the order specified in the config), it can be implemented as:
+</P
+><PRE
+> rotView b  = do t &lt;- findWorkspace getSortByTag (bToDir b) NonEmptyWS 1
+                 windows . greedyView $ t
+   where bToDir True  = Next
+         bToDir False = Prev
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnextWS"
+>nextWS</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AprevWS"
+>prevWS</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshiftToNext"
+>shiftToNext</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshiftToPrev"
+>shiftToPrev</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtoggleWS"
+>toggleWS</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnextScreen"
+>nextScreen</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AprevScreen"
+>prevScreen</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshiftNextScreen"
+>shiftNextScreen</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshiftPrevScreen"
+>shiftPrevScreen</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AswapNextScreen"
+>swapNextScreen</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AswapPrevScreen"
+>swapPrevScreen</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AWSDirection"
+>WSDirection</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ANext"
+>Next</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3APrev"
+>Prev</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AWSType"
+>WSType</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AEmptyWS"
+>EmptyWS</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ANonEmptyWS"
+>NonEmptyWS</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AHiddenNonEmptyWS"
+>HiddenNonEmptyWS</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AAnyWS"
+>AnyWS</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AWSIs"
+>WSIs</A
+> (X (WindowSpace -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>))</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshiftTo"
+>shiftTo</A
+> :: <A HREF="XMonad-Actions-CycleWS.html#t%3AWSDirection"
+>WSDirection</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSType"
+>WSType</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmoveTo"
+>moveTo</A
+> :: <A HREF="XMonad-Actions-CycleWS.html#t%3AWSDirection"
+>WSDirection</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSType"
+>WSType</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfindWorkspace"
+>findWorkspace</A
+> :: X <A HREF="XMonad-Util-WorkspaceCompare.html#t%3AWorkspaceSort"
+>WorkspaceSort</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSDirection"
+>WSDirection</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSType"
+>WSType</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; X WorkspaceId</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+> file:
+</P
+><PRE
+> import XMonad.Actions.CycleWS
+
+ -- a basic CycleWS setup
+
+   , ((modMask x,               xK_Down),  nextWS)
+   , ((modMask x,               xK_Up),    prevWS)
+   , ((modMask x .|. shiftMask, xK_Down),  shiftToNext)
+   , ((modMask x .|. shiftMask, xK_Up),    shiftToPrev)
+   , ((modMask x,               xK_Right), nextScreen)
+   , ((modMask x,               xK_Left),  prevScreen)
+   , ((modMask x .|. shiftMask, xK_Right), shiftNextScreen)
+   , ((modMask x .|. shiftMask, xK_Left),  shiftPrevScreen)
+   , ((modMask x,               xK_z),     toggleWS)
+</PRE
+><P
+>If you want to follow the moved window, you can use both actions:
+</P
+><PRE
+>   , ((modMask x .|. shiftMask, xK_Down), shiftToNext &gt;&gt; nextWS)
+   , ((modMask x .|. shiftMask, xK_Up),   shiftToPrev &gt;&gt; prevWS)
+</PRE
+><P
+>You can also get fancier with <TT
+><A HREF="XMonad-Actions-CycleWS.html#v%3AmoveTo"
+>moveTo</A
+></TT
+>, <TT
+><A HREF="XMonad-Actions-CycleWS.html#v%3AshiftTo"
+>shiftTo</A
+></TT
+>, and <TT
+><A HREF="XMonad-Actions-CycleWS.html#v%3AfindWorkspace"
+>findWorkspace</A
+></TT
+>.
+ For example:
+</P
+><PRE
+>   , ((modMask x     , xK_f), moveTo Next EmptyWS)  -- find a free workspace
+   , ((modMask x .|. controlMask, xK_Right),        -- a crazy keybinding!
+         do t &lt;- findWorkspace getXineramaWsCompare Next NonEmptyWS 2
+            windows . view $ t                                         )
+</PRE
+><P
+>For detailed instructions on editing your key bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Moving between workspaces
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>The following commands for moving the view and windows between
+workspaces are somewhat inflexible, but are very simple and probably
+Do The Right Thing for most users.
+</P
+><P
+>All of the commands in this section cycle through workspaces in the
+order in which they are given in your config.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnextWS"
+></A
+><B
+>nextWS</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Switch to the next workspace.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AprevWS"
+></A
+><B
+>prevWS</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Switch to the previous workspace.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshiftToNext"
+></A
+><B
+>shiftToNext</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Move the focused window to the next workspace.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshiftToPrev"
+></A
+><B
+>shiftToPrev</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Move the focused window to the previous workspace.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtoggleWS"
+></A
+><B
+>toggleWS</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Toggle to the workspace displayed previously.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>Moving between screens (xinerama)
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnextScreen"
+></A
+><B
+>nextScreen</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>View next screen
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AprevScreen"
+></A
+><B
+>prevScreen</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>View prev screen
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshiftNextScreen"
+></A
+><B
+>shiftNextScreen</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Move focused window to workspace on next screen
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshiftPrevScreen"
+></A
+><B
+>shiftPrevScreen</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Move focused window to workspace on prev screen
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AswapNextScreen"
+></A
+><B
+>swapNextScreen</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Swap current screen with next screen
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AswapPrevScreen"
+></A
+><B
+>swapPrevScreen</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Swap current screen with previous screen
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="4"
+>Moving between workspaces, take two!
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A few more general commands are also provided, which allow cycling
+through subsets of workspaces.
+</P
+><P
+>For example,
+</P
+><PRE
+>   moveTo Next EmptyWS
+</PRE
+><P
+>will move to the first available workspace with no windows, and
+</P
+><PRE
+>   shiftTo Prev (WSIs $ return (('p' `elem`) . tag))
+</PRE
+><P
+>will move the focused window backwards to the first workspace containing
+the letter p in its name. =)
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AWSDirection"
+></A
+><B
+>WSDirection</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Direction to cycle through the sort order.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANext"
+></A
+><B
+>Next</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3APrev"
+></A
+><B
+>Prev</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AWSType"
+></A
+><B
+>WSType</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>What type of workspaces should be included in the cycle?
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AEmptyWS"
+></A
+><B
+>EmptyWS</B
+></TD
+><TD CLASS="rdoc"
+>cycle through empty workspaces
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANonEmptyWS"
+></A
+><B
+>NonEmptyWS</B
+></TD
+><TD CLASS="rdoc"
+>cycle through non-empty workspaces
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AHiddenNonEmptyWS"
+></A
+><B
+>HiddenNonEmptyWS</B
+></TD
+><TD CLASS="rdoc"
+>cycle through non-empty non-visible workspaces
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AAnyWS"
+></A
+><B
+>AnyWS</B
+></TD
+><TD CLASS="rdoc"
+>cycle through all workspaces
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AWSIs"
+></A
+><B
+>WSIs</B
+> (X (WindowSpace -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>))</TD
+><TD CLASS="rdoc"
+>cycle through workspaces satisfying
+   an arbitrary predicate
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshiftTo"
+></A
+><B
+>shiftTo</B
+> :: <A HREF="XMonad-Actions-CycleWS.html#t%3AWSDirection"
+>WSDirection</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSType"
+>WSType</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Move the currently focused window to the next workspace in the
+   given direction that satisfies the given condition.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmoveTo"
+></A
+><B
+>moveTo</B
+> :: <A HREF="XMonad-Actions-CycleWS.html#t%3AWSDirection"
+>WSDirection</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSType"
+>WSType</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>View the next workspace in the given direction that satisfies
+   the given condition.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="5"
+>The mother-combinator
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfindWorkspace"
+></A
+><B
+>findWorkspace</B
+> :: X <A HREF="XMonad-Util-WorkspaceCompare.html#t%3AWorkspaceSort"
+>WorkspaceSort</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSDirection"
+>WSDirection</A
+> -&gt; <A HREF="XMonad-Actions-CycleWS.html#t%3AWSType"
+>WSType</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; X WorkspaceId</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Given a function <TT
+>s</TT
+> to sort workspaces, a direction <TT
+>dir</TT
+>, a
+   predicate <TT
+>p</TT
+> on workspaces, and an integer <TT
+>n</TT
+>, find the tag of
+   the workspace which is <TT
+>n</TT
+> away from the current workspace in
+   direction <TT
+>dir</TT
+> (wrapping around if necessary), among those
+   workspaces, sorted by <TT
+>s</TT
+>, which satisfy <TT
+>p</TT
+>.
+</P
+><P
+>For some useful workspace sorting functions, see
+   <A HREF="XMonad-Util-WorkspaceCompare.html"
+>XMonad.Util.WorkspaceCompare</A
+>.
+</P
+><P
+>For ideas of what to do with a workspace tag once obtained, note
+   that <TT
+><A HREF="XMonad-Actions-CycleWS.html#v%3AmoveTo"
+>moveTo</A
+></TT
+> and <TT
+><A HREF="XMonad-Actions-CycleWS.html#v%3AshiftTo"
+>shiftTo</A
+></TT
+> are implemented by applying <TT
+>(&gt;&gt;=
+   (windows . greedyView))</TT
+> and <TT
+>(&gt;&gt;= (windows . shift))</TT
+>, respectively,
+   to the output of <TT
+><A HREF="XMonad-Actions-CycleWS.html#v%3AfindWorkspace"
+>findWorkspace</A
+></TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

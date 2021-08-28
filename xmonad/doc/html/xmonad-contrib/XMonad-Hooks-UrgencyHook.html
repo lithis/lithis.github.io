@@ -1,0 +1,1591 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Hooks.UrgencyHook</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Hooks.UrgencyHook</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Devin Mullins &lt;me@twifkak.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DD
+><DL
+><DT
+><A HREF="#2"
+>Pop up a temporary dzen
+</A
+></DT
+><DT
+><A HREF="#3"
+>Highlight in existing dzen
+</A
+></DT
+><DT
+><A HREF="#4"
+>Useful keybinding
+</A
+></DT
+><DT
+><A HREF="#5"
+>Note
+</A
+></DT
+></DL
+></DD
+><DT
+><A HREF="#6"
+>Example: Setting up irssi + rxvt-unicode
+</A
+></DT
+><DD
+><DL
+><DT
+><A HREF="#7"
+>Configuring irssi
+</A
+></DT
+><DT
+><A HREF="#8"
+>Configuring screen
+</A
+></DT
+><DT
+><A HREF="#9"
+>Configuring rxvt-unicode
+</A
+></DT
+><DT
+><A HREF="#10"
+>Configuring xmonad
+</A
+></DT
+></DL
+></DD
+><DT
+><A HREF="#11"
+>Stuff for your config file:
+</A
+></DT
+><DT
+><A HREF="#12"
+>Stuff for developers:
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>UrgencyHook lets you configure an action to occur when a window demands
+ your attention. (In traditional WMs, this takes the form of &quot;flashing&quot;
+ on your &quot;taskbar.&quot; Blech.)
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwithUrgencyHook"
+>withUrgencyHook</A
+> :: (LayoutClass l Window, <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> h) =&gt; h -&gt; XConfig l -&gt; XConfig (<A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> (WithUrgencyHook h) l)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwithUrgencyHookC"
+>withUrgencyHookC</A
+> :: (LayoutClass l Window, <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> h) =&gt; h -&gt; (WithUrgencyHook h -&gt; WithUrgencyHook h) -&gt; XConfig l -&gt; XConfig (<A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> (WithUrgencyHook h) l)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsuppressWhen"
+>suppressWhen</A
+> :: <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> h =&gt; <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASuppressWhen"
+>SuppressWhen</A
+> -&gt; WithUrgencyHook h -&gt; WithUrgencyHook h</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ASuppressWhen"
+>SuppressWhen</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AVisible"
+>Visible</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AOnScreen"
+>OnScreen</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AFocused"
+>Focused</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ANever"
+>Never</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfocusUrgent"
+>focusUrgent</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdzenUrgencyHook"
+>dzenUrgencyHook</A
+> :: <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+>  = <A HREF="#v%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aduration"
+>duration</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aargs"
+>args</A
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aseconds"
+>seconds</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ANoUrgencyHook"
+>NoUrgencyHook</A
+>  = <A HREF="#v%3ANoUrgencyHook"
+>NoUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AreadUrgents"
+>readUrgents</A
+> :: X [Window]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwithUrgents"
+>withUrgents</A
+> :: ([Window] -&gt; X a) -&gt; X a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AStdoutUrgencyHook"
+>StdoutUrgencyHook</A
+>  = <A HREF="#v%3AStdoutUrgencyHook"
+>StdoutUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+> <A HREF="#t%3ASpawnUrgencyHook"
+>SpawnUrgencyHook</A
+>  = <A HREF="#v%3ASpawnUrgencyHook"
+>SpawnUrgencyHook</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> h, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> h) =&gt; <A HREF="#t%3AUrgencyHook"
+>UrgencyHook</A
+> h  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AurgencyHook"
+>urgencyHook</A
+> :: h -&gt; Window -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>To wire this up, first add:
+</P
+><PRE
+> import XMonad.Hooks.UrgencyHook
+</PRE
+><P
+>to your import list in your config file. Now, you have a decision to make:
+ When a window deems itself urgent, do you want to pop up a temporary dzen
+ bar telling you so, or do you have an existing dzen wherein you would like to
+ highlight urgent workspaces?
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="2"
+>Pop up a temporary dzen
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Enable your urgency hook by wrapping your config record in a call to
+ <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AwithUrgencyHook"
+>withUrgencyHook</A
+></TT
+>. For example:
+</P
+><PRE
+> main = xmonad $ withUrgencyHook dzenUrgencyHook { args = [&quot;-bg&quot;, &quot;darkgreen&quot;, &quot;-xs&quot;, &quot;1&quot;] }
+               $ defaultConfig
+</PRE
+><P
+>This will pop up a dzen bar for five seconds telling you you've got an
+ urgent window.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="3"
+>Highlight in existing dzen
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>In order for xmonad to track urgent windows, you must install an urgency hook.
+ You can use the above <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AdzenUrgencyHook"
+>dzenUrgencyHook</A
+></TT
+>, or if you're not interested in the
+ extra popup, install NoUrgencyHook, as so:
+</P
+><PRE
+> main = xmonad $ withUrgencyHook NoUrgencyHook
+               $ defaultConfig
+</PRE
+><P
+>Now, your <A HREF="XMonad-Hooks-DynamicLog.html"
+>XMonad.Hooks.DynamicLog</A
+> must be set up to display the urgent
+ windows. If you're using the dzen or dzenPP functions from that module,
+ then you should be good. Otherwise, you want to figure out how to set
+ ppUrgents.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="4"
+>Useful keybinding
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>You can set up a keybinding to jump to the window that was recently marked
+ urgent. See an example at <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AfocusUrgent"
+>focusUrgent</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="5"
+>Note
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Note: UrgencyHook installs itself as a LayoutModifier, so if you modify your
+ urgency hook and restart xmonad, you may need to rejigger your layout by
+ hitting mod-shift-space.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="6"
+>Example: Setting up irssi + rxvt-unicode
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>This is a commonly asked example. By default, the window doesn't get flagged
+ urgent when somebody messages you in irssi. You will have to configure some
+ things. If you're using different tools than this, your mileage will almost
+ certainly vary. (For example, in Xchat2, it's just a simple checkbox.)
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="7"
+>Configuring irssi
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+>Irssi</TT
+> is not an X11 app, so it can't set the <TT
+>UrgencyHint</TT
+> flag on <TT
+>XWMHints</TT
+>.
+ However, on all console applications is bestown the greatest of all notification
+ systems: the bell. That's right, Ctrl+G, ASCII code 7, <TT
+>echo -e '\a'</TT
+>, your
+ friend, the bell. To configure <TT
+>irssi</TT
+> to send a bell when you receive a message:
+</P
+><PRE
+> /set beep_msg_level MSGS NOTICES INVITES DCC DCCMSGS HILIGHT
+</PRE
+><P
+>Consult your local <TT
+>irssi</TT
+> documentation for more detail.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="8"
+>Configuring screen
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A common way to run <TT
+>irssi</TT
+> is within the lovable giant, <TT
+>screen</TT
+>. Some distros
+ (e.g. Ubuntu) like to configure <TT
+>screen</TT
+> to trample on your poor console
+ applications -- in particular, to turn bell characters into evil, smelly
+ &quot;visual bells.&quot; To turn this off, add:
+</P
+><PRE
+> vbell off # or remove the existing 'vbell on' line
+</PRE
+><P
+>to your .screenrc, or hit <TT
+>C-a C-g</TT
+> within a running <TT
+>screen</TT
+> session for a
+ temporary fix.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="9"
+>Configuring rxvt-unicode
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Rubber, meet road. Urxvt is the gateway between console apps and X11. To tell
+ urxvt to set an <TT
+>UrgencyHint</TT
+> when it receives a bell character, first, have
+ an urxvt version 8.3 or newer, and second, set the following in your
+ <TT
+>.Xdefaults</TT
+>:
+</P
+><PRE
+> urxvt.urgentOnBell: true
+</PRE
+><P
+>Depending on your setup, you may need to <TT
+>xrdb</TT
+> that.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="10"
+>Configuring xmonad
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Hopefully you already read the section on how to configure xmonad. If not,
+ hopefully you know where to find it.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="11"
+>Stuff for your config file:
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwithUrgencyHook"
+></A
+><B
+>withUrgencyHook</B
+> :: (LayoutClass l Window, <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> h) =&gt; h -&gt; XConfig l -&gt; XConfig (<A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> (WithUrgencyHook h) l)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>This is the method to enable an urgency hook. It suppresses urgency status
+ for windows that are currently visible. If you'd like to change that behavior,
+ use withUrgencyHookC.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwithUrgencyHookC"
+></A
+><B
+>withUrgencyHookC</B
+> :: (LayoutClass l Window, <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> h) =&gt; h -&gt; (WithUrgencyHook h -&gt; WithUrgencyHook h) -&gt; XConfig l -&gt; XConfig (<A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> (WithUrgencyHook h) l)</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>If you'd like to configure *when* to trigger the urgency hook, call this
+ function with an extra mutator function. Or, by example:
+</P
+><PRE
+> withUrgencyHookC dzenUrgencyHook { ... } (suppressWhen Focused)
+</PRE
+><P
+>(Don't type the <TT
+>...</TT
+>, you dolt.) See documentation on your options at <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASuppressWhen"
+>SuppressWhen</A
+></TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsuppressWhen"
+></A
+><B
+>suppressWhen</B
+> :: <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> h =&gt; <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASuppressWhen"
+>SuppressWhen</A
+> -&gt; WithUrgencyHook h -&gt; WithUrgencyHook h</TD
+></TR
+><TR
+><TD CLASS="doc"
+>See <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AwithUrgencyHookC"
+>withUrgencyHookC</A
+></TT
+> for an example use. <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AsuppressWhen"
+>suppressWhen</A
+></TT
+> is a global configuration
+ option, applicable to all urgency hooks, whereas the stuff inside the <TT
+>{ ... }</TT
+> is
+ type-specific.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ASuppressWhen"
+></A
+><B
+>SuppressWhen</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A set of choices as to <EM
+>when</EM
+> you should (or rather, shouldn't) be notified of an urgent window.
+ The default is <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AVisible"
+>Visible</A
+></TT
+>. Prefix each of the following with &quot;don't bug me when&quot;:
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AVisible"
+></A
+><B
+>Visible</B
+></TD
+><TD CLASS="rdoc"
+>the window is currently visible
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AOnScreen"
+></A
+><B
+>OnScreen</B
+></TD
+><TD CLASS="rdoc"
+>the window is on the currently focused physical screen
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AFocused"
+></A
+><B
+>Focused</B
+></TD
+><TD CLASS="rdoc"
+>the window is currently focused
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANever"
+></A
+><B
+>Never</B
+></TD
+><TD CLASS="rdoc"
+>... aww, heck, go ahead and bug me, just in case.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:SuppressWhen')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:SuppressWhen" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASuppressWhen"
+>SuppressWhen</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASuppressWhen"
+>SuppressWhen</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfocusUrgent"
+></A
+><B
+>focusUrgent</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Focuses the most recently urgent window. Good for what ails ya -- I mean, your keybindings.
+ Example keybinding:
+</P
+><PRE
+> , ((modMask              , xK_BackSpace), focusUrgent)
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdzenUrgencyHook"
+></A
+><B
+>dzenUrgencyHook</B
+> :: <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Flashes when a window requests your attention and you can't see it.
+ Defaults to a duration of five seconds, and no extra args to dzen.
+ See <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ADzenUrgencyHook"
+></A
+><B
+>DzenUrgencyHook</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Your set of options for configuring a dzenUrgencyHook.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADzenUrgencyHook"
+></A
+><B
+>DzenUrgencyHook</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Aduration"
+></A
+><B
+>duration</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+>number of microseconds to display the dzen
+   (hence, you'll probably want to use <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3Aseconds"
+>seconds</A
+></TT
+>)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Aargs"
+></A
+><B
+>args</B
+> :: [<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+><TD CLASS="rdoc"
+>list of extra args (as <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TT
+>s) to pass to dzen
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:DzenUrgencyHook')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:DzenUrgencyHook" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aseconds"
+></A
+><B
+>seconds</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Multiplies by ONE MILLION, for functions that take microseconds.
+</P
+><P
+>Use like:
+</P
+><PRE
+> (5.5 `seconds`)
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ANoUrgencyHook"
+></A
+><B
+>NoUrgencyHook</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANoUrgencyHook"
+></A
+><B
+>NoUrgencyHook</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:NoUrgencyHook')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:NoUrgencyHook" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ANoUrgencyHook"
+>NoUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ANoUrgencyHook"
+>NoUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ANoUrgencyHook"
+>NoUrgencyHook</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="12"
+>Stuff for developers:
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AreadUrgents"
+></A
+><B
+>readUrgents</B
+> :: X [Window]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>X action that returns a list of currently urgent windows. You might use
+ it, or <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AwithUrgents"
+>withUrgents</A
+></TT
+>, in your custom logHook, to display the workspaces that
+ contain urgent windows.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwithUrgents"
+></A
+><B
+>withUrgents</B
+> :: ([Window] -&gt; X a) -&gt; X a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>An HOF version of <TT
+><A HREF="XMonad-Hooks-UrgencyHook.html#v%3AreadUrgents"
+>readUrgents</A
+></TT
+>, for those who prefer that sort of thing.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AStdoutUrgencyHook"
+></A
+><B
+>StdoutUrgencyHook</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AStdoutUrgencyHook"
+></A
+><B
+>StdoutUrgencyHook</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:StdoutUrgencyHook')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:StdoutUrgencyHook" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AStdoutUrgencyHook"
+>StdoutUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AStdoutUrgencyHook"
+>StdoutUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AStdoutUrgencyHook"
+>StdoutUrgencyHook</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+> <A NAME="t%3ASpawnUrgencyHook"
+></A
+><B
+>SpawnUrgencyHook</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Spawn a commandline thing, appending the window id to the prefix string
+ you provide. (Make sure to add a space if you need it.) Do your crazy
+ xcompmgr thing.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASpawnUrgencyHook"
+></A
+><B
+>SpawnUrgencyHook</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:SpawnUrgencyHook')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:SpawnUrgencyHook" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASpawnUrgencyHook"
+>SpawnUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASpawnUrgencyHook"
+>SpawnUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASpawnUrgencyHook"
+>SpawnUrgencyHook</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> h, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> h) =&gt; <A NAME="t%3AUrgencyHook"
+></A
+><B
+>UrgencyHook</B
+> h  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>The class definition, and some pre-defined instances.
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AurgencyHook"
+></A
+><B
+>urgencyHook</B
+> :: h -&gt; Window -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:UrgencyHook')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:UrgencyHook" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ADzenUrgencyHook"
+>DzenUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ANoUrgencyHook"
+>NoUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3ASpawnUrgencyHook"
+>SpawnUrgencyHook</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> <A HREF="XMonad-Hooks-UrgencyHook.html#t%3AStdoutUrgencyHook"
+>StdoutUrgencyHook</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

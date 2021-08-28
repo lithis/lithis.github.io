@@ -1,0 +1,53 @@
+albundy		772	dante		366
+dante		228	albundy		634
+-------
+albundy		703
+dante		297
+
+luckyluke	452	calvin		426
+calvin		548	luckyluke	574
+-------
+luckyluke	513
+calvin		487
+
+legion		678	malarie		270
+malarie		322	legion		730
+-------
+legion		704
+malarie		296
+
+lycanthrope	526	goethe		408
+goethe		472	lycanthrope	592
+-------
+lycanthrope	559
+goethe		440
+
+marvin		644	spot		630
+spot		356	marvin		370
+-------
+marvin		507
+spot		493
+
+fullfire	236	whitman		730
+whitman		764	fullfire	270
+-------
+whitman		747
+fullfire	253
+
+coupdegrace	550	braino		442
+braino		450	coupdegrace	558
+-------
+coupdegrace	554
+braino		446
+
+worms4a		476	worms3a		524
+worms3a		524	worms4a		474
+-------
+worm s3a	475
+worm s4a	524
+
+deflatermouse	236	nimbus		752
+nimbus		764	deflatermouse	248
+-------
+nimbus		758
+deflatermouse	242

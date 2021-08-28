@@ -1,0 +1,32 @@
+#!/usr/bin/perl -w
+
+require 'chat2.pl';
+
+print "Content-Type: text/html\n\n";
+
+print "<html>\n";
+print "<head>\n";
+print "<title>ReadMail</title>\n";
+print "</head>\n";
+print "<body>\n";
+print "<pre>\n";
+
+$pop3 = chat::open_port("mail.computerpro.com", 110) or die "Could not open connection!\n";
+
+chat::expect($pop3, 8, "+OK.*", 'chat::print($pop3, "user lithis\n")');
+chat::expect($pop3, 8, "+OK.*", 'chat::print($pop3, "pass djng4Dmc\n")');
+chat::expect($pop3, 8, "+OK.*", 'chat::print($pop3, "stat\n")');
+chat::expect($pop3, 8, "+OK\s(\d+).*", '$messages = $1');
+
+for ($i = 1; $i <= $messages; $i++)
+{
+	chat::print($pop3, "recv $i\n");
+	chat::expect($pop3, "([^\.])", 'print "$1\n"', "\.", 'print "\n\n"');
+}
+
+chat::print($pop3, "quit\n");
+chat::close($pop3);
+
+print "</pre>\n";
+print "</body>\n";
+print "</html>\n";

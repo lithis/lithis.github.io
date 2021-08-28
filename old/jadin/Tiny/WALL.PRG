@@ -1,0 +1,14 @@
+init{name(wall)
+lockall(1)
+setaccel(5)
+blocking(0)
+regcustom(a,1,distrmn>120|dtcrobot|bodyrmn&b)
+b=1
+ahead(400)
+b=0
+stop()
+bodyleft(90)
+continue()
+gosub(0)}
+a{scan()
+fire(7*dtcrobot)}

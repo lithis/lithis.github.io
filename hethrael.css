@@ -1,0 +1,107 @@
+body {
+	background: #304520;
+	color: #c0c0a0;
+	/*font-family: "Goudy Old Style";*/
+}
+
+a:link { color: #fffff0; }
+a:visited { color: #c0c0a0; }
+
+p.dontfearthecopyrightiwontgoriaaonyourass {
+	font-size: 70%
+}
+
+acronym { font-variant: normal; }
+img { border-style: none; }
+
+a:link.mouseOver, a:visited.mouseOver {
+	border-bottom: 1px dotted;
+}
+
+ul.imagegallery {
+	/* negative margins to counteract the margins of the <a>s. */
+	/* todo: fix the too-small margin beneath the <ul>. */
+	margin: -0.25em;
+	padding: 0;
+}
+
+ul.imagegallery li {
+	display: block;
+	float: left;
+}
+
+ul.imagegallery li a {
+	display: block;
+	border: 1px solid #456030;
+	text-align: center;
+	margin: 0.25em;
+	padding: 0.25em;
+	text-decoration: none;
+}
+
+ul.imagegallery li a span.caption {
+	text-decoration: underline;
+}
+
+ul.imagegallery li a:hover {
+	border: 1px solid #c0c0a0;
+	background-color: #456030;
+	/*background-color: #203015;*/
+}
+
+/*
+span.menuitem {
+	border: 1px solid #456045;
+	padding: 0 0.1em;
+}
+
+span.key {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #456045 #153015 #153015 #456045;
+	padding: 0 0.2em;
+}
+*/
+
+html {
+	background-color: #304520;
+}
+
+body.page {
+	margin: 2em 5em;
+	padding: 2em 4em;
+	background-color: #fcfbd8;
+	color: black;
+	font-family: /*Gentium,*/ Palatino, URW Palladio L;
+	text-align: justify;
+}
+
+body.page a:link {
+	color: #456030;
+}
+
+body.page a:visited {
+	color: #203015;
+}
+
+body.page h1, body.page h2 {
+	font-family: Goudy Old Style;
+}
+
+body.page h1 {
+	margin: 0 0 0.65em;
+}
+
+body.page h2 {
+	margin: 0.65em 0 0.2em;
+}
+
+body.page p:first-child, body.page h1 + p, body.page h2 + p {
+	text-indent: 0;
+}
+
+body.page p {
+	text-indent: 1.25em;
+	margin: 0;
+	line-height: 1.3;
+}

@@ -1,0 +1,53 @@
+legion			al bundy
+al bundy		legion
+-------
+albundy wins by default. i got sick of hitting alt-k 100 times
+because legion has a illegal variable on line 1163 er something
+
+calvin		540	dante		478
+dante		460	calvin		522
+-------
+calvin		531
+dante		469
+
+lycanthrope	548	lucky luke	450
+lucky luke	452	lycanthrope	550
+-------
+lycanthrope	549
+lucky luke	451
+
+whitman		350	braino		626
+braino		650	whitman		374
+-------
+braino		638
+whitman		362
+
+nimbus		504	spot		510
+spot		496	nimbus		490
+-------
+spot		503
+nimbus		497
+
+goethe		578	marvin		352
+marvin		422	goethe		648
+-------
+goethe		613
+marvin		387
+
+worms4a		188	coup de grace	828
+coup de grace	812	worms4a		172
+-------
+coup de grace	820
+worms4a		180
+
+deflatermouse	248	malarie		786
+malarie		752	deflatermouse	214
+-------
+malarie		769
+deflatermouse	231
+
+worms3a		266	fullfire	732
+fullfire	734	worms3a		268
+-------
+fullfire	733
+worms3a		267

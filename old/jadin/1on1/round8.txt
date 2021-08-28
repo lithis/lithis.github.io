@@ -1,0 +1,50 @@
+braino		436	calvin		600
+calvin		564	braino		400
+-------
+calvin		582
+braino		418
+
+al bundy	628	goethe		472
+goethe		372	albundy		528
+-------
+al bundy	578
+goethe		422
+
+dante		500	lycanthrope	526
+lycanthrope	500	dante		472
+-------
+lycanthrope	513
+dante		486
+
+Lucky Luke	634	nimbus		416
+nimbus		366	lucky luke	584
+-------
+luckyluke	609
+nimbus		391
+
+spot		332	whitman		594
+whitman		668	spot		406
+-------
+whitman		631
+spot		369
+
+coup de grace	592	fullfire	456
+fullfire	408	coup de grace	544
+-------
+coup de grace	568
+fullfire	432
+
+malarie		836	worms4a		120
+worms4a		164	malarie		880
+-------
+malarie		858
+worms4a		142
+
+marvin		726	deflatermouse	250
+deflatermouse	274	marvin		750
+-------
+marvin		738
+deflatermouse	262
+
+Loss by default: 16 legion                    ,
+Bye            : 13 worms3a                   ,  

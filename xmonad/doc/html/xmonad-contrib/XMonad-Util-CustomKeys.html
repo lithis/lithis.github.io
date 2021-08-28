@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.CustomKeys</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.CustomKeys</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Valery V. Vorotynsev &lt;valery.vv@gmail.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Customized key bindings.
+</P
+><P
+>(See also <A HREF="XMonad-Util-EZConfig.html"
+>XMonad.Util.EZConfig</A
+> in xmonad-contrib.)
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcustomKeys"
+>customKeys</A
+> :: (XConfig Layout -&gt; [(KeyMask, KeySym)]) -&gt; (XConfig Layout -&gt; [((KeyMask, KeySym), X ())]) -&gt; XConfig Layout -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/containers/Data-Map.html#t%3AMap"
+>Map</A
+> (KeyMask, KeySym) (X ())</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcustomKeysFrom"
+>customKeysFrom</A
+> :: XConfig l -&gt; (XConfig Layout -&gt; [(KeyMask, KeySym)]) -&gt; (XConfig Layout -&gt; [((KeyMask, KeySym), X ())]) -&gt; XConfig Layout -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/containers/Data-Map.html#t%3AMap"
+>Map</A
+> (KeyMask, KeySym) (X ())</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>1. In <TT
+>~/.xmonad/xmonad.hs</TT
+> add:
+</P
+><PRE
+> import XMonad.Util.CustomKeys
+</PRE
+><P
+>2. Set key bindings with <TT
+><A HREF="XMonad-Util-CustomKeys.html#v%3AcustomKeys"
+>customKeys</A
+></TT
+>:
+</P
+><PRE
+> main = xmonad defaultConfig { keys = customKeys delkeys inskeys }
+     where
+       delkeys :: XConfig l -&gt; [(KeyMask, KeySym)]
+       delkeys XConfig {modMask = modm} =
+           -- we're preferring Futurama to Xinerama here
+           [ (modm .|. m, k) | (m, k) &lt;- zip [0, shiftMask] [xK_w, xK_e, xK_r] ]
+
+       inskeys :: XConfig l -&gt; [((KeyMask, KeySym), X ())]
+       inskeys conf@(XConfig {modMask = modm}) =
+           [ ((mod1Mask,             xK_F2  ), spawn $ terminal conf)
+           , ((modm .|. controlMask, xK_F11 ), spawn &quot;xscreensaver-command -lock&quot;)
+           , ((mod1Mask,             xK_Down), spawn &quot;amixer set Master 1-&quot;)
+           , ((mod1Mask,             xK_Up  ), spawn &quot;amixer set Master 1+&quot;)
+           ]
+</PRE
+><P
+>0 (<EM
+>hidden feature</EM
+>). You can always replace bindings map
+   entirely. No need to import <A HREF="CustomKeys.html"
+>CustomKeys</A
+> this time:
+</P
+><PRE
+> import XMonad
+ import System.Exit
+ import qualified Data.Map as M
+
+ main = xmonad defaultConfig {
+          keys = \_ -&gt; M.fromList [
+                  -- Let me out of here! I want my KDE back! Help! Help!
+                  ( (0, xK_Escape), io (exitWith ExitSuccess) ) ] }
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcustomKeys"
+></A
+><B
+>customKeys</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: (XConfig Layout -&gt; [(KeyMask, KeySym)])</TD
+><TD CLASS="rdoc"
+>shortcuts to delete
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; (XConfig Layout -&gt; [((KeyMask, KeySym), X ())])</TD
+><TD CLASS="rdoc"
+>key bindings to insert
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; XConfig Layout</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/containers/Data-Map.html#t%3AMap"
+>Map</A
+> (KeyMask, KeySym) (X ())</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Customize <TT
+><A HREF="XMonad-Config.html#v%3AdefaultConfig"
+>defaultConfig</A
+></TT
+> -- delete needless
+ shortcuts and insert those you will use.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcustomKeysFrom"
+></A
+><B
+>customKeysFrom</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: XConfig l</TD
+><TD CLASS="rdoc"
+>original configuration
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; (XConfig Layout -&gt; [(KeyMask, KeySym)])</TD
+><TD CLASS="rdoc"
+>shortcuts to delete
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; (XConfig Layout -&gt; [((KeyMask, KeySym), X ())])</TD
+><TD CLASS="rdoc"
+>key bindings to insert
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; XConfig Layout</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/containers/Data-Map.html#t%3AMap"
+>Map</A
+> (KeyMask, KeySym) (X ())</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>General variant of <TT
+><A HREF="XMonad-Util-CustomKeys.html#v%3AcustomKeys"
+>customKeys</A
+></TT
+>: customize key bindings of
+ third-party configuration.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

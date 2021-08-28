@@ -1,0 +1,823 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.WindowArranger</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.WindowArranger</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>This is a pure layout modifier that will let you move and resize
+ windows with the keyboard in any layout.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwindowArrange"
+>windowArrange</A
+> :: l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwindowArrangeAll"
+>windowArrangeAll</A
+> :: l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AWindowArrangerMsg"
+>WindowArrangerMsg</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ADeArrange"
+>DeArrange</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AArrange"
+>Arrange</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AIncreaseLeft"
+>IncreaseLeft</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AIncreaseRight"
+>IncreaseRight</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AIncreaseUp"
+>IncreaseUp</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AIncreaseDown"
+>IncreaseDown</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADecreaseLeft"
+>DecreaseLeft</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADecreaseRight"
+>DecreaseRight</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADecreaseUp"
+>DecreaseUp</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADecreaseDown"
+>DecreaseDown</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AMoveLeft"
+>MoveLeft</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AMoveRight"
+>MoveRight</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AMoveUp"
+>MoveUp</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AMoveDown"
+>MoveDown</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ASetGeometry"
+>SetGeometry</A
+> Rectangle</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AWindowArranger"
+>WindowArranger</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmemberFromList"
+>memberFromList</A
+> :: (b -&gt; c) -&gt; (c -&gt; a -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; a -&gt; [b] -&gt; [b]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AlistFromList"
+>listFromList</A
+> :: (b -&gt; c) -&gt; (c -&gt; [a] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; [a] -&gt; [b] -&gt; [b]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Adiff"
+>diff</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; ([a], [a]) -&gt; ([a], [a])</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your
+ <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Layout.WindowArranger
+ myLayout = layoutHook defaultConfig
+ main = xmonad defaultConfig { layoutHook = windowArrange myLayout }
+</PRE
+><P
+>or
+</P
+><PRE
+> main = xmonad defaultConfig { layoutHook = windowArrangeAll myLayout }
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+><P
+>You may also want to define some key binding to move or resize
+ windows. These are good defaults:
+</P
+><PRE
+>        , ((modMask x .|. controlMask              , xK_s    ), sendMessage  Arrange         )
+        , ((modMask x .|. controlMask .|. shiftMask, xK_s    ), sendMessage  DeArrange       )
+        , ((modMask x .|. controlMask              , xK_Left ), sendMessage (MoveLeft      1))
+        , ((modMask x .|. controlMask              , xK_Right), sendMessage (MoveRight     1))
+        , ((modMask x .|. controlMask              , xK_Down ), sendMessage (MoveDown      1))
+        , ((modMask x .|. controlMask              , xK_Up   ), sendMessage (MoveUp        1))
+        , ((modMask x                 .|. shiftMask, xK_Left ), sendMessage (IncreaseLeft  1))
+        , ((modMask x                 .|. shiftMask, xK_Right), sendMessage (IncreaseRight 1))
+        , ((modMask x                 .|. shiftMask, xK_Down ), sendMessage (IncreaseDown  1))
+        , ((modMask x                 .|. shiftMask, xK_Up   ), sendMessage (IncreaseUp    1))
+        , ((modMask x .|. controlMask .|. shiftMask, xK_Left ), sendMessage (DecreaseLeft  1))
+        , ((modMask x .|. controlMask .|. shiftMask, xK_Right), sendMessage (DecreaseRight 1))
+        , ((modMask x .|. controlMask .|. shiftMask, xK_Down ), sendMessage (DecreaseDown  1))
+        , ((modMask x .|. controlMask .|. shiftMask, xK_Up   ), sendMessage (DecreaseUp    1))
+</PRE
+><P
+>For detailed instructions on editing your key bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwindowArrange"
+></A
+><B
+>windowArrange</B
+> :: l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> l a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A layout modifier to float the windows in a workspace
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwindowArrangeAll"
+></A
+><B
+>windowArrangeAll</B
+> :: l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> l a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A layout modifier to float all the windows in a workspace
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AWindowArrangerMsg"
+></A
+><B
+>WindowArrangerMsg</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADeArrange"
+></A
+><B
+>DeArrange</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AArrange"
+></A
+><B
+>Arrange</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AIncreaseLeft"
+></A
+><B
+>IncreaseLeft</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AIncreaseRight"
+></A
+><B
+>IncreaseRight</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AIncreaseUp"
+></A
+><B
+>IncreaseUp</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AIncreaseDown"
+></A
+><B
+>IncreaseDown</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADecreaseLeft"
+></A
+><B
+>DecreaseLeft</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADecreaseRight"
+></A
+><B
+>DecreaseRight</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADecreaseUp"
+></A
+><B
+>DecreaseUp</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADecreaseDown"
+></A
+><B
+>DecreaseDown</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMoveLeft"
+></A
+><B
+>MoveLeft</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMoveRight"
+></A
+><B
+>MoveRight</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMoveUp"
+></A
+><B
+>MoveUp</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMoveDown"
+></A
+><B
+>MoveDown</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASetGeometry"
+></A
+><B
+>SetGeometry</B
+> Rectangle</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:WindowArrangerMsg')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:WindowArrangerMsg" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Message <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArrangerMsg"
+>WindowArrangerMsg</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Typeable <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArrangerMsg"
+>WindowArrangerMsg</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AWindowArranger"
+></A
+><B
+>WindowArranger</B
+> a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:WindowArranger')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:WindowArranger" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a) =&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3ALayoutModifier"
+>LayoutModifier</A
+> <A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> a</TD
+></TR
+><TR
+><TD CLASS="decl"
+>??? a =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+>??? a =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Layout-WindowArranger.html#t%3AWindowArranger"
+>WindowArranger</A
+> a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmemberFromList"
+></A
+><B
+>memberFromList</B
+> :: (b -&gt; c) -&gt; (c -&gt; a -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; a -&gt; [b] -&gt; [b]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given a function to be applied to each member of ta list, and a
+ function to check a condition by processing this transformed member
+ with something, you get the first member that satisfy the condition,
+ or an empty list.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AlistFromList"
+></A
+><B
+>listFromList</B
+> :: (b -&gt; c) -&gt; (c -&gt; [a] -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; [a] -&gt; [b] -&gt; [b]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given a function to be applied to each member of a list, and a
+ function to check a condition by processing this transformed member
+ with the members of a list, you get the list of members that
+ satisfy the condition.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adiff"
+></A
+><B
+>diff</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; ([a], [a]) -&gt; ([a], [a])</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the list of elements to be deleted and the list ef elements to
+ be added to the first list in order to get the second list.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

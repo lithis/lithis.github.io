@@ -1,0 +1,20 @@
+6-up           284     L750           604
+L750           716     6-up           396
+
+Moses          538     Blake          528
+Blake          462     Moses          472
+
+Buba           250     Nerd           702
+Nerd           728     Buba           280
+
+Rambler         20     Dante          986
+Dante          980     Rambler         14
+
+Glamour         18     Wall           958
+Wall           982     Glamour         42
+
+We4a           530     Pork           340
+Pork           468     We4a           660
+
+L740           302     Wee4           612
+Wee4           696     L740           386

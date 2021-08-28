@@ -1,0 +1,541 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.WindowGo</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.WindowGo</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>&lt;gwern0@gmail.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Defines a few convenient operations for raising (traveling to) windows based on XMonad's Query
+monad, such as <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3ArunOrRaise"
+>runOrRaise</A
+></TT
+>. runOrRaise will run a shell command unless it can
+find a specified window; you would use this to automatically travel to your
+Firefox or Emacs session, or start a new one (for example), instead of trying to
+remember where you left it or whether you still have one running. 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Araise"
+>raise</A
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AraiseNext"
+>raiseNext</A
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunOrRaise"
+>runOrRaise</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunOrRaiseNext"
+>runOrRaiseNext</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AraiseMaybe"
+>raiseMaybe</A
+> :: X () -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AraiseNextMaybe"
+>raiseNextMaybe</A
+> :: X () -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AraiseBrowser"
+>raiseBrowser</A
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AraiseEditor"
+>raiseEditor</A
+> :: X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Import the module into your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Actions.WindowGo
+</PRE
+><P
+>and define appropriate key bindings:
+</P
+><PRE
+> , ((modMask x .|. shiftMask, xK_g), raise (className =? &quot;Firefox&quot;))
+ , ((modMask x .|. shiftMask, xK_b), runOrRaise &quot;firefox&quot; (className =? &quot;Firefox&quot;))
+</PRE
+><P
+>(Note that Firefox v3 and up have a class-name of &quot;Firefox&quot; and &quot;Navigator&quot;;
+lower versions use other classnames such as &quot;Firefox-bin&quot;. Either choose the
+appropriate one, or cover your bases by using instead something like
+ <TT
+>(className =? &quot;Firefox&quot; <A HREF="||"
+>||</A
+> className =? &quot;Firefox-bin&quot;)</TT
+>.)
+</P
+><P
+>For detailed instructions on editing your key bindings, see
+<A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>. 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Araise"
+></A
+><B
+>raise</B
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>See <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseMaybe"
+>raiseMaybe</A
+></TT
+>. If the Window can't be found, quietly give up and do nothing.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AraiseNext"
+></A
+><B
+>raiseNext</B
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>See <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3Araise"
+>raise</A
+></TT
+> and <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseNextMaybe"
+>raiseNextMaybe</A
+></TT
+>. Version that allows cycling through matches.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunOrRaise"
+></A
+><B
+>runOrRaise</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>action is an executable to be run via spawn (of <A HREF="XMonad-Core.html"
+>XMonad.Core</A
+>) if the Window cannot be found.
+   Presumably this executable is the same one that you were looking for.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunOrRaiseNext"
+></A
+><B
+>runOrRaiseNext</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>See <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3ArunOrRaise"
+>runOrRaise</A
+></TT
+> and <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseNextMaybe"
+>raiseNextMaybe</A
+></TT
+>. Version that allows cycling through matches.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AraiseMaybe"
+></A
+><B
+>raiseMaybe</B
+> :: X () -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseMaybe"
+>raiseMaybe</A
+></TT
+> queries all Windows based on a boolean provided by the
+   user. Currently, there are three such useful booleans defined in
+   <A HREF="XMonad-ManageHook.html"
+>XMonad.ManageHook</A
+>: title, resource, className. Each one tests based pretty
+   much as you would think. ManageHook also defines several operators, the most
+   useful of which is (=?). So a useful test might be finding a Window whose
+   class is Firefox. Firefox 3 declares the class &quot;Firefox&quot;, so you'd want to
+   pass in a boolean like <TT
+>(className =? &quot;Firefox&quot;)</TT
+>.
+</P
+><P
+>If the boolean returns <TT
+>True</TT
+> on one or more windows, then XMonad will quickly
+   make visible the first result. If no <TT
+>Window</TT
+> meets the criteria, then the
+   first argument comes into play.
+</P
+><P
+>The first argument is an arbitrary IO function which will be executed if the
+   tests fail. This is what enables <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3ArunOrRaise"
+>runOrRaise</A
+></TT
+> to use <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseMaybe"
+>raiseMaybe</A
+></TT
+>: it simply runs
+   the desired program if it isn't found. But you don't have to do that. Maybe
+   you want to do nothing if the search fails (the definition of <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3Araise"
+>raise</A
+></TT
+>), or
+   maybe you want to write to a log file, or call some prompt function, or
+   something crazy like that. This hook gives you that flexibility. You can do
+   some cute things with this hook. Suppose you want to do the same thing for
+   Mutt which you just did for Firefox - but Mutt runs inside a terminal window?
+   No problem: you search for a terminal window calling itself &quot;mutt&quot;, and if
+   there isn't you run a terminal with a command to run Mutt! Here's an example
+   (borrowing runInTerm from <A HREF="XMonad-Utils-Run.html"
+>XMonad.Utils.Run</A
+>):
+</P
+><PRE
+> , ((modm, xK_m), raiseMaybe (runInTerm &quot;-title mutt&quot; &quot;mutt&quot;) (title =? &quot;mutt&quot;))
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AraiseNextMaybe"
+></A
+><B
+>raiseNextMaybe</B
+> :: X () -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>See <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseMaybe"
+>raiseMaybe</A
+></TT
+>.
+     <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseNextMaybe"
+>raiseNextMaybe</A
+></TT
+> is an alternative version that allows cycling
+     through the matching windows. If the focused window matches the
+     query the next matching window is raised. If no matches are found
+     the function f is executed.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AraiseBrowser"
+></A
+><B
+>raiseBrowser</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseBrowser"
+>raiseBrowser</A
+></TT
+> and <TT
+><A HREF="XMonad-Actions-WindowGo.html#v%3AraiseEditor"
+>raiseEditor</A
+></TT
+> grab $BROWSER and $EDITOR respectively and they either
+     take you to the specified program's window, or they try to run it. This is most useful
+     if your variables are simple and look like firefox or emacs. 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AraiseEditor"
+></A
+><B
+>raiseEditor</B
+> :: X ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

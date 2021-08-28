@@ -1,0 +1,54 @@
+coupdegrace	348	calvin		652
+calvin		652	coupdegrace	348
+-------
+calvin		652
+coupdegrace	348
+
+spot		192	albundy		816
+albundy		802	spot		184
+-------
+albundy		809
+spot		188
+
+goethe		402	luckyluke	618
+luckyluke	598	goethe		382
+-------
+luckyluke	608
+goethe		392
+
+fullfire	180	dante		808
+dante		820	fullfire	192
+------
+dante
+fullfire
+
+legion		568*	whitman		440
+whitman		432	legion		560*
+-------
+legion		564
+whitman		446
+*robot had an illegal var. for last 50 games
+
+worm s3a	134	malarie		840
+malaire		866	worm s3a	160
+-------
+malarie		853
+worm s3a	142
+
+marvin		788	worm s4a	240
+worm s4a	192	marvin		742
+-------
+marvin
+worm s4a
+
+braino		534	nimbus		498
+nimbus		466	braino		502
+-------
+braino		518
+nimbus		482
+
+lycanthrope	874	deflatermouse	184
+deflatermouse	126	lycanthrope	816
+-------
+lycanthrope	845
+deflatermouse	154

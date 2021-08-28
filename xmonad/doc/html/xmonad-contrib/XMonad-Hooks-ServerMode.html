@@ -1,0 +1,377 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Hooks.ServerMode</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Hooks.ServerMode</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This is an <TT
+><A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+></TT
+> that will receive commands from an external
+ client.
+</P
+><P
+>This is the example of a client:
+</P
+><PRE
+> import Graphics.X11.Xlib
+ import Graphics.X11.Xlib.Extras
+ import System.Environment
+ import Data.Char
+
+ usage :: String -&gt; String
+ usage n = &quot;Usage: &quot; ++ n ++ &quot; command number\nSend a command number to a running instance of XMonad&quot;
+
+ main :: IO ()
+ main = do
+   args &lt;- getArgs
+   pn &lt;- getProgName
+   let com = case args of
+               [] -&gt; error $ usage pn
+               w -&gt; (w !! 0)
+   sendCommand com
+
+ sendCommand :: String -&gt; IO ()
+ sendCommand s = do
+   d   &lt;- openDisplay &quot;&quot;
+   rw  &lt;- rootWindow d $ defaultScreen d
+   a &lt;- internAtom d &quot;XMONAD_COMMAND&quot; False
+   allocaXEvent $ \e -&gt; do
+                   setEventType e clientMessage
+                   setClientMessageEvent e rw a 32 (fromIntegral (read s)) currentTime
+                   sendEvent d rw False structureNotifyMask e
+                   sync d False
+</PRE
+><P
+>compile with: <TT
+>ghc --make sendCommand.hs</TT
+>
+</P
+><P
+>run with
+</P
+><PRE
+> sendCommand command number
+</PRE
+><P
+>For instance:
+</P
+><PRE
+> sendCommand 0
+</PRE
+><P
+>will ask to xmonad to print the list of command numbers in
+ stderr (so you can read it in <TT
+>~/.xsession-errors</TT
+>).
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AServerMode"
+>ServerMode</A
+>  = <A HREF="#v%3AServerMode"
+>ServerMode</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AeventHook"
+>eventHook</A
+> :: <A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> eh =&gt; eh -&gt; l a -&gt; <A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> eh l a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your
+ <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Hooks.ServerMode
+</PRE
+><P
+>Then edit your <TT
+>layoutHook</TT
+> by adding the <TT
+><A HREF="XMonad-Hooks-ServerMode.html#v%3AeventHook"
+>eventHook</A
+></TT
+>:
+</P
+><PRE
+> layoutHook = eventHook ServerMode $ avoidStruts $ simpleTabbed ||| Full ||| etc..
+</PRE
+><P
+>and then:
+</P
+><PRE
+> main = xmonad defaultConfig { layoutHook = myLayouts }
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AServerMode"
+></A
+><B
+>ServerMode</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AServerMode"
+></A
+><B
+>ServerMode</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ServerMode')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ServerMode" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> <A HREF="XMonad-Hooks-ServerMode.html#t%3AServerMode"
+>ServerMode</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Hooks-ServerMode.html#t%3AServerMode"
+>ServerMode</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Hooks-ServerMode.html#t%3AServerMode"
+>ServerMode</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AeventHook"
+></A
+><B
+>eventHook</B
+> :: <A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> eh =&gt; eh -&gt; l a -&gt; <A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> eh l a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

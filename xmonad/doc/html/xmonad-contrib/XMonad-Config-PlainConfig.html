@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Config.PlainConfig</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Config.PlainConfig</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Braden Shepherdson &lt;Braden.Shepherdson@gmail.com&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Introduction
+</A
+></DT
+><DT
+><A HREF="#2"
+>Supported Layouts
+</A
+></DT
+><DT
+><A HREF="#3"
+>Support Key Bindings
+</A
+></DT
+><DT
+><A HREF="#4"
+>Other Notes
+</A
+></DT
+><DT
+><A HREF="#5"
+>Example Config File
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Proof-of-concept (but usable) plain-text configuration file
+ parser, for use instead of xmonad.hs. Does not require recompilation,
+ allowing xmonad to be free of the GHC dependency.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AplainConfig"
+>plainConfig</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AreadConfig"
+>readConfig</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (XConfig Layout))</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcheckConfig"
+>checkConfig</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Introduction
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>The <TT
+>xmonad.hs</TT
+> file is very minimal when used with PlainConfig.
+ It typically contains only the following:
+</P
+><PRE
+> module Main where
+ import XMonad
+ import XMonad.Config.PlainConfig (plainConfig)
+ main = plainConfig
+</PRE
+><P
+>The <TT
+><A HREF="XMonad-Config-PlainConfig.html#v%3AplainConfig"
+>plainConfig</A
+></TT
+> function parses <TT
+>~/.xmonad/xmonad.conf</TT
+>, 
+ the format of which is described below.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Supported Layouts
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Only Tall, Wide and Full are supported at present.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>Support Key Bindings
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Key bindings are specified as a pair of an arbitrary EZConfig and 
+ one of the following:
+</P
+><PRE
+>   Name                     Haskell equivalent                                          Default binding(s)</PRE
+><UL
+><LI
+><PRE
+>spawn &lt;cmd&gt;           spawn &quot;&lt;cmd&gt;&quot;                                               none</PRE
+></LI
+><LI
+><PRE
+>kill                  kill                                                        M-S-c</PRE
+></LI
+><LI
+><PRE
+>nextLayout            sendMessage NextLayout                                      M-&lt;Space&gt;</PRE
+></LI
+><LI
+><PRE
+>refresh               refresh                                                     M-S-&lt;Space&gt;</PRE
+></LI
+><LI
+><PRE
+>focusDown             windows W.focusDown                                         M-&lt;Tab&gt;, M-j</PRE
+></LI
+><LI
+><PRE
+>focusUp               windows W.focusUp                                           M-k</PRE
+></LI
+><LI
+><PRE
+>focusMaster           windows W.focusMaster                                       M-m</PRE
+></LI
+><LI
+><PRE
+>swapDown              windows W.swapDown                                          M-S-j</PRE
+></LI
+><LI
+><PRE
+>swapUp                windows W.swapUp                                            M-S-k</PRE
+></LI
+><LI
+><PRE
+>swapMaster            windows W.swapMaster                                        M-&lt;Return&gt;</PRE
+></LI
+><LI
+><PRE
+>shrink                sendMessage Shrink                                          M-h</PRE
+></LI
+><LI
+><PRE
+>expand                sendMessage Expand                                          M-l</PRE
+></LI
+><LI
+><PRE
+>sink                  withFocused $ windows . W.sink                              M-t</PRE
+></LI
+><LI
+><PRE
+>incMaster             sendMessage (IncMasterN 1)                                  M-,</PRE
+></LI
+><LI
+><PRE
+>decMaster             sendMessage (IncMasterN (-1))                               M-.</PRE
+></LI
+><LI
+><PRE
+>quit                  io $ exitWith ExitSuccess                                   M-S-q</PRE
+></LI
+><LI
+><PRE
+>restart               broadcastMessageReleaseResources &gt;&gt; restart &quot;xmonad&quot; True   M-q</PRE
+></LI
+></UL
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="4"
+>Other Notes
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Submaps are allowed.
+ These settings override the defaults. Changes made here will be used over
+ the default bindings for those keys.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="5"
+>Example Config File
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>An example <TT
+>~/.xmonad/xmonad.conf</TT
+> file follows:
+</P
+><PRE
+>modMask       = 3</PRE
+><PRE
+>numlockMask   = 2</PRE
+><PRE
+>borderWidth   = 1</PRE
+><PRE
+>normalBorderColor    	=   #dddddd</PRE
+><PRE
+>focusedBorderColor      =   #00ff00</PRE
+><PRE
+>terminal=urxvt</PRE
+><PRE
+>workspaces=[&quot;1: IRC&quot;,&quot;2: Web&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;]</PRE
+><PRE
+>focusFollowsMouse=True</PRE
+><PRE
+>layouts=[&quot;Tall&quot;,&quot;Full&quot;,&quot;Wide&quot;]</PRE
+><PRE
+>key=(&quot;M-x t&quot;, &quot;spawn xmessage Test&quot;)</PRE
+><PRE
+>manageHook=(ClassName &quot;MPlayer&quot;       , &quot;float&quot;  )</PRE
+><PRE
+>manageHook=(ClassName &quot;Gimp&quot;          , &quot;float&quot;  )</PRE
+><PRE
+>manageHook=(Resource  &quot;desktop_window&quot;, &quot;ignore&quot; )</PRE
+><PRE
+>manageHook=(Resource  &quot;kdesktop&quot;      , &quot;ignore&quot; )</PRE
+><PRE
+>manageHook=(Resource  &quot;gnome-panel&quot;   , &quot;ignore&quot; )</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AplainConfig"
+></A
+><B
+>plainConfig</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Handles the unwrapping of the Layout. Intended for use as
+   <TT
+>main = plainConfig</TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AreadConfig"
+></A
+><B
+>readConfig</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (XConfig Layout))</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Core function that attempts to parse <TT
+>~/.xmonad/xmonad.conf</TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcheckConfig"
+></A
+><B
+>checkConfig</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/System-IO.html#t%3AIO"
+>IO</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Attempts to run readConfig, and checks if it failed.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Hooks.ManageHelpers</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Hooks.ManageHelpers</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Lukas Mai &lt;l.mai@web.de&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This module provides helper functions to be used in <TT
+>manageHook</TT
+>. Here's
+ how you might use this:
+</P
+><PRE
+> import XMonad.Hooks.ManageHelpers
+ main =
+     xmonad defaultConfig{
+         ...
+         manageHook = composeOne [
+             isKDETrayWindow -?&gt; doIgnore,
+             transience,
+             isFullscreen -?&gt; doFullFloat,
+             resource =? &quot;stalonetray&quot; -?&gt; doIgnore
+         ],
+         ...
+     }
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcomposeOne"
+>composeOne</A
+> :: [<A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+>] -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A-%3F%3E"
+>(-?&gt;)</A
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; ManageHook -&gt; <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%2F%3D%3F"
+>(/=?)</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; Query a -&gt; a -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%3C%3D%3D%3F"
+>(&lt;==?)</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; Query a -&gt; a -&gt; Query (Match a)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%3C%2F%3D%3F"
+>(&lt;/=?)</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; Query a -&gt; a -&gt; Query (Match a)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A--%3E%3E"
+>(--&gt;&gt;)</A
+> :: Query (Match a) -&gt; (a -&gt; ManageHook) -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A-%3F%3E%3E"
+>(-?&gt;&gt;)</A
+> :: Query (Match a) -&gt; (a -&gt; ManageHook) -&gt; <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AisKDETrayWindow"
+>isKDETrayWindow</A
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AisFullscreen"
+>isFullscreen</A
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtransientTo"
+>transientTo</A
+> :: Query (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> Window)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmaybeToDefinite"
+>maybeToDefinite</A
+> :: <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+> -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AMaybeManageHook"
+>MaybeManageHook</A
+> = Query (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Monoid.html#t%3AEndo"
+>Endo</A
+> WindowSet))</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Atransience"
+>transience</A
+> :: <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Atransience%27"
+>transience'</A
+> :: ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdoRectFloat"
+>doRectFloat</A
+> :: RationalRect -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdoFullFloat"
+>doFullFloat</A
+> :: ManageHook</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdoCenterFloat"
+>doCenterFloat</A
+> :: ManageHook</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcomposeOne"
+></A
+><B
+>composeOne</B
+> :: [<A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+>] -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="doc"
+>An alternative ManageHook composer. Unlike composeAll it stops as soon as
+ a candidate returns a <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#v%3AJust"
+>Just</A
+></TT
+> value, effectively running only the first match
+ (whereas composeAll continues and executes all matching rules).
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A-%3F%3E"
+></A
+><B
+>(-?&gt;)</B
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; ManageHook -&gt; <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>A helper operator for use in <TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#v%3AcomposeOne"
+>composeOne</A
+></TT
+>. It takes a condition and an action;
+ if the condition fails, it returns <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#v%3ANothing"
+>Nothing</A
+></TT
+> from the Query so <TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#v%3AcomposeOne"
+>composeOne</A
+></TT
+> will
+ go on and try the next rule.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A%2F%3D%3F"
+></A
+><B
+>(/=?)</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; Query a -&gt; a -&gt; Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>q /=? x. if the result of q equals x, return False
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A%3C%3D%3D%3F"
+></A
+><B
+>(&lt;==?)</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; Query a -&gt; a -&gt; Query (Match a)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>q &lt;==? x. if the result of q equals x, return True grouped with q
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A%3C%2F%3D%3F"
+></A
+><B
+>(&lt;/=?)</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; Query a -&gt; a -&gt; Query (Match a)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>q &lt;/=? x. if the result of q notequals x, return True grouped with q
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A--%3E%3E"
+></A
+><B
+>(--&gt;&gt;)</B
+> :: Query (Match a) -&gt; (a -&gt; ManageHook) -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A helper operator for use in composeAll. It takes a condition and a function taking a grouped datum to action.  If p is true, it executes the resulting action.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A-%3F%3E%3E"
+></A
+><B
+>(-?&gt;&gt;)</B
+> :: Query (Match a) -&gt; (a -&gt; ManageHook) -&gt; <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>A helper operator for use in <TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#v%3AcomposeOne"
+>composeOne</A
+></TT
+>.  It takes a condition and a function taking a groupdatum to action.  If p is true, it executes the resulting action.  If it fails, it returns <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#v%3ANothing"
+>Nothing</A
+></TT
+> from the Query so <TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#v%3AcomposeOne"
+>composeOne</A
+></TT
+> will go on and try the next rule.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AisKDETrayWindow"
+></A
+><B
+>isKDETrayWindow</B
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>A predicate to check whether a window is a KDE system tray icon.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AisFullscreen"
+></A
+><B
+>isFullscreen</B
+> :: Query <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>A predicate to check whether a window wants to fill the whole screen.
+ See also <TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#v%3AdoFullFloat"
+>doFullFloat</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtransientTo"
+></A
+><B
+>transientTo</B
+> :: Query (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> Window)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A predicate to check whether a window is Transient.
+ It holds the result which might be the window it is transient to
+ or it might be <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#v%3ANothing"
+>Nothing</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmaybeToDefinite"
+></A
+><B
+>maybeToDefinite</B
+> :: <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+> -&gt; ManageHook</TD
+></TR
+><TR
+><TD CLASS="doc"
+>converts <TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TT
+>s to ManageHooks
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AMaybeManageHook"
+></A
+><B
+>MaybeManageHook</B
+> = Query (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Monoid.html#t%3AEndo"
+>Endo</A
+> WindowSet))</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A ManageHook that may or may not have been executed; the outcome is embedded in the Maybe
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Atransience"
+></A
+><B
+>transience</B
+> :: <A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>A convenience <TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#t%3AMaybeManageHook"
+>MaybeManageHook</A
+></TT
+> that will check to see if a window
+ is transient, and then move it to its parent.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Atransience%27"
+></A
+><B
+>transience'</B
+> :: ManageHook</TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#v%3Atransience"
+>transience</A
+></TT
+> set to a ManageHook
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdoRectFloat"
+></A
+><B
+>doRectFloat</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: RationalRect</TD
+><TD CLASS="rdoc"
+>The rectangle to float the window in. 0 to 1; x, y, w, h.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; ManageHook</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Floats the new window in the given rectangle.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdoFullFloat"
+></A
+><B
+>doFullFloat</B
+> :: ManageHook</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Floats the window and makes it use the whole screen. Equivalent to
+ <TT
+><TT
+><A HREF="XMonad-Hooks-ManageHelpers.html#v%3AdoRectFloat"
+>doRectFloat</A
+></TT
+> $ <TT
+><A HREF="W.html#t%3ARationalRect"
+>RationalRect</A
+></TT
+> 0 0 1 1</TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdoCenterFloat"
+></A
+><B
+>doCenterFloat</B
+> :: ManageHook</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Floats a new window with its original size, but centered.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

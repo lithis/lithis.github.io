@@ -1,0 +1,53 @@
+albundy		568	luckyluke	400
+luckyluke	432	albundy		600
+-------
+albundy		584
+luckyluke	416
+
+calvin		532	legion		486
+legion		468	calvin		514
+-------
+calvin		523
+legion		477
+
+dante		674	coupdegrace	280
+coupdegrace	326	dante		720
+-------
+dante		697
+coupdegrace	303
+
+malarie		652	fullfire	350
+fullfire	348	malarie		650
+-------
+malarie		651
+fullfire	349
+
+goethe		640	spot		332
+spot		360	goethe		668
+------
+goethe		654
+spot		346
+
+braino		496	marvin		534
+marvin		504	braino		466
+-------
+marvin		519
+braino		481
+
+nimbus		442	lycanthrope	594
+lycanthrope	556	nimbus		404
+-------
+lycanthrope	575
+nimbus		423
+
+whitman		926	worm s3a	 62
+worm s3a	 74	whitman		938
+-------
+whitman		932
+worm s3a	 68
+
+deflatermouse	410	worm s4a	650
+worm s4a	590	deflatermouse	350
+-------
+worm s4a	620
+deflatermouse	380

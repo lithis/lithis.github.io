@@ -1,0 +1,715 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Util.XUtils</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Util.XUtils</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage:
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A module for painting on the screen
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaveragePixels"
+>averagePixels</A
+> :: Pixel -&gt; Pixel -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; X Pixel</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcreateNewWindow"
+>createNewWindow</A
+> :: Rectangle -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> EventMask -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X Window</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshowWindow"
+>showWindow</A
+> :: Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshowWindows"
+>showWindows</A
+> :: [Window] -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AhideWindow"
+>hideWindow</A
+> :: Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AhideWindows"
+>hideWindows</A
+> :: [Window] -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteWindow"
+>deleteWindow</A
+> :: Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteWindows"
+>deleteWindows</A
+> :: [Window] -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApaintWindow"
+>paintWindow</A
+> :: Window -&gt; Dimension -&gt; Dimension -&gt; Dimension -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApaintAndWrite"
+>paintAndWrite</A
+> :: Window -&gt; <A HREF="XMonad-Util-Font.html#t%3AXMonadFont"
+>XMonadFont</A
+> -&gt; Dimension -&gt; Dimension -&gt; Dimension -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="XMonad-Util-Font.html#t%3AAlign"
+>Align</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AstringToPixel"
+>stringToPixel</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Control-Monad.html#t%3AFunctor"
+>Functor</A
+> m, MonadIO m) =&gt; Display -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m Pixel</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Afi"
+>fi</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3AIntegral"
+>Integral</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ANum"
+>Num</A
+> b) =&gt; a -&gt; b</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage:
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>See <A HREF="XMonad-Layout-Tabbed.html"
+>XMonad.Layout.Tabbed</A
+> or <A HREF="XMonad-Layout-DragPane.html"
+>XMonad.Layout.DragPane</A
+> for usage
+ examples
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AaveragePixels"
+></A
+><B
+>averagePixels</B
+> :: Pixel -&gt; Pixel -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ADouble"
+>Double</A
+> -&gt; X Pixel</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Compute the weighted average the colors of two given Pixel values.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcreateNewWindow"
+></A
+><B
+>createNewWindow</B
+> :: Rectangle -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> EventMask -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; X Window</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a simple window given a rectangle. If Nothing is given
+ only the exposureMask will be set, otherwise the Just value.
+ Use <TT
+><A HREF="XMonad-Util-XUtils.html#v%3AshowWindow"
+>showWindow</A
+></TT
+> to map and hideWindow to unmap.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshowWindow"
+></A
+><B
+>showWindow</B
+> :: Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Map a window
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshowWindows"
+></A
+><B
+>showWindows</B
+> :: [Window] -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>the list version
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AhideWindow"
+></A
+><B
+>hideWindow</B
+> :: Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>unmap a window
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AhideWindows"
+></A
+><B
+>hideWindows</B
+> :: [Window] -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>the list version
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdeleteWindow"
+></A
+><B
+>deleteWindow</B
+> :: Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>destroy a window
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdeleteWindows"
+></A
+><B
+>deleteWindows</B
+> :: [Window] -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+>the list version
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApaintWindow"
+></A
+><B
+>paintWindow</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: Window</TD
+><TD CLASS="rdoc"
+>The window where to draw
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Dimension</TD
+><TD CLASS="rdoc"
+>Window width
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Dimension</TD
+><TD CLASS="rdoc"
+>Window height
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Dimension</TD
+><TD CLASS="rdoc"
+>Border width
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Window background color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Border color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; X ()</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Fill a window with a rectangle and a border
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApaintAndWrite"
+></A
+><B
+>paintAndWrite</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: Window</TD
+><TD CLASS="rdoc"
+>The window where to draw
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="XMonad-Util-Font.html#t%3AXMonadFont"
+>XMonadFont</A
+></TD
+><TD CLASS="rdoc"
+>XMonad Font for drawing
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Dimension</TD
+><TD CLASS="rdoc"
+>Window width
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Dimension</TD
+><TD CLASS="rdoc"
+>Window height
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Dimension</TD
+><TD CLASS="rdoc"
+>Border width
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Window background color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>Border color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>String color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>String background color
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="XMonad-Util-Font.html#t%3AAlign"
+>Align</A
+></TD
+><TD CLASS="rdoc"
+>String <TT
+><A HREF="XMonad-Util-Font.html#t%3AAlign"
+>Align</A
+></TT
+>ment
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>String to be printed
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; X ()</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Fill a window with a rectangle and a border, and write a string at given position
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AstringToPixel"
+></A
+><B
+>stringToPixel</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Control-Monad.html#t%3AFunctor"
+>Functor</A
+> m, MonadIO m) =&gt; Display -&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m Pixel</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the Pixel value for a named color: if an invalid name is
+ given the black pixel will be returned.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Afi"
+></A
+><B
+>fi</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3AIntegral"
+>Integral</A
+> a, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ANum"
+>Num</A
+> b) =&gt; a -&gt; b</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Short-hand for <TT
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#v%3AfromIntegral"
+>fromIntegral</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

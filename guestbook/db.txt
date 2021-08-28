@@ -1,0 +1,38 @@
+id			serial
+signedat		datetime
+-------
+name			text
+emailaddress		text
+webpageaddress		text
+webpagename		text
+howfoundsite		int2
+comments		text
+-------
+ssn			bool
+number			int4
+citizen			bool
+cheatedontaxes		bool
+thoughsonseven		text
+-------
+mothersmaidenname	text
+number2			int4
+lovemother		bool
+postal			bool
+-------
+number3			int4
+password		bool
+-------
+blot1			int2
+blot1other		text
+blot2			int2
+blot2other		text
+blot3			int2
+blot3other		text
+blot4			int2
+blot4other		text
+blot5			int2
+blot5other		text
+blot6			int2
+blot6other		text
+blot7			int2
+blot7other		text

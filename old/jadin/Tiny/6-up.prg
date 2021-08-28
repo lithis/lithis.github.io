@@ -1,0 +1,15 @@
+Init{Name("6-UP")
+RegCore(C)
+RegCldMissile(M,1)
+SetAccel(5)
+RadarLeft(10)
+LockGun(1)
+Blocking(0)
+D=100}
+C{If(GunRmn<50)
+GunLeft(999)
+EndIf
+Scan()
+Fire(DtcRobot)}
+M{Back(D)
+D=-D}

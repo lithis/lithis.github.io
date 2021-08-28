@@ -1,0 +1,713 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.IM</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.IM</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Roman Cheplyaka &lt;roma@ro-che.info&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>Hints
+</A
+></DT
+><DT
+><A HREF="#3"
+>TODO
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Layout modfier suitable for workspace with multi-windowed instant messanger
+ (like Psi or Tkabber).
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AProperty"
+>Property</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ATitle"
+>Title</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AClassName"
+>ClassName</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AResource"
+>Resource</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ARole"
+>Role</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AAnd"
+>And</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AOr"
+>Or</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ANot"
+>Not</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AConst"
+>Const</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AIM"
+>IM</A
+> a = <A HREF="#v%3AIM"
+>IM</A
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwithIM"
+>withIM</A
+> :: LayoutClass l a =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> -&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> AddRoster l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgridIM"
+>gridIM</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> AddRoster <A HREF="XMonad-Layout-Grid.html#t%3AGrid"
+>Grid</A
+> a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Layout.IM
+ import Data.Ratio ((%))
+</PRE
+><P
+>Then edit your <TT
+>layoutHook</TT
+> by adding IM modifier to layout which you prefer
+ for managing your chat windows (Grid in this example, another useful choice
+ to consider is Tabbed layout).
+</P
+><PRE
+> myLayouts = withIM (1%7) (ClassName &quot;Tkabber&quot;) Grid ||| Full ||| etc..
+ main = xmonad defaultConfig { layoutHook = myLayouts }
+</PRE
+><P
+>Here <TT
+>1%7</TT
+> is the part of the screen which your roster will occupy,
+ <TT
+>ClassName &quot;Tkabber&quot;</TT
+> tells xmonad which window is actually your roster.
+</P
+><P
+>Screenshot: <A HREF="http://haskell.org/haskellwiki/Image:Xmonad-layout-im.png"
+>http://haskell.org/haskellwiki/Image:Xmonad-layout-im.png</A
+>
+</P
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Hints
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>To launch IM layout automatically on your IM workspace use <A HREF="XMonad-Layout-PerWorkspace.html"
+>XMonad.Layout.PerWorkspace</A
+>.
+</P
+><P
+>By default the roster window will appear on the left side.
+ To place roster window on the right side, use <TT
+>reflectHoriz</TT
+> from
+ <A HREF="XMonad-Layout-Reflect.html"
+>XMonad.Layout.Reflect</A
+> module.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+>TODO
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>This item are questionable. Please let me know if you find them useful.
+</P
+><UL
+><LI
+> shrink/expand
+</LI
+></UL
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AProperty"
+></A
+><B
+>Property</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Most of the property constructors are quite self-explaining.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATitle"
+></A
+><B
+>Title</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AClassName"
+></A
+><B
+>ClassName</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AResource"
+></A
+><B
+>Resource</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ARole"
+></A
+><B
+>Role</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>WM_WINDOW_ROLE property
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AAnd"
+></A
+><B
+>And</B
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AOr"
+></A
+><B
+>Or</B
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANot"
+></A
+><B
+>Not</B
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AConst"
+></A
+><B
+>Const</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Property')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Property" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AIM"
+></A
+><B
+>IM</B
+> a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>This is for compatibility with old configs only and will be removed in future versions!
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AIM"
+></A
+><B
+>IM</B
+> <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:IM')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:IM" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>LayoutClass <A HREF="XMonad-Layout-IM.html#t%3AIM"
+>IM</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Layout-IM.html#t%3AIM"
+>IM</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Layout-IM.html#t%3AIM"
+>IM</A
+> a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AwithIM"
+></A
+><B
+>withIM</B
+> :: LayoutClass l a =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> -&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> AddRoster l a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Modifier which converts given layout to IM-layout (with dedicated
+ space for roster and original layout for chat windows)
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgridIM"
+></A
+><B
+>gridIM</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Prelude.html#t%3ARational"
+>Rational</A
+> -&gt; <A HREF="XMonad-Layout-IM.html#t%3AProperty"
+>Property</A
+> -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> AddRoster <A HREF="XMonad-Layout-Grid.html#t%3AGrid"
+>Grid</A
+> a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>IM layout modifier applied to the Grid layout
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

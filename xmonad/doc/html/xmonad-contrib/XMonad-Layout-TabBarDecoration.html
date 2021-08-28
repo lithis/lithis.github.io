@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.TabBarDecoration</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.TabBarDecoration</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A layout modifier to add a bar of tabs to your layouts.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsimpleTabBar"
+>simpleTabBar</A
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> l) a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtabBar"
+>tabBar</A
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-TabBarDecoration.html#t%3AXPPosition"
+>XPPosition</A
+> -&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdefaultTheme"
+>defaultTheme</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshrinkText"
+>shrinkText</A
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> a = <A HREF="#v%3ATabBar"
+>TabBar</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AXPPosition"
+>XPPosition</A
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ATop"
+>Top</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ABottom"
+>Bottom</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="XMonad-Layout-ResizeScreen.html"
+>XMonad.Layout.ResizeScreen</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your
+ <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Layout.TabBarDecoration
+</PRE
+><P
+>Then edit your <TT
+>layoutHook</TT
+> by adding the layout you want:
+</P
+><PRE
+> main = xmonad defaultConfig { layoutHook = simpleTabBar $ layoutHook defaultConfig}
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+><P
+><TT
+><A HREF="XMonad-Layout-TabBarDecoration.html#v%3AtabBar"
+>tabBar</A
+></TT
+> will give you the possibility of setting a custom shrinker
+ and a custom theme.
+</P
+><P
+>The deafult theme can be dynamically change with the xmonad theme
+ selector. See <A HREF="XMonad-Prompt-Theme.html"
+>XMonad.Prompt.Theme</A
+>. For more themse, look at
+ <A HREF="XMonad-Util-Themes.html"
+>XMonad.Util.Themes</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsimpleTabBar"
+></A
+><B
+>simpleTabBar</B
+> :: <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+>) (<A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> <A HREF="XMonad-Layout-ResizeScreen.html#t%3AResizeScreen"
+>ResizeScreen</A
+> l) a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Add, on the top of the screen, a simple bar of tabs to a given
+ | layout, with the default theme and the default shrinker.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AtabBar"
+></A
+><B
+>tabBar</B
+> :: (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="XMonad-Layout-Decoration.html#t%3AShrinker"
+>Shrinker</A
+> s) =&gt; s -&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+> -&gt; <A HREF="XMonad-Layout-TabBarDecoration.html#t%3AXPPosition"
+>XPPosition</A
+> -&gt; l a -&gt; <A HREF="XMonad-Layout-LayoutModifier.html#t%3AModifiedLayout"
+>ModifiedLayout</A
+> (<A HREF="XMonad-Layout-Decoration.html#t%3ADecoration"
+>Decoration</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> s) l a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Same of <TT
+><A HREF="XMonad-Layout-TabBarDecoration.html#v%3AsimpleTabBar"
+>simpleTabBar</A
+></TT
+>, but with the possibility of setting a
+ custom shrinker, a custom theme and the position: <TT
+><A HREF="XMonad-Layout-TabBarDecoration.html#v%3ATop"
+>Top</A
+></TT
+> or
+ <TT
+><A HREF="XMonad-Layout-TabBarDecoration.html#v%3ABottom"
+>Bottom</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdefaultTheme"
+></A
+><B
+>defaultTheme</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The default xmonad <TT
+><A HREF="XMonad-Layout-Decoration.html#t%3ATheme"
+>Theme</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AshrinkText"
+></A
+><B
+>shrinkText</B
+> :: <A HREF="XMonad-Layout-Decoration.html#t%3ADefaultShrinker"
+>DefaultShrinker</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3ATabBarDecoration"
+></A
+><B
+>TabBarDecoration</B
+> a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATabBar"
+></A
+><B
+>TabBar</B
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:TabBarDecoration')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:TabBarDecoration" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> a =&gt; <A HREF="XMonad-Layout-Decoration.html#t%3ADecorationStyle"
+>DecorationStyle</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> a</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Layout-TabBarDecoration.html#t%3ATabBarDecoration"
+>TabBarDecoration</A
+> a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AXPPosition"
+></A
+><B
+>XPPosition</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATop"
+></A
+><B
+>Top</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ABottom"
+></A
+><B
+>Bottom</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:XPPosition')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:XPPosition" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Layout-TabBarDecoration.html#t%3AXPPosition"
+>XPPosition</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="XMonad-Layout-ResizeScreen.html"
+>XMonad.Layout.ResizeScreen</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

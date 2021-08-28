@@ -1,0 +1,721 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Layout.MultiToggle</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Layout.MultiToggle</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>&lt;l.mai@web.de&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Dynamically apply and unapply transformers to your window layout. This can
+ be used to rotate your window layout by 90 degrees, or to make the
+ currently focused window occupy the whole screen (&quot;zoom in&quot;) then undo
+ the transformation (&quot;zoom out&quot;).
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> t, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Typeable.html#t%3ATypeable"
+>Typeable</A
+> t) =&gt; <A HREF="#t%3ATransformer"
+>Transformer</A
+> t a | t -&gt; a <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Atransform"
+>transform</A
+> :: LayoutClass l a =&gt; t -&gt; l a -&gt; (<SPAN CLASS="keyword"
+>forall</SPAN
+> l' . LayoutClass l' a =&gt; l' a -&gt; b) -&gt; b</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AToggle"
+>Toggle</A
+> a = <SPAN CLASS="keyword"
+>forall</SPAN
+> t . Transformer t a =&gt; <A HREF="#v%3AToggle"
+>Toggle</A
+> t</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%3F%3F"
+>(??)</A
+> :: HList b w =&gt; a -&gt; b -&gt; HCons a b</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AEOT"
+>EOT</A
+>  = <A HREF="#v%3AEOT"
+>EOT</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Asingle"
+>single</A
+> :: a -&gt; HCons a <A HREF="XMonad-Layout-MultiToggle.html#t%3AEOT"
+>EOT</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkToggle"
+>mkToggle</A
+> :: LayoutClass l a =&gt; ts -&gt; l a -&gt; MultiToggle ts l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkToggle1"
+>mkToggle1</A
+> :: LayoutClass l a =&gt; t -&gt; l a -&gt; MultiToggle (HCons t <A HREF="XMonad-Layout-MultiToggle.html#t%3AEOT"
+>EOT</A
+>) l a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>The basic idea is to have a base layout and a set of layout transformers,
+ of which at most one is active at any time. Enabling another transformer
+ first disables any currently active transformer; i.e. it works like a
+ group of radio buttons.
+</P
+><P
+>A side effect of this meta-layout is that layout transformers no longer
+ receive any messages; any message not handled by MultiToggle itself will
+ undo the current layout transformer, pass the message on to the base
+ layout, then reapply the transformer.
+</P
+><P
+>To use this module, you need some data types which represent
+ transformers; for some commonly used transformers (including
+ MIRROR, NOBORDERS, and FULL used in the examples below) you can
+ simply import <A HREF="XMonad-Layout-MultiToggle-Instances.html"
+>XMonad.Layout.MultiToggle.Instances</A
+>.
+</P
+><P
+>Somewhere else in your file you probably have a definition of <TT
+>layout</TT
+>;
+ the default looks like this:
+</P
+><PRE
+> layout = tiled ||| Mirror tiled ||| Full
+</PRE
+><P
+>After changing this to
+</P
+><PRE
+> layout = mkToggle (single MIRROR) (tiled ||| Full)
+</PRE
+><P
+>you can now dynamically apply the <TT
+><A HREF="XMonad-Layout.html#t%3AMirror"
+>Mirror</A
+></TT
+> transformation:
+</P
+><PRE
+> ...
+   , ((modMask,               xK_x     ), sendMessage $ Toggle MIRROR)
+ ...
+</PRE
+><P
+>(That should be part of your key bindings.) When you press <TT
+>mod-x</TT
+>, the
+ active layout is mirrored. Another <TT
+>mod-x</TT
+> and it's back to normal.
+</P
+><P
+>It's also possible to stack <TT
+>MultiToggle</TT
+>s.  For example:
+</P
+><PRE
+>
+ layout = id
+     . <TT
+><A HREF="XMonad-Layout-NoBorders.html#v%3AsmartBorders"
+>smartBorders</A
+></TT
+>
+     . mkToggle (NOBORDERS ?? FULL ?? EOT)
+     . mkToggle (single MIRROR)
+     $ tiled ||| <TT
+><A HREF="XMonad-Layout-Grid.html#t%3AGrid"
+>Grid</A
+></TT
+> ||| <TT
+><A HREF="XMonad-Layout-Circle.html#t%3ACircle"
+>Circle</A
+></TT
+>
+ </PRE
+><P
+>By binding a key to <TT
+>(sendMessage $ Toggle FULL)</TT
+> you can temporarily
+ maximize windows, in addition to being able to rotate layouts and remove
+ window borders.
+</P
+><P
+>You can also define your own transformers by creating a data type
+ which is an instance of the <TT
+><A HREF="XMonad-Layout-MultiToggle.html#t%3ATransformer"
+>Transformer</A
+></TT
+> class.  For example, here
+ is the definition of <TT
+>MIRROR</TT
+>:
+</P
+><PRE
+> data MIRROR = MIRROR deriving (Read, Show, Eq, Typeable)
+ instance Transformer MIRROR Window where
+     transform _ x k = k (Mirror x)
+</PRE
+><P
+>Note, you need to put <TT
+>{-# LANGUAGE DeriveDataTypeable #-}</TT
+> at the
+ beginning of your file (ghc 6.8 only; with ghc 6.6 you can use
+ <TT
+>{-# OPTIONS_GHC -fglasgow-exts #-}</TT
+> instead) to be able to
+ derive <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Typeable.html"
+>Data.Typeable</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Eq.html#t%3AEq"
+>Eq</A
+> t, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Typeable.html#t%3ATypeable"
+>Typeable</A
+> t) =&gt; <A NAME="t%3ATransformer"
+></A
+><B
+>Transformer</B
+> t a | t -&gt; a <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A class to identify custom transformers (and look up transforming
+ functions by type).
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Atransform"
+></A
+><B
+>transform</B
+> :: LayoutClass l a =&gt; t -&gt; l a -&gt; (<SPAN CLASS="keyword"
+>forall</SPAN
+> l' . LayoutClass l' a =&gt; l' a -&gt; b) -&gt; b</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Transformer')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Transformer" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-MultiToggle.html#t%3ATransformer"
+>Transformer</A
+> <A HREF="XMonad-Layout-Reflect.html#t%3AREFLECTX"
+>REFLECTX</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-MultiToggle.html#t%3ATransformer"
+>Transformer</A
+> <A HREF="XMonad-Layout-Reflect.html#t%3AREFLECTY"
+>REFLECTY</A
+> Window</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Layout-MultiToggle.html#t%3ATransformer"
+>Transformer</A
+> <A HREF="XMonad-Layout-MultiToggle-Instances.html#t%3AStdTransformers"
+>StdTransformers</A
+> Window</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AToggle"
+></A
+><B
+>Toggle</B
+> a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Toggle the specified layout transformer.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><SPAN CLASS="keyword"
+>forall</SPAN
+> t . Transformer t a =&gt; <A NAME="v%3AToggle"
+></A
+><B
+>Toggle</B
+> t</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Toggle')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Toggle" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Typeable.html#t%3ATypeable"
+>Typeable</A
+> a =&gt; Message (<A HREF="XMonad-Layout-MultiToggle.html#t%3AToggle"
+>Toggle</A
+> a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Typeable.html#t%3ATypeable"
+>Typeable</A
+> t =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Data-Typeable.html#t%3ATypeable"
+>Typeable</A
+> (<A HREF="XMonad-Layout-MultiToggle.html#t%3AToggle"
+>Toggle</A
+> a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3A%3F%3F"
+></A
+><B
+>(??)</B
+> :: HList b w =&gt; a -&gt; b -&gt; HCons a b</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Prepend an element to a heterogeneous list. Used to build transformer
+ tables for <TT
+><A HREF="XMonad-Layout-MultiToggle.html#v%3AmkToggle"
+>mkToggle</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AEOT"
+></A
+><B
+>EOT</B
+> </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Marks the end of a transformer list.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AEOT"
+></A
+><B
+>EOT</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:EOT')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:EOT" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="XMonad-Layout-MultiToggle.html#t%3AEOT"
+>EOT</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="XMonad-Layout-MultiToggle.html#t%3AEOT"
+>EOT</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>HList <A HREF="XMonad-Layout-MultiToggle.html#t%3AEOT"
+>EOT</A
+> w</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Asingle"
+></A
+><B
+>single</B
+> :: a -&gt; HCons a <A HREF="XMonad-Layout-MultiToggle.html#t%3AEOT"
+>EOT</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Construct a singleton transformer table.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkToggle"
+></A
+><B
+>mkToggle</B
+> :: LayoutClass l a =&gt; ts -&gt; l a -&gt; MultiToggle ts l a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Construct a <TT
+>MultiToggle</TT
+> layout from a transformer table and a base
+ layout.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmkToggle1"
+></A
+><B
+>mkToggle1</B
+> :: LayoutClass l a =&gt; t -&gt; l a -&gt; MultiToggle (HCons t <A HREF="XMonad-Layout-MultiToggle.html#t%3AEOT"
+>EOT</A
+>) l a</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Construct a <TT
+>MultiToggle</TT
+> layout from a single transformer and a base
+ layout.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

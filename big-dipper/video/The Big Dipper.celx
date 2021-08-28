@@ -1,0 +1,115 @@
+function asseenfrom(observer, name, pos, rot, travelduration, waitduration)
+	travelduration = travelduration or 10 -- 5 for testing, 10 for a longer wait.
+	waitduration = waitduration or 7 -- 3 for testing, 7 for a longer wait.
+	pos = pos or celestia:find(name):getposition()
+	rot = rot or observer:getorientation()
+
+	--observer:goto(celestia:find(name), travelduration)
+
+	parameters = { }
+	parameters.duration = travelduration
+	parameters.from = observer:getposition()
+	parameters.to = pos
+	parameters.initialOrientaion = observer:getorientation()
+	parameters.finalOrientation = rot
+	if name == "Regulus" then
+		parameters.startInterpolation = 0
+	end
+	observer:goto(parameters)
+
+	elapsedwait(0.75 * travelduration)
+	-- A travelduration coefficient of 0.325 is good when the travelduration is 5.
+	-- A travelduration coefficient of 0.3 is good when the travelduration is 10.
+	-- A travelduration coefficient of 0.25 is good when the travelduration is 30.
+	celestia:flash("       As seen from " .. name, waitduration +
+			(0.0001*travelduration^2 - 0.0065*travelduration + 0.355)
+			* travelduration)
+	elapsedwait(0.5 * waitduration)
+	--celestia:setrenderflags{constellations = true}
+	-- celestia:showconstellations()
+	elapsedwait(0.5 * waitduration)
+	--celestia:setrenderflags{constellations = false}
+end
+
+function elapsedwait(duration)
+	starttime = celestia:gettime()
+	endtime = starttime + duration / 24 / 60 / 60
+	while celestia:gettime() <= endtime do
+		wait(0)
+	end
+end
+
+-- Set time to 3:43 AM CDT on July 21.
+celestia:settime(celestia:utctotdb(2011, 7, 21, 8, 43, 0))
+
+-- Select Megrez instead to improve 3D perspective.
+celestia:select(celestia:find("Megrez"))
+-- TODO: Follow nothing.
+celestia:unmarkall()
+
+-- celestia:settextcolor(177/256, 177/256, 254/256)
+
+celestia:setoverlayelements{Time = false, Velocity = false, Selection = false, Frame = false}
+
+-- celestia:hideconstellations()
+celestia:setconstellationcolor(0.125, 0.125, 0)
+celestia:setconstellationcolor(0.4, 0.4, 0, {"Ursa Major"})
+-- celestia:showconstellations{"Ursa Major"}
+
+-- Mark Castor and Pollux so they can be seen from Aldebaran.
+for i, star in ipairs({"Castor", "Pollux"}) do
+	celestia:find(star):mark("purple", "filledsquare", 7, 0.75)
+end
+
+-- Brighten the stars of the Big Dipper.
+celestia:setrenderflags{markers = true}
+for i, star in ipairs({"Alkaid", "Alcor", "Alioth", "Megrez", "Phecda", "Merak", "Dubhe"}) do
+	celestia:find(star):mark("yellow", "disk", 5, 0.75)
+end
+
+celestia:setrenderflags{constellations = true}
+
+observer = celestia:getobserver()
+--observer:setframe(celestia:newframe("universal"))
+observer:track(nil)
+
+-- Always remain looking at the Big Dipper.
+-- The view from Duluth is not horizontal if Phecda is tracked here.
+--observer:track(celestia:find("Phecda"))
+
+-- asseenfrom(observer, "Sol/Earth")
+earth = celestia:find("Sol/Earth")
+observer:synchronous(earth)
+observer:gotolonglat(earth, math.rad(-92.098194), math.rad(46.786939), earth:radius() * 2, 0)
+-- Without this wait, the observer does not go to the above latitude and longitude.
+wait(0)
+observer:gotosurface(earth, 10)
+elapsedwait(10)
+celestia:flash("       As seen from Duluth", 7)
+elapsedwait(7)
+
+-- Always remain looking at the Big Dipper.
+-- The view from Duluth is horizontal if Phecda is tracked here.
+--observer:track(celestia:find("Phecda"))
+
+observer:setframe(celestia:newframe("universal"))
+
+pos = celestia:newposition("AABYAOsR1HqI6On7/////w", "ADR5CoLr0KU30gk", "AIAxSsPh8NHO4p/9/////w")
+rot = celestia:newrotation(0.295384, -0.547602, -0.541268, 0.565605)
+asseenfrom(observer, "Regulus", pos, rot)
+
+pos = celestia:newposition("AADCg6Exgq6QJjb//////w", "AOD6ihjzfklXAjw", "AACC0l7zNzHUcCn+/////w")
+rot = celestia:newrotation(0.570359, -0.285928, -0.663429, 0.390894)
+asseenfrom(observer, "Pollux", pos, rot)
+
+pos = celestia:newposition("AIBS5t+BTqpGoPf+/////w", "AEArtxa0sO/8EIg", "AMAJlmIZuiVRBTP9/////w")
+rot = celestia:newrotation(0.486686, -0.324719, -0.737474, 0.33738)
+asseenfrom(observer, "Castor", pos, rot)
+
+pos = celestia:newposition("AAAAAAAAED5Ru10B", "AAAAAAAAihO6HZ///////w", "AAAAAAAAIOLHA0r8/////w")
+rot = celestia:newrotation(0.537383, -0.234457, -0.784567, 0.201753)
+asseenfrom(observer, "Aldebaran", pos, rot)
+
+pos = celestia:newposition("2LCYvQYZAIMH", "P30XajnICQ", "IHj45WqmHi0O")
+rot = celestia:newrotation(0.760644, -0.285348, -0.500984, 0.29835)
+asseenfrom(observer, "Sol/Earth", pos, rot)

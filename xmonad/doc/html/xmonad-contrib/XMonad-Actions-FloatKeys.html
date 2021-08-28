@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Actions.FloatKeys</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Actions.FloatKeys</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Karsten Schoelzel &lt;kuser@gmx.de&gt;</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Move and resize floating windows.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AkeysMoveWindow"
+>keysMoveWindow</A
+> :: D -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AkeysMoveWindowTo"
+>keysMoveWindowTo</A
+> :: P -&gt; G -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AkeysResizeWindow"
+>keysResizeWindow</A
+> :: D -&gt; G -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AkeysAbsResizeWindow"
+>keysAbsResizeWindow</A
+> :: D -&gt; D -&gt; Window -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+>    import XMonad.Actions.FloatKeys
+</PRE
+><P
+>Then add appropriate key bindings, for example:
+</P
+><PRE
+>  , ((modMask x,               xK_d     ), withFocused (keysResizeWindow (-10,-10) (1,1)))
+  , ((modMask x,               xK_s     ), withFocused (keysResizeWindow (10,10) (1,1)))
+  , ((modMask x .|. shiftMask, xK_d     ), withFocused (keysAbsResizeWindow (-10,-10) (1024,752)))
+  , ((modMask x .|. shiftMask, xK_s     ), withFocused (keysAbsResizeWindow (10,10) (1024,752)))
+  , ((modMask x,               xK_a     ), withFocused (keysMoveWindowTo (512,384) (1%2,1%2)))
+</PRE
+><P
+>For detailed instructions on editing your key bindings, see
+ <A HREF="XMonad-Doc-Extending.html#Editing_key_bindings"
+>XMonad.Doc.Extending#Editing_key_bindings</A
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AkeysMoveWindow"
+></A
+><B
+>keysMoveWindow</B
+> :: D -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+>keysMoveWindow (dx, dy)</TT
+> moves the window by <TT
+>dx</TT
+> pixels to the
+   right and <TT
+>dy</TT
+> pixels down.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AkeysMoveWindowTo"
+></A
+><B
+>keysMoveWindowTo</B
+> :: P -&gt; G -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+>keysMoveWindowTo (x, y) (gx, gy)</TT
+> moves the window relative
+   point <TT
+>(gx, gy)</TT
+> to the point <TT
+>(x,y)</TT
+>, where <TT
+>(gx,gy)</TT
+> gives a
+   position relative to the window border, i.e.  <TT
+>gx = 0</TT
+> is the left
+   border, <TT
+>gx = 1</TT
+> is the right border, <TT
+>gy = 0</TT
+> is the top border, and
+   <TT
+>gy = 1</TT
+> the bottom border.
+</P
+><P
+>For example, on a 1024x768 screen:
+</P
+><PRE
+> keysMoveWindowTo (512,384) (1%2, 1%2) -- center the window on screen
+ keysMoveWindowTo (1024,0) (1, 0)      -- put window in the top right corner
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AkeysResizeWindow"
+></A
+><B
+>keysResizeWindow</B
+> :: D -&gt; G -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+>keysResizeWindow (dx, dy) (gx, gy)</TT
+> changes the width by <TT
+>dx</TT
+>
+   and the height by <TT
+>dy</TT
+>, leaving the window-relative point <TT
+>(gx,
+   gy)</TT
+> fixed.
+</P
+><P
+>For example:
+</P
+><PRE
+> keysResizeWindow (10, 0) (0, 0)      -- make the window 10 pixels larger to the right
+ keysResizeWindow (10, 0) (0, 1%2)    -- does the same, unless sizeHints are applied
+ keysResizeWindow (10, 10) (1%2, 1%2) -- add 5 pixels on each side
+ keysResizeWindow (-10, -10) (0, 1)   -- shrink the window in direction of the bottom-left corner
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AkeysAbsResizeWindow"
+></A
+><B
+>keysAbsResizeWindow</B
+> :: D -&gt; D -&gt; Window -&gt; X ()</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+><TT
+>keysAbsResizeWindow (dx, dy) (ax, ay)</TT
+> changes the width by <TT
+>dx</TT
+>
+   and the height by <TT
+>dy</TT
+>, leaving the screen absolute point <TT
+>(ax,
+   ay)</TT
+> fixed.
+</P
+><P
+>For example:
+</P
+><PRE
+> keysAbsResizeWindow (10, 10) (0, 0)   -- enlarge the window; if it is not in the top-left corner it will also be moved down and to the right.
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

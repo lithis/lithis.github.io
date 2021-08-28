@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>XMonad.Hooks.EventHook</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>xmonad-contrib-0.7: Third party extensions for xmonad</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>XMonad.Hooks.EventHook</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>unportable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>unstable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>andrea.rossato@unibz.it</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Usage
+</A
+></DT
+><DT
+><A HREF="#2"
+>Writing a hook
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A layout modifier that implements an event hook at the layout level.
+</P
+><P
+>Since it operates at the Workspace level, it will install itself
+ on the first current Workspace and will broadcast a Message to
+ all other Workspaces not to handle events.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> eh, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> eh) =&gt; <A HREF="#t%3AEventHook"
+>EventHook</A
+> eh  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AhandleEvent"
+>handleEvent</A
+> :: eh -&gt; Event -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AeventHook"
+>eventHook</A
+> :: <A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> eh =&gt; eh -&gt; l a -&gt; <A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> eh l a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A HREF="#t%3AHandleEvent"
+>HandleEvent</A
+> eh l a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Usage
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>You can use this module with the following in your
+ <TT
+>~/.xmonad/xmonad.hs</TT
+>:
+</P
+><PRE
+> import XMonad.Hooks.EventHook
+</PRE
+><P
+>Then edit your <TT
+>layoutHook</TT
+> by adding the <TT
+><A HREF="XMonad-Hooks-EventHook.html#v%3AeventHook"
+>eventHook</A
+></TT
+>:
+</P
+><PRE
+> layoutHook = eventHook EventHookExample $ avoidStruts $ simpleTabbed ||| Full ||| etc..
+</PRE
+><P
+>and then:
+</P
+><PRE
+> main = xmonad defaultConfig { layoutHook = myLayouts }
+</PRE
+><P
+>For more detailed instructions on editing the layoutHook see:
+</P
+><P
+><A HREF="XMonad-Doc-Extending.html#Editing_the_layout_hook"
+>XMonad.Doc.Extending#Editing_the_layout_hook</A
+>
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Writing a hook
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Writing a hook is very simple.
+</P
+><P
+>This is a basic example to log all events:
+</P
+><PRE
+> data EventHookExample = EventHookExample deriving ( Show, Read )
+ instance EventHook EventHookExample where
+     handleEvent _ e = io $ hPutStrLn stderr . show $ e --return ()
+</PRE
+><P
+>This is an <TT
+><A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+></TT
+> to log mouse button events:
+</P
+><PRE
+> data EventHookButton = EventHookButton deriving ( Show, Read )
+ instance EventHook EventHookButton where
+    handleEvent _ (ButtonEvent {ev_window = w}) = do
+         io $ hPutStrLn stderr $ &quot;This is a button event on window &quot; ++ (show w)
+    handleEvent _ _ = return ()
+</PRE
+><P
+>Obviously you can compose event hooks:
+</P
+><PRE
+> layoutHook = eventHook EventHookButton $ eventHook EventHookExample $ avoidStruts $ simpleTabbed ||| Full ||| etc..
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> eh, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> eh) =&gt; <A NAME="t%3AEventHook"
+></A
+><B
+>EventHook</B
+> eh  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AhandleEvent"
+></A
+><B
+>handleEvent</B
+> :: eh -&gt; Event -&gt; X ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:EventHook')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:EventHook" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> EwmhDesktopsHook</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> <A HREF="XMonad-Hooks-ServerMode.html#t%3AServerMode"
+>ServerMode</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="XMonad-Hooks-UrgencyHook.html#t%3AUrgencyHook"
+>UrgencyHook</A
+> h =&gt; <A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> (WithUrgencyHook h)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AeventHook"
+></A
+><B
+>eventHook</B
+> :: <A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> eh =&gt; eh -&gt; l a -&gt; <A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> eh l a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+> <A NAME="t%3AHandleEvent"
+></A
+><B
+>HandleEvent</B
+> eh l a</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:HandleEvent')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:HandleEvent" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>(<A HREF="XMonad-Hooks-EventHook.html#t%3AEventHook"
+>EventHook</A
+> eh, LayoutClass l a) =&gt; LayoutClass (<A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> eh l) a</TD
+></TR
+><TR
+><TD CLASS="decl"
+>(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> eh, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (l a)) =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Read.html#t%3ARead"
+>Read</A
+> (<A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> eh l a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+>(<A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> eh, <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (l a)) =&gt; <A HREF="/usr/share/doc/ghc6-doc/libraries/base/Text-Show.html#t%3AShow"
+>Show</A
+> (<A HREF="XMonad-Hooks-EventHook.html#t%3AHandleEvent"
+>HandleEvent</A
+> eh l a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 0.8</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>
